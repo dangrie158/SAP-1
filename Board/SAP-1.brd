@@ -2750,93 +2750,93 @@ design rules under a new name.</description>
 <attribute name="SPICEPREFIX" value="C" x="32.385" y="29.21" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="35.052" y="27.051" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="4" y="-40" smashed="yes">
+<element name="MAR:C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="4" y="-40" smashed="yes">
 <attribute name="MOUSER" value="594-K104K15X7RF53H5" x="4" y="-40" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="1.841" y="-38.603" size="1.27" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="C" x="4" y="-40" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="1.841" y="-42.667" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:C2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="4" y="-47" smashed="yes">
+<element name="MAR:C2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="4" y="-47" smashed="yes">
 <attribute name="MOUSER" value="594-K104K15X7RF53H5" x="4" y="-47" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="1.841" y="-45.603" size="1.27" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="C" x="4" y="-47" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="1.841" y="-49.667" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS157N" x="13" y="-63" smashed="yes">
+<element name="MAR:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS157N" x="13" y="-63" smashed="yes">
 <attribute name="NAME" x="2.459" y="-65.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="5.507" y="-63.635" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:IC1" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS173N" x="13" y="-74" smashed="yes">
+<element name="MAR:IC1" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS173N" x="13" y="-74" smashed="yes">
 <attribute name="NAME" x="2.459" y="-76.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="5.507" y="-74.635" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-82" smashed="yes">
+<element name="MAR:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-82" smashed="yes">
 <attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-82" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-81.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-83.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-87" smashed="yes">
+<element name="MAR:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-87" smashed="yes">
 <attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-87" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-86.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-88.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-92" smashed="yes">
+<element name="MAR:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-92" smashed="yes">
 <attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-92" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-91.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-93.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-97" smashed="yes">
+<element name="MAR:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-97" smashed="yes">
 <attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-97" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-96.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-98.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:PROG" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="3" y="-102" smashed="yes">
+<element name="MAR:PROG" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="3" y="-102" smashed="yes">
 <attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-102" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-101.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-103.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:R1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-107" smashed="yes">
+<element name="MAR:R1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-107" smashed="yes">
 <attribute name="MOUSER" value="594-5063JD220K0F" x="5" y="-107" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="2.46" y="-105.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="5" y="-107" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="3.3744" y="-107.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:R10" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-111" smashed="yes">
+<element name="MAR:R10" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-111" smashed="yes">
 <attribute name="MOUSER" value="594-5063JD220K0F" x="5" y="-111" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="2.46" y="-109.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="5" y="-111" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="3.3744" y="-111.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:R2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-115" smashed="yes">
+<element name="MAR:R2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-115" smashed="yes">
 <attribute name="MOUSER" value="594-5063JD220K0F" x="5" y="-115" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="2.46" y="-113.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="5" y="-115" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="3.3744" y="-115.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:R3" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-119" smashed="yes">
+<element name="MAR:R3" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-119" smashed="yes">
 <attribute name="MOUSER" value="594-5063JD220K0F" x="5" y="-119" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="2.46" y="-117.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="5" y="-119" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="3.3744" y="-119.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:R4" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-123" smashed="yes">
+<element name="MAR:R4" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-123" smashed="yes">
 <attribute name="MOUSER" value="594-5063JD220K0F" x="5" y="-123" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="2.46" y="-121.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="5" y="-123" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="3.3744" y="-123.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:R9" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-127" smashed="yes">
+<element name="MAR:R9" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="5" y="-127" smashed="yes">
 <attribute name="MOUSER" value="594-5063JD220K0F" x="5" y="-127" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="2.46" y="-125.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="5" y="-127" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="3.3744" y="-127.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:RUN" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="GREEN" x="3" y="-131" smashed="yes">
+<element name="MAR:RUN" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="GREEN" x="3" y="-131" smashed="yes">
 <attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-131" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-130.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-132.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:S1" library="switch-dil" library_urn="urn:adsk.eagle:library:375" package="DIP04YL" package3d_urn="urn:adsk.eagle:package:27255/2" value="Memory Address" x="9" y="-139" smashed="yes">
+<element name="MAR:S1" library="switch-dil" library_urn="urn:adsk.eagle:library:375" package="DIP04YL" package3d_urn="urn:adsk.eagle:package:27255/2" value="Memory Address" x="9" y="-139" smashed="yes">
 <attribute name="MF" value="" x="9" y="-139" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="" x="9" y="-139" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="2.3198" y="-142.7592" size="1.27" layer="25" ratio="10" rot="R90"/>
@@ -2844,7 +2844,7 @@ design rules under a new name.</description>
 <attribute name="OC_NEWARK" value="unknown" x="9" y="-139" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="15.0452" y="-142.1496" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="MEMORY_ADDRESS_REGISTER:S3" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" package="SWITCH_SPDT_PTH_11.6X4.0MM_KIT" package3d_urn="urn:adsk.eagle:package:40178/1" value="" x="-4" y="-149" smashed="yes">
+<element name="MAR:S3" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" package="SWITCH_SPDT_PTH_11.6X4.0MM_KIT" package3d_urn="urn:adsk.eagle:package:40178/1" value="" x="-4" y="-149" smashed="yes">
 <attribute name="MOUSER" value="474-COM-00102" x="-4" y="-149" size="1.778" layer="27" display="off"/>
 <attribute name="MOUSER_CHEAP" value="474-COM-09609" x="-4" y="-149" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-6.413" y="-149" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
@@ -3056,6 +3056,70 @@ design rules under a new name.</description>
 <attribute name="NAME" x="-6.159" y="-422.603" size="1.27" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="C" x="-4" y="-424" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-6.159" y="-426.667" size="1.27" layer="27" ratio="10"/>
+</element>
+<element name="PC:IC1" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS161N" x="6" y="-433" smashed="yes">
+<attribute name="NAME" x="-4.541" y="-435.921" size="1.27" layer="25" ratio="10" rot="R90"/>
+<attribute name="VALUE" x="-1.493" y="-433.635" size="1.27" layer="27" ratio="10"/>
+</element>
+<element name="PC:C2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="-4" y="-449" smashed="yes">
+<attribute name="MOUSER" value="594-K104K15X7RF53H5" x="-4" y="-442" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-6.159" y="-447.603" size="1.27" layer="25" ratio="10"/>
+<attribute name="SPICEPREFIX" value="C" x="-4" y="-442" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-6.159" y="-451.667" size="1.27" layer="27" ratio="10"/>
+</element>
+<element name="PC:C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="-4" y="-442" smashed="yes">
+<attribute name="MOUSER" value="594-K104K15X7RF53H5" x="-4" y="-449" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-6.159" y="-440.603" size="1.27" layer="25" ratio="10"/>
+<attribute name="SPICEPREFIX" value="C" x="-4" y="-449" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-6.159" y="-444.667" size="1.27" layer="27" ratio="10"/>
+</element>
+<element name="PC:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL20" package3d_urn="urn:adsk.eagle:package:16429/2" value="74LS245N" x="8" y="-458" smashed="yes">
+<attribute name="NAME" x="-5.081" y="-461.048" size="1.27" layer="25" rot="R90"/>
+<attribute name="VALUE" x="-1.779" y="-458.381" size="1.27" layer="27"/>
+</element>
+<element name="PC:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-466" smashed="yes">
+<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-466" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-3.095" y="-465.619" size="1.27" layer="25" ratio="10"/>
+<attribute name="VALUE" x="-3.095" y="-467.651" size="1.27" layer="27" ratio="10"/>
+</element>
+<element name="PC:R1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-2" y="-486" smashed="yes">
+<attribute name="MOUSER" value="594-5063JD220K0F" x="-2" y="-471" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-4.54" y="-484.7046" size="0.9906" layer="25" ratio="10"/>
+<attribute name="SPICEPREFIX" value="R" x="-2" y="-471" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-3.6256" y="-486.4826" size="0.9906" layer="27" ratio="10"/>
+</element>
+<element name="PC:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-471" smashed="yes">
+<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-475" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-3.095" y="-470.619" size="1.27" layer="25" ratio="10"/>
+<attribute name="VALUE" x="-3.095" y="-472.651" size="1.27" layer="27" ratio="10"/>
+</element>
+<element name="PC:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-476" smashed="yes">
+<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-480" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-3.095" y="-475.619" size="1.27" layer="25" ratio="10"/>
+<attribute name="VALUE" x="-3.095" y="-477.651" size="1.27" layer="27" ratio="10"/>
+</element>
+<element name="PC:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-481" smashed="yes">
+<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-485" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-3.095" y="-480.619" size="1.27" layer="25" ratio="10"/>
+<attribute name="VALUE" x="-3.095" y="-482.651" size="1.27" layer="27" ratio="10"/>
+</element>
+<element name="PC:R2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="8" y="-486" smashed="yes">
+<attribute name="MOUSER" value="594-5063JD220K0F" x="-2" y="-490" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="5.46" y="-484.7046" size="0.9906" layer="25" ratio="10"/>
+<attribute name="SPICEPREFIX" value="R" x="-2" y="-490" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="6.3744" y="-486.4826" size="0.9906" layer="27" ratio="10"/>
+</element>
+<element name="PC:R3" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-2" y="-490" smashed="yes">
+<attribute name="MOUSER" value="594-5063JD220K0F" x="-2" y="-494" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-4.54" y="-488.7046" size="0.9906" layer="25" ratio="10"/>
+<attribute name="SPICEPREFIX" value="R" x="-2" y="-494" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-3.6256" y="-490.4826" size="0.9906" layer="27" ratio="10"/>
+</element>
+<element name="PC:R4" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="8" y="-490" smashed="yes">
+<attribute name="MOUSER" value="594-5063JD220K0F" x="-2" y="-498" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="5.46" y="-488.7046" size="0.9906" layer="25" ratio="10"/>
+<attribute name="SPICEPREFIX" value="R" x="-2" y="-498" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="6.3744" y="-490.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 </elements>
 <signals>
@@ -4075,23 +4139,23 @@ design rules under a new name.</description>
 <wire x1="63.5" y1="34.29" x2="69.85" y2="27.94" width="0.1524" layer="16"/>
 <wire x1="130.75158125" y1="57.15" x2="90.17" y2="21.59" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:GND">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="8"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="8"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="2"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="1"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="15"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:S1" pad="4"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:S1" pad="1"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:S1" pad="2"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:S1" pad="3"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:S3" pad="2"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:R1" pad="2"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:R4" pad="2"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:R3" pad="2"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:R2" pad="2"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:C2" pad="2"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:C1" pad="2"/>
+<signal name="MAR:GND">
+<contactref element="MAR:IC2" pad="8"/>
+<contactref element="MAR:IC1" pad="8"/>
+<contactref element="MAR:IC1" pad="2"/>
+<contactref element="MAR:IC1" pad="1"/>
+<contactref element="MAR:IC2" pad="15"/>
+<contactref element="MAR:S1" pad="4"/>
+<contactref element="MAR:S1" pad="1"/>
+<contactref element="MAR:S1" pad="2"/>
+<contactref element="MAR:S1" pad="3"/>
+<contactref element="MAR:S3" pad="2"/>
+<contactref element="MAR:R1" pad="2"/>
+<contactref element="MAR:R4" pad="2"/>
+<contactref element="MAR:R3" pad="2"/>
+<contactref element="MAR:R2" pad="2"/>
+<contactref element="MAR:C2" pad="2"/>
+<contactref element="MAR:C1" pad="2"/>
 <wire x1="5.19" y1="-142.81" x2="-4" y2="-149" width="0" layer="19" extent="1-1"/>
 <wire x1="7.73" y1="-142.81" x2="5.19" y2="-142.81" width="0" layer="19" extent="1-1"/>
 <wire x1="10.27" y1="-142.81" x2="7.73" y2="-142.81" width="0" layer="19" extent="1-1"/>
@@ -4108,98 +4172,98 @@ design rules under a new name.</description>
 <wire x1="6.54" y1="-47" x2="6.65" y2="-59.19" width="0" layer="19" extent="1-1"/>
 <wire x1="6.54" y1="-40" x2="6.54" y2="-47" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:VCC">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="16"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="16"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:PROG" pad="A"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:RUN" pad="A"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:C2" pad="1"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:C1" pad="1"/>
+<signal name="MAR:VCC">
+<contactref element="MAR:IC2" pad="16"/>
+<contactref element="MAR:IC1" pad="16"/>
+<contactref element="MAR:PROG" pad="A"/>
+<contactref element="MAR:RUN" pad="A"/>
+<contactref element="MAR:C2" pad="1"/>
+<contactref element="MAR:C1" pad="1"/>
 <wire x1="1.73" y1="-102" x2="1.73" y2="-131" width="0" layer="19" extent="1-1"/>
 <wire x1="4.11" y1="-70.19" x2="1.73" y2="-102" width="0" layer="19" extent="1-1"/>
 <wire x1="4.11" y1="-59.19" x2="4.11" y2="-70.19" width="0" layer="19" extent="1-1"/>
 <wire x1="1.46" y1="-47" x2="4.11" y2="-59.19" width="0" layer="19" extent="1-1"/>
 <wire x1="1.46" y1="-40" x2="1.46" y2="-47" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:CLR">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="15"/>
+<signal name="MAR:CLR">
+<contactref element="MAR:IC1" pad="15"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:I5">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="3"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="3"/>
+<signal name="MAR:I5">
+<contactref element="MAR:IC1" pad="3"/>
+<contactref element="MAR:IC2" pad="3"/>
 <wire x1="9.19" y1="-66.81" x2="9.19" y2="-77.81" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:I6">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="4"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="6"/>
+<signal name="MAR:I6">
+<contactref element="MAR:IC1" pad="4"/>
+<contactref element="MAR:IC2" pad="6"/>
 <wire x1="16.81" y1="-66.81" x2="11.73" y2="-77.81" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:I7">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="5"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="10"/>
+<signal name="MAR:I7">
+<contactref element="MAR:IC1" pad="5"/>
+<contactref element="MAR:IC2" pad="10"/>
 <wire x1="19.35" y1="-59.19" x2="14.27" y2="-77.81" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:I8">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="6"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="13"/>
+<signal name="MAR:I8">
+<contactref element="MAR:IC1" pad="6"/>
+<contactref element="MAR:IC2" pad="13"/>
 <wire x1="11.73" y1="-59.19" x2="16.81" y2="-77.81" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:N$10">
-<contactref element="MEMORY_ADDRESS_REGISTER:LED2" pad="K"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:R2" pad="1"/>
+<signal name="MAR:N$10">
+<contactref element="MAR:LED2" pad="K"/>
+<contactref element="MAR:R2" pad="1"/>
 <wire x1="4.27" y1="-87" x2="1.19" y2="-115" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:N$11">
-<contactref element="MEMORY_ADDRESS_REGISTER:LED3" pad="K"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:R3" pad="1"/>
+<signal name="MAR:N$11">
+<contactref element="MAR:LED3" pad="K"/>
+<contactref element="MAR:R3" pad="1"/>
 <wire x1="4.27" y1="-92" x2="1.19" y2="-119" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:N$12">
-<contactref element="MEMORY_ADDRESS_REGISTER:LED4" pad="K"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:R4" pad="1"/>
+<signal name="MAR:N$12">
+<contactref element="MAR:LED4" pad="K"/>
+<contactref element="MAR:R4" pad="1"/>
 <wire x1="4.27" y1="-97" x2="1.19" y2="-123" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:N$4">
-<contactref element="MEMORY_ADDRESS_REGISTER:R1" pad="1"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:LED1" pad="K"/>
+<signal name="MAR:N$4">
+<contactref element="MAR:R1" pad="1"/>
+<contactref element="MAR:LED1" pad="K"/>
 <wire x1="4.27" y1="-82" x2="1.19" y2="-107" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:CLK_IN">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="7"/>
+<signal name="MAR:CLK_IN">
+<contactref element="MAR:IC1" pad="7"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:N$1">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="2"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:S1" pad="8"/>
+<signal name="MAR:N$1">
+<contactref element="MAR:IC2" pad="2"/>
+<contactref element="MAR:S1" pad="8"/>
 <wire x1="6.65" y1="-66.81" x2="5.19" y2="-135.19" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:N$3">
-<contactref element="MEMORY_ADDRESS_REGISTER:S1" pad="7"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="5"/>
+<signal name="MAR:N$3">
+<contactref element="MAR:S1" pad="7"/>
+<contactref element="MAR:IC2" pad="5"/>
 <wire x1="14.27" y1="-66.81" x2="7.73" y2="-135.19" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:N$5">
-<contactref element="MEMORY_ADDRESS_REGISTER:S1" pad="6"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="11"/>
+<signal name="MAR:N$5">
+<contactref element="MAR:S1" pad="6"/>
+<contactref element="MAR:IC2" pad="11"/>
 <wire x1="16.81" y1="-59.19" x2="10.27" y2="-135.19" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:N$6">
-<contactref element="MEMORY_ADDRESS_REGISTER:S1" pad="5"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="14"/>
+<signal name="MAR:N$6">
+<contactref element="MAR:S1" pad="5"/>
+<contactref element="MAR:IC2" pad="14"/>
 <wire x1="9.19" y1="-59.19" x2="12.81" y2="-135.19" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:N$7">
-<contactref element="MEMORY_ADDRESS_REGISTER:S3" pad="3"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:R10" pad="2"/>
+<signal name="MAR:N$7">
+<contactref element="MAR:S3" pad="3"/>
+<contactref element="MAR:R10" pad="2"/>
 <wire x1="8.81" y1="-111" x2="-4" y2="-151.7178" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:N$9">
-<contactref element="MEMORY_ADDRESS_REGISTER:R9" pad="1"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:PROG" pad="K"/>
+<signal name="MAR:N$9">
+<contactref element="MAR:R9" pad="1"/>
+<contactref element="MAR:PROG" pad="K"/>
 <wire x1="4.27" y1="-102" x2="1.19" y2="-127" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="MEMORY_ADDRESS_REGISTER:N$13">
-<contactref element="MEMORY_ADDRESS_REGISTER:R10" pad="1"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:RUN" pad="K"/>
+<signal name="MAR:N$13">
+<contactref element="MAR:R10" pad="1"/>
+<contactref element="MAR:RUN" pad="K"/>
 <wire x1="1.19" y1="-111" x2="4.27" y2="-131" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RAM:GND">
@@ -4503,15 +4567,15 @@ design rules under a new name.</description>
 <signal name="N$17">
 <contactref element="RAM:IC2" pad="1"/>
 <contactref element="RAM:IC1" pad="1"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="4"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:LED1" pad="A"/>
+<contactref element="MAR:IC2" pad="4"/>
+<contactref element="MAR:LED1" pad="A"/>
 <wire x1="-2.89" y1="-200.81" x2="-2.89" y2="-211.81" width="0" layer="19" extent="1-1"/>
 <wire x1="1.73" y1="-82" x2="-2.89" y2="-200.81" width="0" layer="19" extent="1-1"/>
 <wire x1="11.73" y1="-66.81" x2="1.73" y2="-82" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$18">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="7"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:LED2" pad="A"/>
+<contactref element="MAR:IC2" pad="7"/>
+<contactref element="MAR:LED2" pad="A"/>
 <contactref element="RAM:IC2" pad="15"/>
 <contactref element="RAM:IC1" pad="15"/>
 <wire x1="-0.35" y1="-193.19" x2="-0.35" y2="-204.19" width="0" layer="19" extent="1-1"/>
@@ -4519,8 +4583,8 @@ design rules under a new name.</description>
 <wire x1="19.35" y1="-66.81" x2="1.73" y2="-87" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$19">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="9"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:LED3" pad="A"/>
+<contactref element="MAR:IC2" pad="9"/>
+<contactref element="MAR:LED3" pad="A"/>
 <contactref element="RAM:IC2" pad="14"/>
 <contactref element="RAM:IC1" pad="14"/>
 <wire x1="2.19" y1="-193.19" x2="2.19" y2="-204.19" width="0" layer="19" extent="1-1"/>
@@ -4528,8 +4592,8 @@ design rules under a new name.</description>
 <wire x1="21.89" y1="-59.19" x2="1.73" y2="-92" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$20">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="12"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:LED4" pad="A"/>
+<contactref element="MAR:IC2" pad="12"/>
+<contactref element="MAR:LED4" pad="A"/>
 <contactref element="RAM:IC2" pad="13"/>
 <contactref element="RAM:IC1" pad="13"/>
 <wire x1="4.73" y1="-193.19" x2="4.73" y2="-204.19" width="0" layer="19" extent="1-1"/>
@@ -4577,9 +4641,9 @@ design rules under a new name.</description>
 <wire x1="-1.89" y1="-320.19" x2="-0.35" y2="-338.81" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$21">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC2" pad="1"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:S3" pad="1"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:R9" pad="2"/>
+<contactref element="MAR:IC2" pad="1"/>
+<contactref element="MAR:S3" pad="1"/>
+<contactref element="MAR:R9" pad="2"/>
 <contactref element="RAM:IC6" pad="1"/>
 <contactref element="RAM:IC7" pad="1"/>
 <contactref element="RAM:IC8" pad="1"/>
@@ -4630,8 +4694,8 @@ design rules under a new name.</description>
 <wire x1="33.1" y1="87.58" x2="35.64" y2="88.58" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="!MI">
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="10"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="9"/>
+<contactref element="MAR:IC1" pad="10"/>
+<contactref element="MAR:IC1" pad="9"/>
 <wire x1="21.89" y1="-70.19" x2="19.35" y2="-70.19" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RAM:CLK_IN">
@@ -4699,7 +4763,7 @@ design rules under a new name.</description>
 <signal name="D1">
 <contactref element="RA:IC1" pad="18"/>
 <contactref element="RA:IC2" pad="14"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="14"/>
+<contactref element="MAR:IC1" pad="14"/>
 <contactref element="RAM:IC3" pad="18"/>
 <contactref element="RAM:IC6" pad="3"/>
 <contactref element="IR:IC1" pad="18"/>
@@ -4707,7 +4771,11 @@ design rules under a new name.</description>
 <contactref element="ALU:IC5" pad="18"/>
 <contactref element="RB:IC1" pad="18"/>
 <contactref element="RB:IC2" pad="14"/>
+<contactref element="PC:IC2" pad="18"/>
+<contactref element="PC:IC1" pad="3"/>
 <wire x1="2.19" y1="-338.81" x2="1.65" y2="-215.19" width="0" layer="19" extent="1-1"/>
+<wire x1="2.19" y1="-436.81" x2="2.19" y2="-338.81" width="0" layer="19" extent="1-1"/>
+<wire x1="1.65" y1="-454.19" x2="2.19" y2="-436.81" width="0" layer="19" extent="1-1"/>
 <wire x1="9.19" y1="-70.19" x2="1.65" y2="-215.19" width="0" layer="19" extent="1-1"/>
 <wire x1="62.23" y1="12.7" x2="9.19" y2="-70.19" width="0" layer="19" extent="1-1"/>
 <wire x1="82.55" y1="15.24" x2="62.23" y2="12.7" width="0" layer="19" extent="1-1"/>
@@ -4720,7 +4788,7 @@ design rules under a new name.</description>
 <signal name="D2">
 <contactref element="RA:IC1" pad="17"/>
 <contactref element="RA:IC2" pad="13"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="13"/>
+<contactref element="MAR:IC1" pad="13"/>
 <contactref element="RAM:IC3" pad="17"/>
 <contactref element="RAM:IC6" pad="6"/>
 <contactref element="IR:IC1" pad="17"/>
@@ -4728,7 +4796,11 @@ design rules under a new name.</description>
 <contactref element="ALU:IC5" pad="17"/>
 <contactref element="RB:IC1" pad="17"/>
 <contactref element="RB:IC2" pad="13"/>
+<contactref element="PC:IC2" pad="17"/>
+<contactref element="PC:IC1" pad="4"/>
 <wire x1="9.81" y1="-338.81" x2="4.19" y2="-215.19" width="0" layer="19" extent="1-1"/>
+<wire x1="4.73" y1="-436.81" x2="9.81" y2="-338.81" width="0" layer="19" extent="1-1"/>
+<wire x1="4.19" y1="-454.19" x2="4.73" y2="-436.81" width="0" layer="19" extent="1-1"/>
 <wire x1="11.73" y1="-70.19" x2="4.19" y2="-215.19" width="0" layer="19" extent="1-1"/>
 <wire x1="62.23" y1="15.24" x2="11.73" y2="-70.19" width="0" layer="19" extent="1-1"/>
 <wire x1="85.09" y1="15.24" x2="62.23" y2="15.24" width="0" layer="19" extent="1-1"/>
@@ -4741,7 +4813,7 @@ design rules under a new name.</description>
 <signal name="D3">
 <contactref element="RA:IC1" pad="16"/>
 <contactref element="RA:IC2" pad="12"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="12"/>
+<contactref element="MAR:IC1" pad="12"/>
 <contactref element="RAM:IC3" pad="16"/>
 <contactref element="RAM:IC6" pad="10"/>
 <contactref element="IR:IC1" pad="16"/>
@@ -4749,7 +4821,11 @@ design rules under a new name.</description>
 <contactref element="ALU:IC5" pad="16"/>
 <contactref element="RB:IC1" pad="16"/>
 <contactref element="RB:IC2" pad="12"/>
+<contactref element="PC:IC2" pad="16"/>
+<contactref element="PC:IC1" pad="5"/>
 <wire x1="12.35" y1="-331.19" x2="6.73" y2="-215.19" width="0" layer="19" extent="1-1"/>
+<wire x1="7.27" y1="-436.81" x2="12.35" y2="-331.19" width="0" layer="19" extent="1-1"/>
+<wire x1="6.73" y1="-454.19" x2="7.27" y2="-436.81" width="0" layer="19" extent="1-1"/>
 <wire x1="14.27" y1="-70.19" x2="6.73" y2="-215.19" width="0" layer="19" extent="1-1"/>
 <wire x1="62.23" y1="17.78" x2="14.27" y2="-70.19" width="0" layer="19" extent="1-1"/>
 <wire x1="87.63" y1="15.24" x2="62.23" y2="17.78" width="0" layer="19" extent="1-1"/>
@@ -4762,7 +4838,7 @@ design rules under a new name.</description>
 <signal name="D4">
 <contactref element="RA:IC1" pad="15"/>
 <contactref element="RA:IC2" pad="11"/>
-<contactref element="MEMORY_ADDRESS_REGISTER:IC1" pad="11"/>
+<contactref element="MAR:IC1" pad="11"/>
 <contactref element="RAM:IC3" pad="15"/>
 <contactref element="RAM:IC6" pad="13"/>
 <contactref element="IR:IC1" pad="15"/>
@@ -4770,7 +4846,11 @@ design rules under a new name.</description>
 <contactref element="ALU:IC5" pad="15"/>
 <contactref element="RB:IC1" pad="15"/>
 <contactref element="RB:IC2" pad="11"/>
+<contactref element="PC:IC2" pad="15"/>
+<contactref element="PC:IC1" pad="6"/>
 <wire x1="4.73" y1="-331.19" x2="9.27" y2="-215.19" width="0" layer="19" extent="1-1"/>
+<wire x1="9.81" y1="-436.81" x2="4.73" y2="-331.19" width="0" layer="19" extent="1-1"/>
+<wire x1="9.27" y1="-454.19" x2="9.81" y2="-436.81" width="0" layer="19" extent="1-1"/>
 <wire x1="16.81" y1="-70.19" x2="9.27" y2="-215.19" width="0" layer="19" extent="1-1"/>
 <wire x1="62.23" y1="20.32" x2="16.81" y2="-70.19" width="0" layer="19" extent="1-1"/>
 <wire x1="44.45" y1="35.56" x2="62.23" y2="20.32" width="0" layer="19" extent="1-1"/>
@@ -4839,6 +4919,107 @@ design rules under a new name.</description>
 <wire x1="106.68" y1="59.69" x2="90.17" y2="29.21" width="0" layer="19" extent="1-1"/>
 <wire x1="90.17" y1="90.17" x2="106.68" y2="59.69" width="0" layer="19" extent="1-1"/>
 <wire x1="62.23" y1="91.44" x2="90.17" y2="90.17" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="PC:GND">
+<contactref element="PC:IC1" pad="8"/>
+<contactref element="PC:C2" pad="2"/>
+<contactref element="PC:C1" pad="2"/>
+<contactref element="PC:IC2" pad="10"/>
+<contactref element="PC:R1" pad="2"/>
+<contactref element="PC:R4" pad="2"/>
+<contactref element="PC:R3" pad="2"/>
+<contactref element="PC:R2" pad="2"/>
+<contactref element="PC:IC2" pad="6"/>
+<contactref element="PC:IC2" pad="7"/>
+<contactref element="PC:IC2" pad="8"/>
+<contactref element="PC:IC2" pad="9"/>
+<wire x1="1.81" y1="-486" x2="1.81" y2="-490" width="0" layer="19" extent="1-1"/>
+<wire x1="11.81" y1="-490" x2="1.81" y2="-490" width="0" layer="19" extent="1-1"/>
+<wire x1="11.81" y1="-486" x2="11.81" y2="-490" width="0" layer="19" extent="1-1"/>
+<wire x1="11.81" y1="-461.81" x2="11.81" y2="-486" width="0" layer="19" extent="1-1"/>
+<wire x1="9.27" y1="-461.81" x2="11.81" y2="-461.81" width="0" layer="19" extent="1-1"/>
+<wire x1="14.35" y1="-461.81" x2="11.81" y2="-461.81" width="0" layer="19" extent="1-1"/>
+<wire x1="16.89" y1="-461.81" x2="14.35" y2="-461.81" width="0" layer="19" extent="1-1"/>
+<wire x1="19.43" y1="-461.81" x2="16.89" y2="-461.81" width="0" layer="19" extent="1-1"/>
+<wire x1="-1.46" y1="-449" x2="9.27" y2="-461.81" width="0" layer="19" extent="1-1"/>
+<wire x1="-1.46" y1="-442" x2="-1.46" y2="-449" width="0" layer="19" extent="1-1"/>
+<wire x1="14.89" y1="-436.81" x2="-1.46" y2="-442" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="PC:VCC">
+<contactref element="PC:IC1" pad="16"/>
+<contactref element="PC:C2" pad="1"/>
+<contactref element="PC:C1" pad="1"/>
+<contactref element="PC:IC2" pad="20"/>
+<contactref element="PC:IC2" pad="1"/>
+<wire x1="-3.43" y1="-454.19" x2="-3.43" y2="-461.81" width="0" layer="19" extent="1-1"/>
+<wire x1="-6.54" y1="-449" x2="-3.43" y2="-454.19" width="0" layer="19" extent="1-1"/>
+<wire x1="-6.54" y1="-442" x2="-6.54" y2="-449" width="0" layer="19" extent="1-1"/>
+<wire x1="-2.89" y1="-429.19" x2="-6.54" y2="-442" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="PC:N$10">
+<contactref element="PC:LED2" pad="K"/>
+<contactref element="PC:R2" pad="1"/>
+<wire x1="-3.73" y1="-471" x2="4.19" y2="-486" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="PC:N$11">
+<contactref element="PC:LED3" pad="K"/>
+<contactref element="PC:R3" pad="1"/>
+<wire x1="-3.73" y1="-476" x2="-5.81" y2="-490" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="PC:N$12">
+<contactref element="PC:LED4" pad="K"/>
+<contactref element="PC:R4" pad="1"/>
+<wire x1="-3.73" y1="-481" x2="4.19" y2="-490" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="PC:N$4">
+<contactref element="PC:R1" pad="1"/>
+<contactref element="PC:LED1" pad="K"/>
+<wire x1="-3.73" y1="-466" x2="-5.81" y2="-486" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="PC:Q1">
+<contactref element="PC:LED1" pad="A"/>
+<contactref element="PC:IC1" pad="14"/>
+<contactref element="PC:IC2" pad="2"/>
+<wire x1="-0.89" y1="-461.81" x2="-6.27" y2="-466" width="0" layer="19" extent="1-1"/>
+<wire x1="2.19" y1="-429.19" x2="-0.89" y2="-461.81" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="PC:Q2">
+<contactref element="PC:LED2" pad="A"/>
+<contactref element="PC:IC1" pad="13"/>
+<contactref element="PC:IC2" pad="3"/>
+<wire x1="1.65" y1="-461.81" x2="-6.27" y2="-471" width="0" layer="19" extent="1-1"/>
+<wire x1="4.73" y1="-429.19" x2="1.65" y2="-461.81" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="PC:Q3">
+<contactref element="PC:LED3" pad="A"/>
+<contactref element="PC:IC1" pad="12"/>
+<contactref element="PC:IC2" pad="4"/>
+<wire x1="4.19" y1="-461.81" x2="-6.27" y2="-476" width="0" layer="19" extent="1-1"/>
+<wire x1="7.27" y1="-429.19" x2="4.19" y2="-461.81" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="PC:Q4">
+<contactref element="PC:LED4" pad="A"/>
+<contactref element="PC:IC1" pad="11"/>
+<contactref element="PC:IC2" pad="5"/>
+<wire x1="6.73" y1="-461.81" x2="-6.27" y2="-481" width="0" layer="19" extent="1-1"/>
+<wire x1="9.81" y1="-429.19" x2="6.73" y2="-461.81" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="PC:CLK_IN">
+<contactref element="PC:IC1" pad="2"/>
+</signal>
+<signal name="PC:!CLR">
+<contactref element="PC:IC1" pad="1"/>
+</signal>
+<signal name="CE">
+<contactref element="PC:IC1" pad="10"/>
+<contactref element="PC:IC1" pad="7"/>
+<wire x1="12.35" y1="-429.19" x2="12.35" y2="-436.81" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="!JP">
+<contactref element="PC:IC1" pad="9"/>
+</signal>
+<signal name="!CO">
+<contactref element="PC:IC2" pad="19"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
