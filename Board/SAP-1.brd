@@ -92,8 +92,13 @@
 <layer number="111" name="LPC17xx" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="112" name="tSilk" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="113" name="IDFDebug" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="114" name="Badge_Outline" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="115" name="ReferenceISLANDS" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="116" name="Patch_BOT" color="9" fill="4" visible="yes" active="yes"/>
+<layer number="117" name="BACKMAAT1" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="118" name="Rect_Pads" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="119" name="KAP_TEKEN" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="120" name="KAP_MAAT1" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="121" name="_tsilk" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="122" name="_bsilk" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="123" name="tTestmark" color="7" fill="1" visible="yes" active="yes"/>
@@ -103,9 +108,17 @@
 <layer number="127" name="_tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="128" name="_bValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="129" name="Mask" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="130" name="SMDSTROOK" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="131" name="tAdjust" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="132" name="bAdjust" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="133" name="bottom_silk" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="134" name="silk_top" color="7" fill="1" visible="no" active="no"/>
+<layer number="135" name="silk_bottom" color="7" fill="1" visible="no" active="no"/>
+<layer number="136" name="silktop" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="137" name="silkbottom" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="144" name="Drill_legend" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="145" name="DrillLegend_01-16" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="146" name="DrillLegend_01-20" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="150" name="Notes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="151" name="HeatSink" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="152" name="_bDocu" color="7" fill="1" visible="yes" active="yes"/>
@@ -145,6 +158,8 @@
 <layer number="229" name="229bmp" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="230" name="230bmp" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="231" name="231bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="232" name="Eagle3D_PG2" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="233" name="Eagle3D_PG3" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="248" name="Housing" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="249" name="Edge" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="250" name="Descript" color="3" fill="1" visible="no" active="no"/>
@@ -1299,6 +1314,25 @@ Cermet MIL-R-22097</description>
 <text x="4.35" y="-4.95" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
 <rectangle x1="-0.78" y1="2.25" x2="-0.38" y2="4.35" layer="21"/>
 </package>
+<package name="E3,5-8" urn="urn:adsk.eagle:footprint:22857/1" library_version="10">
+<description>&lt;b&gt;ELECTROLYTIC CAPACITOR&lt;/b&gt;&lt;p&gt;
+grid 3.5 mm, diameter 8 mm</description>
+<wire x1="-3.429" y1="1.143" x2="-2.667" y2="1.143" width="0.1524" layer="21"/>
+<wire x1="-3.048" y1="0.762" x2="-3.048" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="-1.651" y1="0" x2="-0.762" y2="0" width="0.1524" layer="51"/>
+<wire x1="-0.762" y1="0" x2="-0.762" y2="-1.27" width="0.1524" layer="51"/>
+<wire x1="-0.762" y1="-1.27" x2="-0.254" y2="-1.27" width="0.1524" layer="51"/>
+<wire x1="-0.254" y1="-1.27" x2="-0.254" y2="1.27" width="0.1524" layer="51"/>
+<wire x1="-0.254" y1="1.27" x2="-0.762" y2="1.27" width="0.1524" layer="51"/>
+<wire x1="-0.762" y1="1.27" x2="-0.762" y2="0" width="0.1524" layer="51"/>
+<wire x1="0.635" y1="0" x2="1.651" y2="0" width="0.1524" layer="51"/>
+<circle x="0" y="0" radius="4.064" width="0.1524" layer="21"/>
+<pad name="-" x="1.778" y="0" drill="0.8128" diameter="1.6002" shape="octagon"/>
+<pad name="+" x="-1.778" y="0" drill="0.8128" diameter="1.6002"/>
+<text x="3.302" y="2.794" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-2.286" y="-3.048" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+<rectangle x1="0.254" y1="-1.27" x2="0.762" y2="1.27" layer="51"/>
+</package>
 </packages>
 <packages3d>
 <package3d name="E2,5-7" urn="urn:adsk.eagle:package:23345/1" type="box" library_version="10">
@@ -1327,6 +1361,13 @@ type 0204, grid 7.5 mm</description>
 Cermet MIL-R-22097</description>
 <packageinstances>
 <packageinstance name="RTRIM64W"/>
+</packageinstances>
+</package3d>
+<package3d name="E3,5-8" urn="urn:adsk.eagle:package:23360/2" type="model" library_version="10">
+<description>ELECTROLYTIC CAPACITOR
+grid 3.5 mm, diameter 8 mm</description>
+<packageinstances>
+<packageinstance name="E3,5-8"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -2082,6 +2123,51 @@ package type P</description>
 </package3d>
 </packages3d>
 </library>
+<library name="Parts" urn="urn:adsk.eagle:library:2304016">
+<packages>
+<package name="POWER_JACK_PTH" urn="urn:adsk.eagle:footprint:37872/1" library_version="19">
+<description>&lt;h3&gt;DC Barrel Power Jack/Connector PTH&lt;/h3&gt;
+5.5mm jack, 2.1mm center pole diameter
+&lt;p&gt;Specifications:
+&lt;ul&gt;&lt;li&gt;Pin count: 3&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=”https://www.sparkfun.com/datasheets/Prototyping/Barrel-Connector-PJ-202A.pdf”&gt;Datasheet referenced for footprint&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;POWER_JACK&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<wire x1="4.5" y1="13.7" x2="2.4" y2="13.7" width="0.2032" layer="21"/>
+<wire x1="-4.5" y1="3" x2="-4.5" y2="0.1" width="0.2032" layer="51"/>
+<wire x1="4.5" y1="0.1" x2="4.5" y2="3" width="0.2032" layer="51"/>
+<wire x1="4.5" y1="0.1" x2="-4.5" y2="0.1" width="0.2032" layer="51"/>
+<wire x1="4.5" y1="3" x2="4.5" y2="8.3" width="0.2032" layer="21"/>
+<wire x1="4.5" y1="13.7" x2="4.5" y2="13" width="0.2032" layer="21"/>
+<wire x1="-4.5" y1="3" x2="-4.5" y2="13.7" width="0.2032" layer="21"/>
+<wire x1="-4.5" y1="13.7" x2="-2.4" y2="13.7" width="0.2032" layer="21"/>
+<wire x1="-4.5" y1="3" x2="4.5" y2="3" width="0.2032" layer="21"/>
+<pad name="PWR" x="0" y="13.7" drill="2.9972" diameter="4.318"/>
+<pad name="GND" x="0" y="7.7" drill="2.9972" diameter="4.318"/>
+<pad name="GNDBREAK" x="4.7" y="10.7" drill="2.9972" diameter="4.318" rot="R90"/>
+<text x="-1.3716" y="1.8288" size="0.6096" layer="25" font="vector" ratio="20">&gt;NAME</text>
+<text x="-1.7526" y="0.8128" size="0.6096" layer="27" font="vector" ratio="20">&gt;VALUE</text>
+</package>
+</packages>
+<packages3d>
+<package3d name="POWER_JACK_PTH" urn="urn:adsk.eagle:package:2338719/2" type="model" library_version="19">
+<description>DC Barrel Power Jack/Connector PTH
+5.5mm jack, 2.1mm center pole diameter
+Specifications:
+Pin count: 3
+
+Datasheet referenced for footprint
+Example device(s):
+POWER_JACK
+</description>
+<packageinstances>
+<packageinstance name="POWER_JACK_PTH"/>
+</packageinstances>
+</package3d>
+</packages3d>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -2276,7 +2362,6 @@ design rules under a new name.</description>
 </autorouter>
 <elements>
 <element name="CLK:C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="E2,5-7" package3d_urn="urn:adsk.eagle:package:23345/1" value="1u" x="15.955" y="56.465" smashed="yes">
-<attribute name="CONRAD" value="445639" x="15.955" y="56.465" size="1.778" layer="27" display="off"/>
 <attribute name="MOUSER" value="710-860021373002" x="15.955" y="56.465" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="18.368" y="57.735" size="1.27" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="C" x="15.955" y="56.465" size="1.778" layer="27" display="off"/>
@@ -3950,6 +4035,22 @@ design rules under a new name.</description>
 <attribute name="MOUSER" value="595-SN74LS06N" x="-8.89" y="-1183.64" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.161" y="457.962" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-15.621" y="460.375" size="1.27" layer="27" ratio="10"/>
+</element>
+<element name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="E3,5-8" package3d_urn="urn:adsk.eagle:package:23360/2" value="" x="-16.51" y="-1182.37" smashed="yes">
+<attribute name="MOUSER" value="710-860040674004" x="-16.51" y="-1182.37" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-13.208" y="-1179.576" size="1.27" layer="25" ratio="10"/>
+<attribute name="SPICEPREFIX" value="C" x="-16.51" y="-1182.37" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-18.796" y="-1185.418" size="1.27" layer="27" ratio="10"/>
+</element>
+<element name="U$1" library="Parts" library_urn="urn:adsk.eagle:library:2304016" package="POWER_JACK_PTH" package3d_urn="urn:adsk.eagle:package:2338719/2" value="DC-JACK" x="-30.48" y="-1186.18" smashed="yes">
+<attribute name="NAME" x="-31.8516" y="-1184.3512" size="0.6096" layer="25" font="vector" ratio="20"/>
+<attribute name="VALUE" x="-32.2326" y="-1185.3672" size="0.6096" layer="27" font="vector" ratio="20"/>
+</element>
+<element name="C6" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="-31.75" y="469.9" smashed="yes">
+<attribute name="MOUSER" value="594-K104K15X7RF53H5" x="-31.75" y="-1191.26" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-33.909" y="471.297" size="1.27" layer="25" ratio="10"/>
+<attribute name="SPICEPREFIX" value="C" x="-31.75" y="-1191.26" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-33.909" y="467.233" size="1.27" layer="27" ratio="10"/>
 </element>
 </elements>
 <signals>
@@ -5929,6 +6030,13 @@ design rules under a new name.</description>
 <contactref element="LED4" pad="K"/>
 <contactref element="LED3" pad="K"/>
 <contactref element="LED2" pad="K"/>
+<contactref element="C6" pad="2"/>
+<contactref element="C1" pad="-"/>
+<contactref element="U$1" pad="GNDBREAK"/>
+<contactref element="U$1" pad="GND"/>
+<wire x1="-25.78" y1="-1175.48" x2="-30.48" y2="-1178.48" width="0" layer="19" extent="1-1"/>
+<wire x1="-14.732" y1="-1182.37" x2="-25.78" y2="-1175.48" width="0" layer="19" extent="1-1"/>
+<wire x1="-16.73" y1="-818" x2="-25.78" y2="-1175.48" width="0" layer="19" extent="1-1"/>
 <wire x1="-16.73" y1="-813" x2="-16.73" y2="-818" width="0" layer="19" extent="1-1"/>
 <wire x1="-16.73" y1="-808" x2="-16.73" y2="-813" width="0" layer="19" extent="1-1"/>
 <wire x1="-16.73" y1="-803" x2="-16.73" y2="-808" width="0" layer="19" extent="1-1"/>
@@ -5944,6 +6052,7 @@ design rules under a new name.</description>
 <wire x1="-19.81" y1="-759" x2="-19.81" y2="-763" width="0" layer="19" extent="1-1"/>
 <wire x1="-19.81" y1="-755" x2="-19.81" y2="-759" width="0" layer="19" extent="1-1"/>
 <wire x1="-19.81" y1="-751" x2="-19.81" y2="-755" width="0" layer="19" extent="1-1"/>
+<wire x1="-29.21" y1="469.9" x2="-30.48" y2="-1178.48" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$22">
 <contactref element="CLK:IC6" pad="8"/>
@@ -6878,6 +6987,13 @@ design rules under a new name.</description>
 <contactref element="SR:LED2" pad="K"/>
 <contactref element="SR:R1" pad="2"/>
 <wire x1="-12.19" y1="437" x2="-16.73" y2="189" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="VCC">
+<contactref element="C1" pad="+"/>
+<contactref element="U$1" pad="PWR"/>
+<contactref element="C6" pad="1"/>
+<wire x1="-18.288" y1="-1182.37" x2="-30.48" y2="-1172.48" width="0" layer="19" extent="1-1"/>
+<wire x1="-34.29" y1="469.9" x2="-30.48" y2="-1172.48" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

@@ -92,8 +92,13 @@
 <layer number="111" name="LPC17xx" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="112" name="tSilk" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="113" name="IDFDebug" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="114" name="Badge_Outline" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="115" name="ReferenceISLANDS" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="116" name="Patch_BOT" color="9" fill="4" visible="yes" active="yes"/>
+<layer number="117" name="BACKMAAT1" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="118" name="Rect_Pads" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="119" name="KAP_TEKEN" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="120" name="KAP_MAAT1" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="121" name="_tsilk" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="122" name="_bsilk" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="123" name="tTestmark" color="7" fill="1" visible="yes" active="yes"/>
@@ -103,9 +108,17 @@
 <layer number="127" name="_tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="128" name="_bValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="129" name="Mask" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="130" name="SMDSTROOK" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="131" name="tAdjust" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="132" name="bAdjust" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="133" name="bottom_silk" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="134" name="silk_top" color="7" fill="1" visible="no" active="no"/>
+<layer number="135" name="silk_bottom" color="7" fill="1" visible="no" active="no"/>
+<layer number="136" name="silktop" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="137" name="silkbottom" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="144" name="Drill_legend" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="145" name="DrillLegend_01-16" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="146" name="DrillLegend_01-20" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="150" name="Notes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="151" name="HeatSink" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="152" name="_bDocu" color="7" fill="1" visible="yes" active="yes"/>
@@ -145,6 +158,8 @@
 <layer number="229" name="229bmp" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="230" name="230bmp" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="231" name="231bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="232" name="Eagle3D_PG2" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="233" name="Eagle3D_PG3" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="248" name="Housing" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="249" name="Edge" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="250" name="Descript" color="3" fill="1" visible="no" active="no"/>
@@ -24626,6 +24641,89 @@ single cathode, 13 mm</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="Parts" urn="urn:adsk.eagle:library:2304016">
+<packages>
+<package name="POWER_JACK_PTH" urn="urn:adsk.eagle:footprint:37872/1" library_version="19">
+<description>&lt;h3&gt;DC Barrel Power Jack/Connector PTH&lt;/h3&gt;
+5.5mm jack, 2.1mm center pole diameter
+&lt;p&gt;Specifications:
+&lt;ul&gt;&lt;li&gt;Pin count: 3&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=”https://www.sparkfun.com/datasheets/Prototyping/Barrel-Connector-PJ-202A.pdf”&gt;Datasheet referenced for footprint&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Example device(s):
+&lt;ul&gt;&lt;li&gt;POWER_JACK&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;</description>
+<wire x1="4.5" y1="13.7" x2="2.4" y2="13.7" width="0.2032" layer="21"/>
+<wire x1="-4.5" y1="3" x2="-4.5" y2="0.1" width="0.2032" layer="51"/>
+<wire x1="4.5" y1="0.1" x2="4.5" y2="3" width="0.2032" layer="51"/>
+<wire x1="4.5" y1="0.1" x2="-4.5" y2="0.1" width="0.2032" layer="51"/>
+<wire x1="4.5" y1="3" x2="4.5" y2="8.3" width="0.2032" layer="21"/>
+<wire x1="4.5" y1="13.7" x2="4.5" y2="13" width="0.2032" layer="21"/>
+<wire x1="-4.5" y1="3" x2="-4.5" y2="13.7" width="0.2032" layer="21"/>
+<wire x1="-4.5" y1="13.7" x2="-2.4" y2="13.7" width="0.2032" layer="21"/>
+<wire x1="-4.5" y1="3" x2="4.5" y2="3" width="0.2032" layer="21"/>
+<pad name="PWR" x="0" y="13.7" drill="2.9972" diameter="4.318"/>
+<pad name="GND" x="0" y="7.7" drill="2.9972" diameter="4.318"/>
+<pad name="GNDBREAK" x="4.7" y="10.7" drill="2.9972" diameter="4.318" rot="R90"/>
+<text x="-1.3716" y="1.8288" size="0.6096" layer="25" font="vector" ratio="20">&gt;NAME</text>
+<text x="-1.7526" y="0.8128" size="0.6096" layer="27" font="vector" ratio="20">&gt;VALUE</text>
+</package>
+</packages>
+<packages3d>
+<package3d name="POWER_JACK_PTH" urn="urn:adsk.eagle:package:2338719/2" type="model" library_version="19">
+<description>DC Barrel Power Jack/Connector PTH
+5.5mm jack, 2.1mm center pole diameter
+Specifications:
+Pin count: 3
+
+Datasheet referenced for footprint
+Example device(s):
+POWER_JACK
+</description>
+<packageinstances>
+<packageinstance name="POWER_JACK_PTH"/>
+</packageinstances>
+</package3d>
+</packages3d>
+<symbols>
+<symbol name="POWERJACK" urn="urn:adsk.eagle:symbol:2338718/1" library_version="19">
+<wire x1="-10.16" y1="2.54" x2="-7.62" y2="5.08" width="0.1524" layer="94"/>
+<wire x1="-7.62" y1="5.08" x2="-5.08" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="-5.08" y1="2.54" x2="-2.54" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="0" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="5.08" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="5.08" x2="0" y2="5.08" width="0.1524" layer="94"/>
+<text x="-10.16" y="10.16" size="1.778" layer="96" font="vector">&gt;Value</text>
+<text x="-10.16" y="0" size="1.778" layer="95" font="vector">&gt;Name</text>
+<rectangle x1="-10.16" y1="6.858" x2="0" y2="8.382" layer="94"/>
+<pin name="GNDBREAK" x="2.54" y="5.08" visible="off" length="short" rot="R180"/>
+<pin name="GND" x="2.54" y="2.54" visible="off" length="short" rot="R180"/>
+<pin name="PWR" x="2.54" y="7.62" visible="off" length="short" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="DC-JACK" urn="urn:adsk.eagle:component:2347921/1" library_version="19">
+<gates>
+<gate name="G$1" symbol="POWERJACK" x="2.54" y="-5.08"/>
+</gates>
+<devices>
+<device name="" package="POWER_JACK_PTH">
+<connects>
+<connect gate="G$1" pin="GND" pad="GND"/>
+<connect gate="G$1" pin="GNDBREAK" pad="GNDBREAK"/>
+<connect gate="G$1" pin="PWR" pad="PWR"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:2338719/2"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -24664,7 +24762,6 @@ single cathode, 13 mm</description>
 <pinmap gate="G$1" pin="-" pinorder="2"/>
 </pinmapping>
 </spice>
-<attribute name="CONRAD" value="445639"/>
 <attribute name="MOUSER" value="710-860021373002"/>
 </part>
 <part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-TRIMM" device="64W" package3d_urn="urn:adsk.eagle:package:23748/1" value="1M">
@@ -24890,7 +24987,6 @@ and Selection</text>
 <instance part="C1" gate="G$1" x="15.24" y="17.78" smashed="yes">
 <attribute name="NAME" x="17.907" y="19.083" size="1.778" layer="95"/>
 <attribute name="VALUE" x="17.907" y="15.0368" size="1.778" layer="96" align="top-left"/>
-<attribute name="CONRAD" x="15.24" y="17.78" size="1.778" layer="96" display="off"/>
 <attribute name="MOUSER" x="15.24" y="17.78" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R2" gate="G$1" x="15.24" y="33.02" smashed="yes">
@@ -34211,6 +34307,27 @@ Base Address: 0x00</text>
 </spice>
 <attribute name="MOUSER" value="594-5063JD220R0F"/>
 </part>
+<part name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="CPOL-EU" device="E3.5-8" package3d_urn="urn:adsk.eagle:package:23360/2">
+<spice>
+<pinmapping spiceprefix="C">
+<pinmap gate="G$1" pin="+" pinorder="1"/>
+<pinmap gate="G$1" pin="-" pinorder="2"/>
+</pinmapping>
+</spice>
+<attribute name="MOUSER" value="710-860040674004"/>
+</part>
+<part name="U$1" library="Parts" library_urn="urn:adsk.eagle:library:2304016" deviceset="DC-JACK" device="" package3d_urn="urn:adsk.eagle:package:2338719/2"/>
+<part name="C6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n">
+<spice>
+<pinmapping spiceprefix="C">
+<pinmap gate="G$1" pin="1" pinorder="1"/>
+<pinmap gate="G$1" pin="2" pinorder="2"/>
+</pinmapping>
+</spice>
+<attribute name="MOUSER" value="594-K104K15X7RF53H5"/>
+</part>
+<part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="P+8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -34369,6 +34486,26 @@ Base Address: 0x00</text>
 <attribute name="NAME" x="53.34" y="-106.9594" size="1.778" layer="95" align="bottom-center"/>
 <attribute name="VALUE" x="53.34" y="-108.9914" size="1.778" layer="96" align="bottom-center"/>
 <attribute name="MOUSER" x="53.34" y="-111.76" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
+<instance part="C1" gate="G$1" x="15.24" y="157.48" smashed="yes">
+<attribute name="NAME" x="16.383" y="157.9626" size="1.778" layer="95"/>
+<attribute name="VALUE" x="16.383" y="152.8826" size="1.778" layer="96"/>
+<attribute name="MOUSER" x="15.24" y="157.48" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="U$1" gate="G$1" x="5.08" y="152.4" smashed="yes">
+<attribute name="VALUE" x="-5.08" y="162.56" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="-5.08" y="152.4" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="C6" gate="G$1" x="22.86" y="157.48" smashed="yes">
+<attribute name="NAME" x="24.892" y="157.6832" size="1.778" layer="95"/>
+<attribute name="VALUE" x="24.892" y="154.7368" size="1.778" layer="96" align="top-left"/>
+<attribute name="MOUSER" x="22.86" y="157.48" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="GND5" gate="1" x="15.24" y="147.32" smashed="yes">
+<attribute name="VALUE" x="12.7" y="144.78" size="1.778" layer="96"/>
+</instance>
+<instance part="P+8" gate="VCC" x="15.24" y="165.1" smashed="yes">
+<attribute name="VALUE" x="12.7" y="162.56" size="1.778" layer="96" rot="R90"/>
 </instance>
 </instances>
 <busses>
@@ -35040,6 +35177,20 @@ Base Address: 0x00</text>
 <wire x1="83.82" y1="-129.54" x2="83.82" y2="-127" width="0.1524" layer="91"/>
 <junction x="83.82" y="-129.54"/>
 </segment>
+<segment>
+<pinref part="U$1" gate="G$1" pin="GNDBREAK"/>
+<pinref part="U$1" gate="G$1" pin="GND"/>
+<wire x1="7.62" y1="157.48" x2="7.62" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="154.94" x2="7.62" y2="152.4" width="0.1524" layer="91"/>
+<junction x="7.62" y="154.94"/>
+<pinref part="C1" gate="G$1" pin="-"/>
+<wire x1="7.62" y1="152.4" x2="15.24" y2="152.4" width="0.1524" layer="91"/>
+<pinref part="C6" gate="G$1" pin="2"/>
+<wire x1="15.24" y1="152.4" x2="22.86" y2="152.4" width="0.1524" layer="91"/>
+<junction x="15.24" y="152.4"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+<wire x1="15.24" y1="149.86" x2="15.24" y2="152.4" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="N$22" class="0">
 <segment>
@@ -35309,6 +35460,18 @@ Base Address: 0x00</text>
 <wire x1="0" y1="114.3" x2="-22.86" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="-22.86" y1="114.3" x2="-22.86" y2="-27.94" width="0.1524" layer="91"/>
 <wire x1="0" y1="-27.94" x2="-22.86" y2="-27.94" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="VCC" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PWR"/>
+<pinref part="C1" gate="G$1" pin="+"/>
+<wire x1="7.62" y1="160.02" x2="15.24" y2="160.02" width="0.1524" layer="91"/>
+<pinref part="C6" gate="G$1" pin="1"/>
+<wire x1="22.86" y1="160.02" x2="15.24" y2="160.02" width="0.1524" layer="91"/>
+<junction x="15.24" y="160.02"/>
+<pinref part="P+8" gate="VCC" pin="VCC"/>
+<wire x1="15.24" y1="160.02" x2="15.24" y2="162.56" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
