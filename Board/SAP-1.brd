@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.5" altunitdist="mm" altunit="mm"/>
+<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -1209,13 +1209,11 @@ for trimmer refence see : &lt;u&gt;www.electrospec-inc.com/cross_references/trim
 &lt;/tr&gt;
 &lt;/table&gt;</description>
 <packages>
-<package name="E2,5-5" urn="urn:adsk.eagle:footprint:22845/1" library_version="10">
+<package name="E2,5-7" urn="urn:adsk.eagle:footprint:22847/1" library_version="10">
 <description>&lt;b&gt;ELECTROLYTIC CAPACITOR&lt;/b&gt;&lt;p&gt;
-grid 2.54 mm, diameter 5 mm</description>
-<wire x1="-1.651" y1="1.27" x2="-1.397" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="-1.397" y1="1.016" x2="-1.397" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="-1.397" y1="1.27" x2="-1.143" y2="1.27" width="0.1524" layer="21"/>
-<wire x1="-1.397" y1="1.27" x2="-1.397" y2="1.524" width="0.1524" layer="21"/>
+grid 2.54 mm, diameter 7 mm</description>
+<wire x1="-3.048" y1="0" x2="-2.286" y2="0" width="0.1524" layer="21"/>
+<wire x1="-2.667" y1="-0.381" x2="-2.667" y2="0.381" width="0.1524" layer="21"/>
 <wire x1="-1.651" y1="0" x2="-0.762" y2="0" width="0.1524" layer="51"/>
 <wire x1="-0.762" y1="0" x2="-0.762" y2="-1.27" width="0.1524" layer="51"/>
 <wire x1="-0.762" y1="-1.27" x2="-0.254" y2="-1.27" width="0.1524" layer="51"/>
@@ -1223,11 +1221,11 @@ grid 2.54 mm, diameter 5 mm</description>
 <wire x1="-0.254" y1="1.27" x2="-0.762" y2="1.27" width="0.1524" layer="51"/>
 <wire x1="-0.762" y1="1.27" x2="-0.762" y2="0" width="0.1524" layer="51"/>
 <wire x1="0.635" y1="0" x2="1.651" y2="0" width="0.1524" layer="51"/>
-<circle x="0" y="0" radius="2.54" width="0.1524" layer="21"/>
+<circle x="0" y="0" radius="3.429" width="0.1524" layer="21"/>
 <pad name="-" x="1.27" y="0" drill="0.8128" diameter="1.6002" shape="octagon"/>
 <pad name="+" x="-1.27" y="0" drill="0.8128" diameter="1.6002"/>
-<text x="2.413" y="1.27" size="1.27" layer="25" ratio="10">&gt;NAME</text>
-<text x="2.413" y="-2.413" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+<text x="3.048" y="2.032" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="3.048" y="-3.175" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
 <rectangle x1="0.254" y1="-1.27" x2="0.762" y2="1.27" layer="51"/>
 </package>
 <package name="C050-024X044" urn="urn:adsk.eagle:footprint:23147/1" library_version="10">
@@ -1303,11 +1301,11 @@ Cermet MIL-R-22097</description>
 </package>
 </packages>
 <packages3d>
-<package3d name="E2,5-5" urn="urn:adsk.eagle:package:23344/1" type="box" library_version="10">
+<package3d name="E2,5-7" urn="urn:adsk.eagle:package:23345/1" type="box" library_version="10">
 <description>ELECTROLYTIC CAPACITOR
-grid 2.54 mm, diameter 5 mm</description>
+grid 2.54 mm, diameter 7 mm</description>
 <packageinstances>
-<packageinstance name="E2,5-5"/>
+<packageinstance name="E2,5-7"/>
 </packageinstances>
 </package3d>
 <package3d name="C050-024X044" urn="urn:adsk.eagle:package:23643/1" type="box" library_version="10">
@@ -2277,11 +2275,12 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="CLK:C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="E2,5-5" package3d_urn="urn:adsk.eagle:package:23344/1" value="1u" x="15.955" y="57.735" smashed="yes">
-<attribute name="CONRAD" value="445639" x="15.955" y="57.735" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="18.368" y="59.005" size="1.27" layer="25" ratio="10"/>
-<attribute name="SPICEPREFIX" value="C" x="15.955" y="57.735" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="18.368" y="55.322" size="1.27" layer="27" ratio="10"/>
+<element name="CLK:C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="E2,5-7" package3d_urn="urn:adsk.eagle:package:23345/1" value="1u" x="15.955" y="56.465" smashed="yes">
+<attribute name="CONRAD" value="445639" x="15.955" y="56.465" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="710-860021373002" x="15.955" y="56.465" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="18.368" y="57.735" size="1.27" layer="25" ratio="10"/>
+<attribute name="SPICEPREFIX" value="C" x="15.955" y="56.465" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="18.368" y="54.052" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="CLK:C2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="30.56" y="59.64" smashed="yes" rot="R270">
 <attribute name="MOUSER" value="594-K104K15X7RF53H5" x="30.56" y="59.64" size="1.778" layer="27" rot="R270" display="off"/>
@@ -2341,19 +2340,22 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="24.21" y="84.405" size="1.27" layer="27" align="top-center"/>
 </element>
 <element name="CLK:IC5" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS32N" x="50.88" y="65.99" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="595-SN74LS32N" x="50.88" y="65.99" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="47.832" y="75.261" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="50.245" y="72.721" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="CLK:IC6" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74ALS08N" x="39.45" y="65.99" smashed="yes" rot="R270">
+<element name="CLK:IC6" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS08N" x="39.45" y="65.99" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="595-SN74LS08N" x="39.45" y="65.99" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="36.402" y="75.261" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="38.815" y="72.721" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="CLK:IC7" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS06N" x="39.45" y="86.04" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="595-SN74LS06N" x="39.45" y="86.04" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="36.402" y="95.311" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="38.815" y="92.771" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="CLK:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="50.88" y="79.96" smashed="yes" rot="R180">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="50.88" y="79.96" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="50.88" y="79.96" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="47.705" y="79.4266" size="1.27" layer="25" ratio="10" rot="R180"/>
 <attribute name="VALUE" x="47.6796" y="81.7634" size="1.27" layer="27" ratio="10" rot="R180"/>
 </element>
@@ -2383,7 +2385,7 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="15.8026" y="63.7294" size="0.9906" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="CLK:R5" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="1M" x="33.1" y="74.88" smashed="yes" rot="R90">
-<attribute name="MOUSER" value="" x="33.1" y="74.88" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MOUSER" value="594-5063JD1M000F" x="33.1" y="74.88" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="31.8046" y="72.34" size="0.9906" layer="25" ratio="10" rot="R90"/>
 <attribute name="SPICEPREFIX" value="R" x="33.1" y="74.88" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="VALUE" x="33.5826" y="73.2544" size="0.9906" layer="27" ratio="10" rot="R90"/>
@@ -2407,7 +2409,7 @@ design rules under a new name.</description>
 <attribute name="SF_SKU" value="COM-09190" x="8.97" y="76.15" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="8.97" y="69.927" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
-<element name="CLK:S2" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" package="SWITCH_SPDT_PTH_11.6X4.0MM_KIT" package3d_urn="urn:adsk.eagle:package:40178/1" value="" x="8.97" y="86.31" smashed="yes" rot="R90">
+<element name="CLK:S2" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" package="SWITCH_SPDT_PTH_11.6X4.0MM_KIT" package3d_urn="urn:adsk.eagle:package:40178/1" value="Source Select" x="8.97" y="86.31" smashed="yes" rot="R90">
 <attribute name="MOUSER" value="474-COM-00102" x="8.97" y="86.31" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MOUSER_CHEAP" value="474-COM-09609" x="8.97" y="86.31" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="8.97" y="83.897" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
@@ -2416,106 +2418,112 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="8.97" y="88.723" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
 </element>
 <element name="RA:IC1" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL20" package3d_urn="urn:adsk.eagle:package:16429/2" value="74LS245N" x="66.04" y="80.01" smashed="yes" rot="R90">
+<attribute name="MOUSER" value="595-SN74LS245N" x="66.04" y="80.01" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="69.088" y="66.929" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="66.421" y="70.231" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="RA:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS173N" x="86.36" y="72.39" smashed="yes">
+<attribute name="MOUSER" value="SN74LS173AN" x="86.36" y="72.39" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="75.819" y="69.469" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="78.867" y="71.755" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="RA:IC3" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS173N" x="86.36" y="86.36" smashed="yes">
+<attribute name="MOUSER" value="SN74LS173AN" x="86.36" y="86.36" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="75.819" y="83.439" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="78.867" y="85.725" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="RA:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="94.615" y="64.77" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="94.615" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="94.615" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="95.1484" y="61.595" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="92.8116" y="61.5696" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="RA:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="90.17" y="64.77" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="90.17" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="90.17" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="90.7034" y="61.595" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="88.3666" y="61.5696" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="RA:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="85.725" y="64.77" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="85.725" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="85.725" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="86.2584" y="61.595" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="83.9216" y="61.5696" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="RA:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="81.28" y="64.77" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="81.28" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="81.28" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="81.8134" y="61.595" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="79.4766" y="61.5696" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="RA:LED5" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="76.835" y="64.77" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="76.835" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="76.835" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="77.3684" y="61.595" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="75.0316" y="61.5696" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="RA:LED6" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="72.39" y="64.77" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="72.39" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="72.39" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="72.9234" y="61.595" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="70.5866" y="61.5696" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="RA:LED7" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="67.945" y="64.77" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="67.945" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="67.945" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="68.4784" y="61.595" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="66.1416" y="61.5696" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="RA:LED8" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="63.5" y="64.77" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="63.5" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="63.5" y="64.77" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="64.0334" y="61.595" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="61.6966" y="61.5696" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="IR:IC1" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL20" package3d_urn="urn:adsk.eagle:package:16429/2" value="74LS245N" x="40.64" y="36.83" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="595-SN74LS245N" x="40.64" y="36.83" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="37.592" y="49.911" size="1.27" layer="25"/>
 <attribute name="VALUE" x="40.259" y="46.609" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="IR:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS173N" x="20.32" y="43.18" smashed="yes" rot="R180">
+<attribute name="MOUSER" value="SN74LS173AN" x="20.32" y="43.18" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="30.861" y="46.101" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="27.813" y="43.815" size="1.27" layer="27" ratio="10" rot="R180"/>
 </element>
 <element name="IR:IC3" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS173N" x="20.32" y="29.21" smashed="yes" rot="R180">
+<attribute name="MOUSER" value="SN74LS173AN" x="20.32" y="29.21" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="30.861" y="32.131" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="27.813" y="29.845" size="1.27" layer="27" ratio="10" rot="R180"/>
 </element>
-<element name="IR:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="43.18" y="21.59" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="43.18" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IR:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="43.18" y="21.59" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="743-INL-3AR30" x="43.18" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="43.7134" y="18.415" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="41.3766" y="18.3896" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="IR:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="38.735" y="21.59" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="38.735" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IR:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="38.735" y="21.59" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="743-INL-3AR30" x="38.735" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="39.2684" y="18.415" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="36.9316" y="18.3896" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="IR:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="34.29" y="21.59" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="34.29" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IR:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="34.29" y="21.59" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="743-INL-3AR30" x="34.29" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="34.8234" y="18.415" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="32.4866" y="18.3896" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="IR:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="29.845" y="21.59" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="29.845" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IR:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="29.845" y="21.59" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="743-INL-3AR30" x="29.845" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="30.3784" y="18.415" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="28.0416" y="18.3896" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="IR:LED5" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="YELLOW" x="25.4" y="21.59" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="25.4" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IR:LED5" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="25.4" y="21.59" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="743-INL-3AB30" x="25.4" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="25.9334" y="18.415" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="23.5966" y="18.3896" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="IR:LED6" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="YELLOW" x="20.955" y="21.59" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="20.955" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IR:LED6" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="20.955" y="21.59" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="743-INL-3AB30" x="20.955" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="21.4884" y="18.415" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="19.1516" y="18.3896" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="IR:LED7" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="YELLOW" x="16.51" y="21.59" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="16.51" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IR:LED7" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="16.51" y="21.59" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="743-INL-3AB30" x="16.51" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="17.0434" y="18.415" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="14.7066" y="18.3896" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="IR:LED8" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="YELLOW" x="12.065" y="21.59" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="12.065" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="IR:LED8" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="12.065" y="21.59" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="743-INL-3AB30" x="12.065" y="21.59" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="12.5984" y="18.415" size="1.27" layer="25" ratio="10" rot="R270"/>
 <attribute name="VALUE" x="10.2616" y="18.3896" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
@@ -2556,114 +2564,122 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="76.962" y="23.241" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="RB:IC1" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL20" package3d_urn="urn:adsk.eagle:package:16429/2" value="74LS245N" x="66.04" y="19.05" smashed="yes" rot="R90">
+<attribute name="MOUSER" value="595-SN74LS245N" x="66.04" y="19.05" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="69.088" y="5.969" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="66.421" y="9.271" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="RB:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS173N" x="86.36" y="11.43" smashed="yes">
+<attribute name="MOUSER" value="SN74LS173AN" x="86.36" y="11.43" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="75.819" y="8.509" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="78.867" y="10.795" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="RB:IC3" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS173N" x="86.36" y="25.4" smashed="yes">
+<attribute name="MOUSER" value="SN74LS173AN" x="86.36" y="25.4" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="75.819" y="22.479" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="78.867" y="24.765" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="RB:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="94.615" y="34.29" smashed="yes" rot="R90">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="94.615" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="94.615" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="94.0816" y="37.465" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="96.4184" y="37.4904" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="RB:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="90.17" y="34.29" smashed="yes" rot="R90">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="90.17" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="90.17" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="89.6366" y="37.465" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="91.9734" y="37.4904" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="RB:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="85.725" y="34.29" smashed="yes" rot="R90">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="85.725" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="85.725" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="85.1916" y="37.465" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="87.5284" y="37.4904" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="RB:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="81.28" y="34.29" smashed="yes" rot="R90">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="81.28" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="81.28" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="80.7466" y="37.465" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="83.0834" y="37.4904" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="RB:LED5" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="76.835" y="34.29" smashed="yes" rot="R90">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="76.835" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="76.835" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="76.3016" y="37.465" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="78.6384" y="37.4904" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="RB:LED6" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="72.39" y="34.29" smashed="yes" rot="R90">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="72.39" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="72.39" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="71.8566" y="37.465" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="74.1934" y="37.4904" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="RB:LED7" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="67.945" y="34.29" smashed="yes" rot="R90">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="67.945" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="67.945" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="67.4116" y="37.465" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="69.7484" y="37.4904" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="RB:LED8" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="63.5" y="34.29" smashed="yes" rot="R90">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="63.5" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="63.5" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="62.9666" y="37.465" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="65.3034" y="37.4904" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="ALU:IC1" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS283N" x="123.19" y="38.1" smashed="yes" rot="R90">
+<attribute name="MOUSER" value="595-SN74LS283N" x="123.19" y="38.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="126.111" y="27.559" size="1.27" layer="25" ratio="10" rot="R180"/>
 <attribute name="VALUE" x="123.825" y="30.607" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="ALU:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS283N" x="123.19" y="58.42" smashed="yes" rot="R90">
+<attribute name="MOUSER" value="595-SN74LS283N" x="123.19" y="58.42" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="126.111" y="47.879" size="1.27" layer="25" ratio="10" rot="R180"/>
 <attribute name="VALUE" x="123.825" y="50.927" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="ALU:IC3" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS86N" x="134.56005625" y="39.37" smashed="yes" rot="R90">
+<attribute name="MOUSER" value="595-SN74LS86AN" x="134.56005625" y="39.37" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="137.60805625" y="30.099" size="1.27" layer="25" ratio="10" rot="R180"/>
 <attribute name="VALUE" x="135.19505625" y="32.639" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="ALU:IC4" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS86N" x="134.56158125" y="59.69" smashed="yes" rot="R90">
+<attribute name="MOUSER" value="595-SN74LS86AN" x="134.56158125" y="59.69" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="137.60958125" y="50.419" size="1.27" layer="25" ratio="10" rot="R180"/>
 <attribute name="VALUE" x="135.19658125" y="52.959" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="ALU:IC5" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL20" package3d_urn="urn:adsk.eagle:package:16429/2" value="74LS245N" x="110.49" y="48.26" smashed="yes" rot="R90">
+<attribute name="MOUSER" value="595-SN74LS245N" x="110.49" y="48.26" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="113.538" y="35.179" size="1.27" layer="25" rot="R180"/>
 <attribute name="VALUE" x="110.871" y="38.481" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="ALU:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="118.11" y="13.97" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="118.11" y="13.97" size="1.778" layer="27" display="off"/>
+<element name="ALU:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="118.11" y="13.97" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="118.11" y="13.97" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="121.285" y="14.5034" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="121.3104" y="12.1666" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ALU:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="118.11" y="7.62" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="118.11" y="7.62" size="1.778" layer="27" display="off"/>
+<element name="ALU:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="118.11" y="7.62" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="118.11" y="7.62" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="121.285" y="8.1534" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="121.3104" y="5.8166" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ALU:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="118.11" y="1.27" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="118.11" y="1.27" size="1.778" layer="27" display="off"/>
+<element name="ALU:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="118.11" y="1.27" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="118.11" y="1.27" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="121.285" y="1.8034" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="121.3104" y="-0.5334" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ALU:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="118.11" y="-6.35" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="118.11" y="-6.35" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="118.11" y="-6.35" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="121.285" y="-5.8166" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="121.3104" y="-8.1534" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ALU:LED5" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="118.11" y="-13.97" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="118.11" y="-13.97" size="1.778" layer="27" display="off"/>
+<element name="ALU:LED5" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="118.11" y="-13.97" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="118.11" y="-13.97" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="121.285" y="-13.4366" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="121.3104" y="-15.7734" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ALU:LED6" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="118.11" y="-17.78" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="118.11" y="-17.78" size="1.778" layer="27" display="off"/>
+<element name="ALU:LED6" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="118.11" y="-17.78" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="118.11" y="-17.78" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="121.285" y="-17.2466" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="121.3104" y="-19.5834" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ALU:LED7" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="118.11" y="-26.67" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="118.11" y="-26.67" size="1.778" layer="27" display="off"/>
+<element name="ALU:LED7" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="118.11" y="-26.67" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="118.11" y="-26.67" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="121.285" y="-26.1366" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="121.3104" y="-28.4734" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ALU:LED8" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="118.11" y="-34.29" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="118.11" y="-34.29" size="1.778" layer="27" display="off"/>
+<element name="ALU:LED8" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="118.11" y="-34.29" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="118.11" y="-34.29" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="121.285" y="-33.7566" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="121.3104" y="-36.0934" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -2698,35 +2714,37 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="1.841" y="-49.667" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="MAR:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS157N" x="13" y="-63" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS157N" x="13" y="-63" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="2.459" y="-65.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="5.507" y="-63.635" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="MAR:IC1" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS173N" x="13" y="-74" smashed="yes">
+<attribute name="MOUSER" value="SN74LS173AN" x="13" y="-74" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="2.459" y="-76.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="5.507" y="-74.635" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MAR:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-82" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-82" size="1.778" layer="27" display="off"/>
+<element name="MAR:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="3" y="-82" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="3" y="-82" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-81.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-83.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MAR:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-87" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-87" size="1.778" layer="27" display="off"/>
+<element name="MAR:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="3" y="-87" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="3" y="-87" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-86.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-88.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MAR:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-92" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-92" size="1.778" layer="27" display="off"/>
+<element name="MAR:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="3" y="-92" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="3" y="-92" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-91.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-93.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="MAR:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="3" y="-97" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-97" size="1.778" layer="27" display="off"/>
+<element name="MAR:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="3" y="-97" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="3" y="-97" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-96.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-98.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="MAR:PROG" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="3" y="-102" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-102" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="3" y="-102" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-101.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-103.651" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -2743,19 +2761,20 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="3.3744" y="-127.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="MAR:RUN" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="GREEN" x="3" y="-131" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="3" y="-131" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="859-LTL-4232N" x="3" y="-131" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="4.905" y="-130.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="4.905" y="-132.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="MAR:S1" library="switch-dil" library_urn="urn:adsk.eagle:library:375" package="DIP04YL" package3d_urn="urn:adsk.eagle:package:27255/2" value="Memory Address" x="9" y="-139" smashed="yes">
 <attribute name="MF" value="" x="9" y="-139" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="611-BDB04" x="9" y="-139" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="" x="9" y="-139" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="2.3198" y="-142.7592" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="OC_FARNELL" value="unknown" x="9" y="-139" size="1.778" layer="27" display="off"/>
 <attribute name="OC_NEWARK" value="unknown" x="9" y="-139" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="15.0452" y="-142.1496" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="MAR:S3" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" package="SWITCH_SPDT_PTH_11.6X4.0MM_KIT" package3d_urn="urn:adsk.eagle:package:40178/1" value="" x="-4" y="-149" smashed="yes">
+<element name="MAR:S3" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" package="SWITCH_SPDT_PTH_11.6X4.0MM_KIT" package3d_urn="urn:adsk.eagle:package:40178/1" value="Program / Write" x="-4" y="-149" smashed="yes">
 <attribute name="MOUSER" value="474-COM-00102" x="-4" y="-149" size="1.778" layer="27" display="off"/>
 <attribute name="MOUSER_CHEAP" value="474-COM-09609" x="-4" y="-149" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-6.413" y="-149" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
@@ -2793,68 +2812,74 @@ design rules under a new name.</description>
 <attribute name="SPICEPREFIX" value="C" x="-4" y="-188" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-6.159" y="-190.667" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="RAM:IC1" library="SAP-1" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS189LSN" x="6" y="-197" smashed="yes">
+<element name="RAM:IC1" library="SAP-1" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS189N" x="6" y="-197" smashed="yes">
+<attribute name="EBAY" value="TRUE" x="6" y="-197" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-4.541" y="-199.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-1.493" y="-197.635" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="RAM:IC2" library="SAP-1" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS189LSN" x="6" y="-208" smashed="yes">
+<element name="RAM:IC2" library="SAP-1" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS189N" x="6" y="-208" smashed="yes">
+<attribute name="EBAY" value="TRUE" x="6" y="-208" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-4.541" y="-210.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-1.493" y="-208.635" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="RAM:IC3" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL20" package3d_urn="urn:adsk.eagle:package:16429/2" value="74LS245N" x="8" y="-219" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS245N" x="8" y="-219" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-5.081" y="-222.048" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="-1.779" y="-219.381" size="1.27" layer="27"/>
 </element>
 <element name="RAM:IC4" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS04N" x="4" y="-230" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS06N" x="4" y="-230" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-5.271" y="-233.048" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-2.731" y="-230.635" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="RAM:IC5" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS04N" x="4" y="-241" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS06N" x="4" y="-241" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-5.271" y="-244.048" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-2.731" y="-241.635" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="RAM:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-249" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-249" size="1.778" layer="27" display="off"/>
+<element name="RAM:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-5" y="-249" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-5" y="-249" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-248.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-250.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="RAM:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-254" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-254" size="1.778" layer="27" display="off"/>
+<element name="RAM:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-5" y="-254" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-5" y="-254" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-253.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-255.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="RAM:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-259" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-259" size="1.778" layer="27" display="off"/>
+<element name="RAM:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-5" y="-259" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-5" y="-259" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-258.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-260.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="RAM:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-264" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-264" size="1.778" layer="27" display="off"/>
+<element name="RAM:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-5" y="-264" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-5" y="-264" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-263.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-265.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="RAM:LED5" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="YELLOW" x="-5" y="-269" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-269" size="1.778" layer="27" display="off"/>
+<element name="RAM:LED5" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-5" y="-269" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-5" y="-269" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-268.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-270.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="RAM:LED6" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="YELLOW" x="-5" y="-274" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-274" size="1.778" layer="27" display="off"/>
+<element name="RAM:LED6" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-5" y="-274" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-5" y="-274" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-273.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-275.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="RAM:LED7" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="YELLOW" x="-5" y="-279" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-279" size="1.778" layer="27" display="off"/>
+<element name="RAM:LED7" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-5" y="-279" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-5" y="-279" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-278.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-280.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="RAM:LED8" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="YELLOW" x="-5" y="-284" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-284" size="1.778" layer="27" display="off"/>
+<element name="RAM:LED8" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-5" y="-284" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-5" y="-284" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-283.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-285.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="RAM:S2" library="switch-dil" library_urn="urn:adsk.eagle:library:375" package="DIP08YL" package3d_urn="urn:adsk.eagle:package:27261/2" value="Memory Data" x="7" y="-324" smashed="yes">
 <attribute name="MF" value="" x="7" y="-324" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="611-BDB08" x="7" y="-324" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="" x="7" y="-324" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-4.7602" y="-327.7592" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="OC_FARNELL" value="unknown" x="7" y="-324" size="1.778" layer="27" display="off"/>
@@ -2862,14 +2887,17 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="18.1252" y="-327.1496" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
 <element name="RAM:IC6" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS157N" x="6" y="-335" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS157N" x="6" y="-335" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-4.541" y="-337.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-1.493" y="-335.635" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="RAM:IC7" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS157N" x="6" y="-346" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS157N" x="6" y="-346" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-4.541" y="-348.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-1.493" y="-346.635" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="RAM:IC8" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS157N" x="6" y="-357" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS157N" x="6" y="-357" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-4.541" y="-359.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-1.493" y="-357.635" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -2880,7 +2908,8 @@ design rules under a new name.</description>
 <attribute name="SF_SKU" value="COM-09190" x="1" y="-370" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="1" y="-376.223" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
-<element name="RAM:IC9" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74ALS00N" x="4" y="-383" smashed="yes">
+<element name="RAM:IC9" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS00N" x="4" y="-383" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS00N" x="4" y="-383" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-5.271" y="-386.048" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-2.731" y="-383.635" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -2915,11 +2944,13 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-3.6256" y="-419.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="RAM:C10" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="10n" x="-4" y="-424" smashed="yes">
+<attribute name="MOUSER" value="594-K103K15X7RF5TH5" x="-4" y="-424" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-6.159" y="-422.603" size="1.27" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="C" x="-4" y="-424" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-6.159" y="-426.667" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="PC:IC1" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS161N" x="6" y="-433" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS161AN" x="6" y="-433" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-4.541" y="-435.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-1.493" y="-433.635" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -2936,30 +2967,32 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-6.159" y="-444.667" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="PC:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL20" package3d_urn="urn:adsk.eagle:package:16429/2" value="74LS245N" x="8" y="-458" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS245N" x="8" y="-458" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-5.081" y="-461.048" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="-1.779" y="-458.381" size="1.27" layer="27"/>
 </element>
 <element name="PC:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-466" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-466" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AB30" x="-5" y="-466" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-465.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-467.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="PC:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-471" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-475" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AB30" x="-5" y="-475" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-470.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-472.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="PC:LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-476" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-480" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AB30" x="-5" y="-480" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-475.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-477.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="PC:LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE" x="-5" y="-481" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-5" y="-485" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AB30" x="-5" y="-485" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-3.095" y="-480.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-3.095" y="-482.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="OUT:IC1" library="microchip" library_urn="urn:adsk.eagle:library:294" package="DIL24-6" package3d_urn="urn:adsk.eagle:package:20810/1" value="28C16AP" x="11" y="-501" smashed="yes">
+<attribute name="EBAY" value="TRUE" x="11" y="-501" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="" x="11" y="-501" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="CAT28C16ALI-12" x="11" y="-501" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-4.367" y="-507.604" size="1.778" layer="25" ratio="10" rot="R90"/>
@@ -3011,6 +3044,7 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-5.6256" y="-648.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="OUT:R3" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="100k" x="-15" y="-648" smashed="yes">
+<attribute name="MOUSER" value="594-5063JD100K0F" x="-15" y="-648" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-17.54" y="-646.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-26" y="-636" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-16.6256" y="-648.4826" size="0.9906" layer="27" ratio="10"/>
@@ -3022,6 +3056,7 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-4.159" y="-631.667" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="OUT:IC5" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS76N" x="-8" y="-655" smashed="yes">
+<attribute name="EBAY" value="TRUE" x="-8" y="-655" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.541" y="-657.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-15.493" y="-655.635" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -3034,10 +3069,12 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-14.587" y="-667" size="0.6096" layer="27" font="vector" ratio="20" rot="R90" align="top-center"/>
 </element>
 <element name="OUT:IC6" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS139N" x="-8" y="-679" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS139AN" x="-8" y="-679" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.541" y="-681.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-15.493" y="-679.635" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="OUT:C7" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="10n" x="-17" y="-688" smashed="yes">
+<attribute name="MOUSER" value="594-K103K15X7RF5TH5" x="-17" y="-688" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-19.159" y="-686.603" size="1.27" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="C" x="-17" y="-688" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-19.159" y="-690.667" size="1.27" layer="27" ratio="10"/>
@@ -3060,11 +3097,13 @@ design rules under a new name.</description>
 <attribute name="SPICEPREFIX" value="C" x="-17" y="-716" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-19.159" y="-718.667" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="OUT:IC3" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL20" package3d_urn="urn:adsk.eagle:package:16429/2" value="74273N" x="-5" y="-725" smashed="yes">
+<element name="OUT:IC3" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL20" package3d_urn="urn:adsk.eagle:package:16429/2" value="74LS273N" x="-5" y="-725" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS273N" x="-5" y="-725" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.081" y="-728.048" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="-14.779" y="-725.381" size="1.27" layer="27"/>
 </element>
-<element name="OUT:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74ALS08N" x="-9" y="-736" smashed="yes">
+<element name="OUT:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS08N" x="-9" y="-736" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS08N" x="-9" y="-736" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.271" y="-739.048" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-15.731" y="-736.635" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -3075,94 +3114,95 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-19.159" y="-747.667" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="R8" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="10k" x="-16" y="-751" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-751" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD10K00F" x="-16" y="-751" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-749.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-751" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-751.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="10k" x="-16" y="-755" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-755" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD10K00F" x="-16" y="-755" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-753.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-755" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-755.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="10k" x="-16" y="-759" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-759" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD10K00F" x="-16" y="-759" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-757.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-759" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-759.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="10k" x="-16" y="-763" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-763" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD10K00F" x="-16" y="-763" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-761.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-763" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-763.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="R4" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="10k" x="-16" y="-767" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-767" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD10K00F" x="-16" y="-767" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-765.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-767" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-767.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="R5" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="10k" x="-16" y="-771" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-771" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD10K00F" x="-16" y="-771" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-769.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-771" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-771.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="R6" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="10k" x="-16" y="-775" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-775" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD10K00F" x="-16" y="-775" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-773.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-775" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-775.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="R7" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="10k" x="-16" y="-779" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-779" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD10K00F" x="-16" y="-779" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-777.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-779" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-779.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-783" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-783" size="1.778" layer="27" display="off"/>
+<element name="LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-783" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-783" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-782.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-784.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-788" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-788" size="1.778" layer="27" display="off"/>
+<element name="LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-788" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-788" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-787.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-789.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-793" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-793" size="1.778" layer="27" display="off"/>
+<element name="LED3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-793" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-793" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-792.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-794.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-798" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-798" size="1.778" layer="27" display="off"/>
+<element name="LED4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-798" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-798" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-797.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-799.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="LED5" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-803" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-803" size="1.778" layer="27" display="off"/>
+<element name="LED5" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-803" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-803" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-802.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-804.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="LED6" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-808" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-808" size="1.778" layer="27" display="off"/>
+<element name="LED6" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-808" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-808" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-807.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-809.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="LED7" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-813" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-813" size="1.778" layer="27" display="off"/>
+<element name="LED7" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-813" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-813" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-812.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-814.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="LED8" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-818" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-818" size="1.778" layer="27" display="off"/>
+<element name="LED8" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-818" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-818" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-817.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-819.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:IC1" library="microchip" library_urn="urn:adsk.eagle:library:294" package="DIL24-6" package3d_urn="urn:adsk.eagle:package:20810/1" value="28C16AP" x="-2" y="-830" smashed="yes">
+<attribute name="EBAY" value="TRUE" x="-2" y="-830" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="" x="-2" y="-830" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="CAT28C16ALI-12" x="-2" y="-830" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-17.367" y="-836.604" size="1.778" layer="25" ratio="10" rot="R90"/>
@@ -3189,179 +3229,172 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-19.159" y="-859.667" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-868" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-863" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-863" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-866.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-863" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-868.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:HLT" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-863" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-867" size="1.778" layer="27" display="off"/>
+<element name="ID:HLT" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-863" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-867" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-862.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-864.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ID:IC3" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74ALS04N" x="-9" y="-884" smashed="yes">
-<attribute name="NAME" x="-18.271" y="-887.048" size="1.27" layer="25" ratio="10" rot="R90"/>
-<attribute name="VALUE" x="-15.731" y="-884.635" size="1.27" layer="27" ratio="10"/>
-</element>
 <element name="ID:R2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-897" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-893" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-893" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-895.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-893" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-897.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:MI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-892" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-897" size="1.778" layer="27" display="off"/>
+<element name="ID:MI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-892" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-897" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-891.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-893.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R3" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-906" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-901" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-901" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-904.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-901" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-906.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:RO" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-901" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-905" size="1.778" layer="27" display="off"/>
+<element name="ID:RO" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-901" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-905" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-900.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-902.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R4" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-915" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-910" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-910" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-913.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-910" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-915.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:RI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-910" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-914" size="1.778" layer="27" display="off"/>
+<element name="ID:RI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-910" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-914" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-909.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-911.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R5" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-924" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-919" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-919" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-922.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-919" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-924.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:IO" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-919" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-923" size="1.778" layer="27" display="off"/>
+<element name="ID:IO" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-919" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-923" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-918.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-920.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R6" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-933" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-928" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-928" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-931.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-928" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-933.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:II" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-928" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-932" size="1.778" layer="27" display="off"/>
+<element name="ID:II" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-928" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-932" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-927.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-929.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R7" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-942" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-937" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-937" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-940.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-937" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-942.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:AO" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-937" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-941" size="1.778" layer="27" display="off"/>
+<element name="ID:AO" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-937" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-941" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-936.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-938.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R8" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-951" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-946" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-946" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-949.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-946" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-951.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:AI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-946" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-950" size="1.778" layer="27" display="off"/>
+<element name="ID:AI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-946" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-950" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-945.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-947.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R9" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-960" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-955" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-955" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-958.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-955" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-960.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:EO" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-955" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-959" size="1.778" layer="27" display="off"/>
+<element name="ID:EO" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-955" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-959" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-954.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-956.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ID:IC4" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74ALS04N" x="-9" y="-967" smashed="yes">
-<attribute name="NAME" x="-18.271" y="-970.048" size="1.27" layer="25" ratio="10" rot="R90"/>
-<attribute name="VALUE" x="-15.731" y="-967.635" size="1.27" layer="27" ratio="10"/>
-</element>
 <element name="ID:R10" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-980" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-976" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-976" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-978.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-976" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-980.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:SU" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-975" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-980" size="1.778" layer="27" display="off"/>
+<element name="ID:SU" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-975" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-980" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-974.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-976.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R11" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-989" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-984" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-984" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-987.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-984" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-989.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:BI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-984" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-988" size="1.778" layer="27" display="off"/>
+<element name="ID:BI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-984" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-988" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-983.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-985.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R12" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-998" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-993" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-993" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-996.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-993" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-998.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:OI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-993" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-997" size="1.778" layer="27" display="off"/>
+<element name="ID:OI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-993" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-997" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-992.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-994.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R13" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="-1007" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-1002" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-1002" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="-1005.7046" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-1002" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="-1007.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:CE" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-1002" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-1006" size="1.778" layer="27" display="off"/>
+<element name="ID:CE" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="-1002" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-1006" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-1001.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-1003.651" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R14" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="107" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-1011" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-1011" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="108.2954" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-1011" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="106.5174" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:CO" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="103" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-1015" size="1.778" layer="27" display="off"/>
+<element name="ID:CO" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="103" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-1015" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="103.381" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="101.349" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R15" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="116" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-1011" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-1011" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="117.2954" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-1011" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="115.5174" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:JP" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="112" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-1015" size="1.778" layer="27" display="off"/>
+<element name="ID:JP" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="112" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-1015" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="112.381" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="110.349" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:IC2" library="microchip" library_urn="urn:adsk.eagle:library:294" package="DIL24-6" package3d_urn="urn:adsk.eagle:package:20810/1" value="28C16AP" x="-2" y="-1018" smashed="yes">
+<attribute name="EBAY" value="TRUE" x="-2" y="-1018" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="" x="-2" y="-1018" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="CAT28C16ALI-12" x="-2" y="-1018" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-17.367" y="-1024.604" size="1.778" layer="25" ratio="10" rot="R90"/>
@@ -3424,10 +3457,12 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-17.6256" y="-1065.4826" size="0.9906" layer="27" ratio="10"/>
 </element>
 <element name="ID:IC5" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS161N" x="-8" y="125" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS161AN" x="-8" y="125" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.541" y="122.079" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-15.493" y="124.365" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:IC6" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS138N" x="-8" y="-1072" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS138N" x="-8" y="-1072" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.541" y="-1074.921" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-15.493" y="-1072.635" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -3443,28 +3478,28 @@ design rules under a new name.</description>
 <attribute name="SPICEPREFIX" value="C" x="-17" y="-1088" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-19.159" y="-1090.667" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ID:T0" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-1094" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-1094" size="1.778" layer="27" display="off"/>
+<element name="ID:T0" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="GREEN" x="-18" y="-1094" smashed="yes">
+<attribute name="MOUSER" value="859-LTL-4232N" x="-18" y="-1094" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-1093.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-1095.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ID:T1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-1099" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-1099" size="1.778" layer="27" display="off"/>
+<element name="ID:T1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="GREEN" x="-18" y="-1099" smashed="yes">
+<attribute name="MOUSER" value="859-LTL-4232N" x="-18" y="-1099" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-1098.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-1100.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ID:T2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-1104" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-1104" size="1.778" layer="27" display="off"/>
+<element name="ID:T2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="GREEN" x="-18" y="-1104" smashed="yes">
+<attribute name="MOUSER" value="859-LTL-4232N" x="-18" y="-1104" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-1103.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-1105.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ID:T3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-1109" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-1109" size="1.778" layer="27" display="off"/>
+<element name="ID:T3" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="GREEN" x="-18" y="-1109" smashed="yes">
+<attribute name="MOUSER" value="859-LTL-4232N" x="-18" y="-1109" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-1108.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-1110.651" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ID:T4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="-1114" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-1114" size="1.778" layer="27" display="off"/>
+<element name="ID:T4" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="GREEN" x="-18" y="-1114" smashed="yes">
+<attribute name="MOUSER" value="859-LTL-4232N" x="-18" y="-1114" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="-1113.619" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="-1115.651" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -3476,20 +3511,23 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-13" y="131.777" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
 <element name="ID:R17" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="10k" x="-16" y="147" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-1119" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD10K00F" x="-16" y="-1119" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="148.2954" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-1119" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="146.5174" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:IC7" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74ALS00N" x="-9" y="-1122" smashed="yes">
+<element name="ID:IC7" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS00N" x="-9" y="-1122" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS00N" x="-9" y="-1122" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.271" y="-1125.048" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-15.731" y="-1122.635" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ALU:IC6" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS02N" x="-9" y="-1133" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS02N" x="-9" y="-1133" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.271" y="-1136.048" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-15.731" y="-1133.635" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="ALU:IC7" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74ALS08N" x="-9" y="-1144" smashed="yes">
+<element name="ALU:IC7" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS08N" x="-9" y="-1144" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS08N" x="-9" y="-1144" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.271" y="-1147.048" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-15.731" y="-1144.635" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -3536,16 +3574,17 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-19.159" y="-1176.667" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="SR:IC2" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS173N" x="-8" y="176" smashed="yes">
+<attribute name="MOUSER" value="SN74LS173AN" x="-8" y="176" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.541" y="173.079" size="1.27" layer="25" ratio="10" rot="R90"/>
 <attribute name="VALUE" x="-15.493" y="175.365" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="SR:LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="184" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-1180" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-1180" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="184.381" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="182.349" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="SR:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="GREEN" x="-18" y="189" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-1185" size="1.778" layer="27" display="off"/>
+<element name="SR:LED2" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="189" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-1185" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="189.381" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="187.349" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -3556,13 +3595,13 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="-19.159" y="192.333" size="1.27" layer="27" ratio="10"/>
 </element>
 <element name="ID:R16" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="220" x="-16" y="205" smashed="yes">
-<attribute name="MOUSER" value="594-5063JD1K000F" x="-16" y="-1180" size="1.778" layer="27" display="off"/>
+<attribute name="MOUSER" value="594-5063JD220R0F" x="-16" y="-1180" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-18.54" y="206.2954" size="0.9906" layer="25" ratio="10"/>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-1180" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="204.5174" size="0.9906" layer="27" ratio="10"/>
 </element>
-<element name="ID:FI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="" x="-18" y="201" smashed="yes">
-<attribute name="MOUSER" value="941-C503BRANCZ0C0AA1" x="-18" y="-1184" size="1.778" layer="27" display="off"/>
+<element name="ID:FI" library="led" library_urn="urn:adsk.eagle:library:259" package="LED3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED" x="-18" y="201" smashed="yes">
+<attribute name="MOUSER" value="743-INL-3AR30" x="-18" y="-1184" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="-16.095" y="201.381" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="-16.095" y="199.349" size="1.27" layer="27" ratio="10"/>
 </element>
@@ -3902,6 +3941,16 @@ design rules under a new name.</description>
 <attribute name="SPICEPREFIX" value="R" x="-16" y="-1208" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-17.6256" y="436.5174" size="0.9906" layer="27" ratio="10"/>
 </element>
+<element name="ID:IC3" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS04N" x="-8.89" y="449.58" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS06N" x="-8.89" y="-1183.64" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-18.161" y="446.532" size="1.27" layer="25" ratio="10" rot="R90"/>
+<attribute name="VALUE" x="-15.621" y="448.945" size="1.27" layer="27" ratio="10"/>
+</element>
+<element name="ID:IC4" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS04N" x="-8.89" y="461.01" smashed="yes">
+<attribute name="MOUSER" value="595-SN74LS06N" x="-8.89" y="-1183.64" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-18.161" y="457.962" size="1.27" layer="25" ratio="10" rot="R90"/>
+<attribute name="VALUE" x="-15.621" y="460.375" size="1.27" layer="27" ratio="10"/>
+</element>
 </elements>
 <signals>
 <signal name="CLK:GND">
@@ -3938,7 +3987,7 @@ design rules under a new name.</description>
 <wire x1="20.4" y1="65.99" x2="26.75" y2="69.165" width="0" layer="19" extent="1-1"/>
 <wire x1="30.56" y1="57.1" x2="30.56" y2="64.72" width="0" layer="19" extent="1-1"/>
 <wire x1="35.64" y1="58.37" x2="30.56" y2="57.1" width="0" layer="19" extent="1-1"/>
-<wire x1="17.225" y1="57.735" x2="20.4" y2="65.99" width="0" layer="19" extent="1-1"/>
+<wire x1="17.225" y1="56.465" x2="20.4" y2="65.99" width="0" layer="19" extent="1-1"/>
 <wire x1="47.07" y1="58.37" x2="35.64" y2="58.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CLK:VCC">
@@ -4019,8 +4068,8 @@ design rules under a new name.</description>
 <contactref element="CLK:IC2" pad="6"/>
 <contactref element="CLK:IC2" pad="2"/>
 <wire x1="20.4" y1="63.45" x2="28.02" y2="60.91" width="0" layer="19" extent="1-1"/>
-<wire x1="14.685" y1="57.735" x2="20.4" y2="63.45" width="0" layer="19" extent="1-1"/>
-<wire x1="5.16" y1="62.18" x2="14.685" y2="57.735" width="0" layer="19" extent="1-1"/>
+<wire x1="14.685" y1="56.465" x2="20.4" y2="63.45" width="0" layer="19" extent="1-1"/>
+<wire x1="5.16" y1="62.18" x2="14.685" y2="56.465" width="0" layer="19" extent="1-1"/>
 <wire x1="7.7" y1="62.18" x2="5.16" y2="62.18" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CLK:N$12">
@@ -5176,8 +5225,8 @@ design rules under a new name.</description>
 <contactref element="IR:IC3" pad="10"/>
 <contactref element="IR:IC3" pad="9"/>
 <contactref element="ID:IC3" pad="8"/>
-<wire x1="13.97" y1="39.37" x2="-1.38" y2="-880.19" width="0" layer="19" extent="1-1"/>
-<wire x1="11.43" y1="39.37" x2="13.97" y2="39.37" width="0" layer="19" extent="1-1"/>
+<wire x1="11.43" y1="39.37" x2="-1.27" y2="453.39" width="0" layer="19" extent="1-1"/>
+<wire x1="13.97" y1="39.37" x2="11.43" y2="39.37" width="0" layer="19" extent="1-1"/>
 <wire x1="13.97" y1="25.4" x2="13.97" y2="39.37" width="0" layer="19" extent="1-1"/>
 <wire x1="11.43" y1="25.4" x2="13.97" y2="25.4" width="0" layer="19" extent="1-1"/>
 </signal>
@@ -5192,7 +5241,7 @@ design rules under a new name.</description>
 <contactref element="MAR:IC1" pad="10"/>
 <contactref element="MAR:IC1" pad="9"/>
 <contactref element="ID:IC3" pad="2"/>
-<wire x1="19.35" y1="-70.19" x2="-14.08" y2="-887.81" width="0" layer="19" extent="1-1"/>
+<wire x1="19.35" y1="-70.19" x2="-13.97" y2="445.77" width="0" layer="19" extent="1-1"/>
 <wire x1="21.89" y1="-70.19" x2="19.35" y2="-70.19" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="!AI">
@@ -5207,7 +5256,7 @@ design rules under a new name.</description>
 <wire x1="92.71" y1="90.17" x2="95.25" y2="90.17" width="0.1524" layer="1"/>
 <wire x1="96.52" y1="88.9" x2="96.52" y2="97.79" width="0.1524" layer="1"/>
 <contactref element="ID:IC3" pad="12"/>
-<wire x1="-11.54" y1="-880.19" x2="92.71" y2="90.17" width="0" layer="19" extent="1-1"/>
+<wire x1="96.52" y1="97.79" x2="-11.43" y2="453.39" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SU">
 <contactref element="ALU:IC3" pad="2"/>
@@ -5243,8 +5292,8 @@ design rules under a new name.</description>
 <contactref element="RB:IC3" pad="10"/>
 <contactref element="RB:IC3" pad="9"/>
 <contactref element="ID:IC4" pad="4"/>
-<wire x1="95.25" y1="29.21" x2="-9" y2="-970.81" width="0" layer="19" extent="1-1"/>
-<wire x1="92.71" y1="29.21" x2="95.25" y2="29.21" width="0" layer="19" extent="1-1"/>
+<wire x1="92.71" y1="29.21" x2="-8.89" y2="457.2" width="0" layer="19" extent="1-1"/>
+<wire x1="95.25" y1="29.21" x2="92.71" y2="29.21" width="0" layer="19" extent="1-1"/>
 <wire x1="95.25" y1="15.24" x2="95.25" y2="29.21" width="0" layer="19" extent="1-1"/>
 <wire x1="92.71" y1="15.24" x2="95.25" y2="15.24" width="0" layer="19" extent="1-1"/>
 </signal>
@@ -5523,32 +5572,32 @@ design rules under a new name.</description>
 <signal name="!JP">
 <contactref element="PC:IC1" pad="9"/>
 <contactref element="ID:IC4" pad="8"/>
-<wire x1="14.89" y1="-429.19" x2="-1.38" y2="-963.19" width="0" layer="19" extent="1-1"/>
+<wire x1="14.89" y1="-429.19" x2="-1.27" y2="464.82" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="!CO">
 <contactref element="PC:IC2" pad="19"/>
 <contactref element="ID:IC4" pad="6"/>
-<wire x1="-0.89" y1="-454.19" x2="-3.92" y2="-970.81" width="0" layer="19" extent="1-1"/>
+<wire x1="-0.89" y1="-454.19" x2="-3.81" y2="457.2" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="!RO">
 <contactref element="RAM:IC3" pad="19"/>
 <contactref element="ID:IC3" pad="4"/>
-<wire x1="-9" y1="-887.81" x2="-0.89" y2="-215.19" width="0" layer="19" extent="1-1"/>
+<wire x1="-8.89" y1="445.77" x2="-0.89" y2="-215.19" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="!IO">
 <contactref element="IR:IC1" pad="19"/>
 <contactref element="ID:IC3" pad="6"/>
-<wire x1="44.45" y1="45.72" x2="-3.92" y2="-887.81" width="0" layer="19" extent="1-1"/>
+<wire x1="44.45" y1="45.72" x2="-3.81" y2="445.77" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="!AO">
 <contactref element="RA:IC1" pad="19"/>
 <contactref element="ID:IC3" pad="10"/>
-<wire x1="-6.46" y1="-880.19" x2="62.23" y2="71.12" width="0" layer="19" extent="1-1"/>
+<wire x1="62.23" y1="71.12" x2="-6.35" y2="453.39" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="!EO">
 <contactref element="ALU:IC5" pad="19"/>
 <contactref element="ID:IC4" pad="2"/>
-<wire x1="106.68" y1="39.37" x2="-14.08" y2="-970.81" width="0" layer="19" extent="1-1"/>
+<wire x1="106.68" y1="39.37" x2="-13.97" y2="457.2" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="!BO">
 <contactref element="RB:IC1" pad="19"/>
@@ -5945,8 +5994,6 @@ design rules under a new name.</description>
 <contactref element="ID:C2" pad="1"/>
 <contactref element="ID:C1" pad="1"/>
 <contactref element="ID:C3" pad="1"/>
-<contactref element="ID:IC3" pad="14"/>
-<contactref element="ID:IC4" pad="14"/>
 <contactref element="ID:IC2" pad="24"/>
 <contactref element="ID:C4" pad="1"/>
 <contactref element="ID:IC1" pad="21"/>
@@ -5962,33 +6009,34 @@ design rules under a new name.</description>
 <contactref element="ID:S1" pad="1"/>
 <contactref element="ID:IC7" pad="14"/>
 <contactref element="ID:IC2" pad="1"/>
-<wire x1="-15.97" y1="-1010.38" x2="-16.62" y2="-963.19" width="0" layer="19" extent="1-1"/>
-<wire x1="-8.35" y1="-1010.38" x2="-15.97" y2="-1010.38" width="0" layer="19" extent="1-1"/>
-<wire x1="-15.97" y1="-1025.62" x2="-15.97" y2="-1010.38" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.54" y1="-1031" x2="-15.97" y2="-1025.62" width="0" layer="19" extent="1-1"/>
-<wire x1="-16.89" y1="-1068.19" x2="-19.54" y2="-1031" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.54" y1="-1081" x2="-16.89" y2="-1068.19" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.54" y1="-1088" x2="-19.54" y2="-1081" width="0" layer="19" extent="1-1"/>
-<wire x1="-4.19" y1="-1075.81" x2="-16.89" y2="-1068.19" width="0" layer="19" extent="1-1"/>
-<wire x1="-16.62" y1="-1118.19" x2="-19.54" y2="-1088" width="0" layer="19" extent="1-1"/>
-<wire x1="-16.62" y1="-880.19" x2="-16.62" y2="-963.19" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.54" y1="-857" x2="-16.62" y2="-880.19" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.54" y1="-850" x2="-19.54" y2="-857" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.54" y1="-843" x2="-19.54" y2="-850" width="0" layer="19" extent="1-1"/>
-<wire x1="-15.97" y1="-822.38" x2="-19.54" y2="-843" width="0" layer="19" extent="1-1"/>
-<wire x1="-8.35" y1="-822.38" x2="-15.97" y2="-822.38" width="0" layer="19" extent="1-1"/>
-<wire x1="-6.75" y1="135.5" x2="-16.62" y2="-963.19" width="0" layer="19" extent="1-1"/>
+<contactref element="ID:IC3" pad="14"/>
+<contactref element="ID:IC4" pad="14"/>
+<wire x1="-16.51" y1="453.39" x2="-16.51" y2="464.82" width="0" layer="19" extent="1-1"/>
+<wire x1="-6.75" y1="135.5" x2="-16.51" y2="453.39" width="0" layer="19" extent="1-1"/>
 <wire x1="-1.65" y1="128.81" x2="-6.75" y2="135.5" width="0" layer="19" extent="1-1"/>
 <wire x1="0.89" y1="128.81" x2="-1.65" y2="128.81" width="0" layer="19" extent="1-1"/>
 <wire x1="-1.65" y1="121.19" x2="-1.65" y2="128.81" width="0" layer="19" extent="1-1"/>
 <wire x1="-16.89" y1="128.81" x2="-6.75" y2="135.5" width="0" layer="19" extent="1-1"/>
+<wire x1="-16.62" y1="-1118.19" x2="-16.51" y2="464.82" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.54" y1="-1088" x2="-16.62" y2="-1118.19" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.54" y1="-1081" x2="-19.54" y2="-1088" width="0" layer="19" extent="1-1"/>
+<wire x1="-16.89" y1="-1068.19" x2="-19.54" y2="-1081" width="0" layer="19" extent="1-1"/>
+<wire x1="-4.19" y1="-1075.81" x2="-16.89" y2="-1068.19" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.54" y1="-1031" x2="-16.89" y2="-1068.19" width="0" layer="19" extent="1-1"/>
+<wire x1="-15.97" y1="-1025.62" x2="-19.54" y2="-1031" width="0" layer="19" extent="1-1"/>
+<wire x1="-15.97" y1="-1010.38" x2="-15.97" y2="-1025.62" width="0" layer="19" extent="1-1"/>
+<wire x1="-8.35" y1="-1010.38" x2="-15.97" y2="-1010.38" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.54" y1="-857" x2="-15.97" y2="-1010.38" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.54" y1="-850" x2="-19.54" y2="-857" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.54" y1="-843" x2="-19.54" y2="-850" width="0" layer="19" extent="1-1"/>
+<wire x1="-15.97" y1="-822.38" x2="-19.54" y2="-843" width="0" layer="19" extent="1-1"/>
+<wire x1="-8.35" y1="-822.38" x2="-15.97" y2="-822.38" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:GND">
 <contactref element="ID:C2" pad="2"/>
 <contactref element="ID:C1" pad="2"/>
 <contactref element="ID:C3" pad="2"/>
 <contactref element="ID:R1" pad="1"/>
-<contactref element="ID:IC3" pad="7"/>
 <contactref element="ID:R2" pad="1"/>
 <contactref element="ID:R3" pad="1"/>
 <contactref element="ID:R4" pad="1"/>
@@ -5997,7 +6045,6 @@ design rules under a new name.</description>
 <contactref element="ID:R7" pad="1"/>
 <contactref element="ID:R8" pad="1"/>
 <contactref element="ID:R9" pad="1"/>
-<contactref element="ID:IC4" pad="7"/>
 <contactref element="ID:R10" pad="1"/>
 <contactref element="ID:R11" pad="1"/>
 <contactref element="ID:R12" pad="1"/>
@@ -6028,6 +6075,8 @@ design rules under a new name.</description>
 <contactref element="ID:R23" pad="1"/>
 <contactref element="ID:R22" pad="1"/>
 <contactref element="ID:R21" pad="1"/>
+<contactref element="ID:IC3" pad="7"/>
+<contactref element="ID:IC4" pad="7"/>
 <wire x1="-19.81" y1="-989" x2="-19.81" y2="-998" width="0" layer="19" extent="1-1"/>
 <wire x1="-19.81" y1="-980" x2="-19.81" y2="-989" width="0" layer="19" extent="1-1"/>
 <wire x1="-19.81" y1="-1007" x2="-19.81" y2="-998" width="0" layer="19" extent="1-1"/>
@@ -6043,10 +6092,8 @@ design rules under a new name.</description>
 <wire x1="-19.81" y1="-915" x2="-19.81" y2="-924" width="0" layer="19" extent="1-1"/>
 <wire x1="-19.81" y1="-906" x2="-19.81" y2="-915" width="0" layer="19" extent="1-1"/>
 <wire x1="-19.81" y1="-897" x2="-19.81" y2="-906" width="0" layer="19" extent="1-1"/>
-<wire x1="-1.38" y1="-970.81" x2="-19.81" y2="-980" width="0" layer="19" extent="1-1"/>
-<wire x1="-1.38" y1="-887.81" x2="-19.81" y2="-897" width="0" layer="19" extent="1-1"/>
 <wire x1="-14.46" y1="-1031" x2="-5.81" y2="-1010.38" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.81" y1="-868" x2="-1.38" y2="-887.81" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.81" y1="-868" x2="-19.81" y2="-897" width="0" layer="19" extent="1-1"/>
 <wire x1="-14.46" y1="-857" x2="-19.81" y2="-868" width="0" layer="19" extent="1-1"/>
 <wire x1="-14.46" y1="-850" x2="-14.46" y2="-857" width="0" layer="19" extent="1-1"/>
 <wire x1="-14.46" y1="-843" x2="-14.46" y2="-850" width="0" layer="19" extent="1-1"/>
@@ -6061,16 +6108,18 @@ design rules under a new name.</description>
 <wire x1="-14.46" y1="-1088" x2="-14.46" y2="-1081" width="0" layer="19" extent="1-1"/>
 <wire x1="0.89" y1="-1075.81" x2="-6.73" y2="-1075.81" width="0" layer="19" extent="1-1"/>
 <wire x1="-1.38" y1="-1125.81" x2="-14.46" y2="-1088" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.81" y1="205" x2="-19.81" y2="-998" width="0" layer="19" extent="1-1"/>
+<wire x1="-1.27" y1="457.2" x2="-19.81" y2="-998" width="0" layer="19" extent="1-1"/>
+<wire x1="-1.27" y1="445.77" x2="-1.27" y2="457.2" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.81" y1="433" x2="-1.27" y2="445.77" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.81" y1="429" x2="-19.81" y2="433" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.81" y1="425" x2="-19.81" y2="429" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.81" y1="421" x2="-19.81" y2="425" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.81" y1="417" x2="-19.81" y2="421" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.81" y1="205" x2="-19.81" y2="417" width="0" layer="19" extent="1-1"/>
 <wire x1="-19.81" y1="147" x2="-19.81" y2="205" width="0" layer="19" extent="1-1"/>
 <wire x1="-19.81" y1="116" x2="-19.81" y2="147" width="0" layer="19" extent="1-1"/>
 <wire x1="-19.81" y1="107" x2="-19.81" y2="116" width="0" layer="19" extent="1-1"/>
 <wire x1="0.89" y1="121.19" x2="-19.81" y2="116" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.81" y1="417" x2="-19.81" y2="205" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.81" y1="421" x2="-19.81" y2="417" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.81" y1="425" x2="-19.81" y2="421" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.81" y1="429" x2="-19.81" y2="425" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.81" y1="433" x2="-19.81" y2="429" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:N$1">
 <contactref element="ID:R1" pad="2"/>
@@ -6263,73 +6312,73 @@ design rules under a new name.</description>
 </signal>
 <signal name="ID:N$20">
 <contactref element="ID:IC1" pad="10"/>
-<contactref element="ID:IC3" pad="1"/>
 <contactref element="ID:MI" pad="A"/>
-<wire x1="-16.62" y1="-887.81" x2="-19.27" y2="-892" width="0" layer="19" extent="1-1"/>
-<wire x1="6.89" y1="-837.62" x2="-16.62" y2="-887.81" width="0" layer="19" extent="1-1"/>
+<contactref element="ID:IC3" pad="1"/>
+<wire x1="-19.27" y1="-892" x2="-16.51" y2="445.77" width="0" layer="19" extent="1-1"/>
+<wire x1="6.89" y1="-837.62" x2="-19.27" y2="-892" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:N$21">
-<contactref element="ID:IC3" pad="3"/>
 <contactref element="ID:IC1" pad="11"/>
 <contactref element="ID:RO" pad="A"/>
-<wire x1="-11.54" y1="-887.81" x2="-19.27" y2="-901" width="0" layer="19" extent="1-1"/>
-<wire x1="9.43" y1="-837.62" x2="-11.54" y2="-887.81" width="0" layer="19" extent="1-1"/>
+<contactref element="ID:IC3" pad="3"/>
+<wire x1="-19.27" y1="-901" x2="-11.43" y2="445.77" width="0" layer="19" extent="1-1"/>
+<wire x1="9.43" y1="-837.62" x2="-19.27" y2="-901" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:N$22">
-<contactref element="ID:IC3" pad="5"/>
 <contactref element="ID:IC1" pad="14"/>
 <contactref element="ID:IO" pad="A"/>
-<wire x1="-6.46" y1="-887.81" x2="-19.27" y2="-919" width="0" layer="19" extent="1-1"/>
-<wire x1="9.43" y1="-822.38" x2="-6.46" y2="-887.81" width="0" layer="19" extent="1-1"/>
+<contactref element="ID:IC3" pad="5"/>
+<wire x1="-19.27" y1="-919" x2="-6.35" y2="445.77" width="0" layer="19" extent="1-1"/>
+<wire x1="9.43" y1="-822.38" x2="-19.27" y2="-919" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:N$23">
-<contactref element="ID:IC3" pad="9"/>
 <contactref element="ID:IC1" pad="15"/>
 <contactref element="ID:II" pad="A"/>
-<wire x1="-3.92" y1="-880.19" x2="-19.27" y2="-928" width="0" layer="19" extent="1-1"/>
-<wire x1="6.89" y1="-822.38" x2="-3.92" y2="-880.19" width="0" layer="19" extent="1-1"/>
+<contactref element="ID:IC3" pad="9"/>
+<wire x1="-19.27" y1="-928" x2="-3.81" y2="453.39" width="0" layer="19" extent="1-1"/>
+<wire x1="6.89" y1="-822.38" x2="-19.27" y2="-928" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:N$24">
 <contactref element="ID:IC1" pad="16"/>
-<contactref element="ID:IC3" pad="11"/>
 <contactref element="ID:AO" pad="A"/>
-<wire x1="-9" y1="-880.19" x2="-19.27" y2="-937" width="0" layer="19" extent="1-1"/>
-<wire x1="4.35" y1="-822.38" x2="-9" y2="-880.19" width="0" layer="19" extent="1-1"/>
+<contactref element="ID:IC3" pad="11"/>
+<wire x1="4.35" y1="-822.38" x2="-19.27" y2="-937" width="0" layer="19" extent="1-1"/>
+<wire x1="-8.89" y1="453.39" x2="-19.27" y2="-937" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:N$25">
-<contactref element="ID:IC3" pad="13"/>
 <contactref element="ID:IC1" pad="17"/>
 <contactref element="ID:AI" pad="A"/>
-<wire x1="-14.08" y1="-880.19" x2="-19.27" y2="-946" width="0" layer="19" extent="1-1"/>
-<wire x1="1.81" y1="-822.38" x2="-14.08" y2="-880.19" width="0" layer="19" extent="1-1"/>
+<contactref element="ID:IC3" pad="13"/>
+<wire x1="1.81" y1="-822.38" x2="-19.27" y2="-946" width="0" layer="19" extent="1-1"/>
+<wire x1="-13.97" y1="453.39" x2="-19.27" y2="-946" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:N$26">
-<contactref element="ID:IC4" pad="1"/>
 <contactref element="ID:IC2" pad="9"/>
 <contactref element="ID:EO" pad="A"/>
-<wire x1="-19.27" y1="-955" x2="-16.62" y2="-970.81" width="0" layer="19" extent="1-1"/>
-<wire x1="4.35" y1="-1025.62" x2="-16.62" y2="-970.81" width="0" layer="19" extent="1-1"/>
+<contactref element="ID:IC4" pad="1"/>
+<wire x1="4.35" y1="-1025.62" x2="-19.27" y2="-955" width="0" layer="19" extent="1-1"/>
+<wire x1="-16.51" y1="457.2" x2="-19.27" y2="-955" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:N$27">
-<contactref element="ID:IC4" pad="3"/>
 <contactref element="ID:IC2" pad="11"/>
 <contactref element="ID:BI" pad="A"/>
-<wire x1="-11.54" y1="-970.81" x2="-19.27" y2="-984" width="0" layer="19" extent="1-1"/>
+<contactref element="ID:IC4" pad="3"/>
 <wire x1="9.43" y1="-1025.62" x2="-19.27" y2="-984" width="0" layer="19" extent="1-1"/>
+<wire x1="-11.43" y1="457.2" x2="-19.27" y2="-984" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:N$28">
-<contactref element="ID:IC4" pad="5"/>
 <contactref element="ID:IC2" pad="15"/>
 <contactref element="ID:CO" pad="A"/>
-<wire x1="-6.46" y1="-970.81" x2="6.89" y2="-1010.38" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.27" y1="103" x2="6.89" y2="-1010.38" width="0" layer="19" extent="1-1"/>
+<contactref element="ID:IC4" pad="5"/>
+<wire x1="-6.35" y1="457.2" x2="6.89" y2="-1010.38" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.27" y1="103" x2="-6.35" y2="457.2" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:N$29">
-<contactref element="ID:IC4" pad="9"/>
 <contactref element="ID:IC2" pad="16"/>
 <contactref element="ID:JP" pad="A"/>
-<wire x1="-3.92" y1="-963.19" x2="4.35" y2="-1010.38" width="0" layer="19" extent="1-1"/>
-<wire x1="-19.27" y1="112" x2="4.35" y2="-1010.38" width="0" layer="19" extent="1-1"/>
+<contactref element="ID:IC4" pad="9"/>
+<wire x1="-3.81" y1="464.82" x2="4.35" y2="-1010.38" width="0" layer="19" extent="1-1"/>
+<wire x1="-19.27" y1="112" x2="-3.81" y2="464.82" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:!T0">
 <contactref element="ID:IC6" pad="15"/>
@@ -6511,8 +6560,8 @@ design rules under a new name.</description>
 <contactref element="SR:IC2" pad="9"/>
 <contactref element="SR:IC2" pad="10"/>
 <contactref element="ID:IC4" pad="10"/>
-<wire x1="0.89" y1="179.81" x2="-6.46" y2="-963.19" width="0" layer="19" extent="1-1"/>
-<wire x1="-1.65" y1="179.81" x2="0.89" y2="179.81" width="0" layer="19" extent="1-1"/>
+<wire x1="-1.65" y1="179.81" x2="-6.35" y2="464.82" width="0" layer="19" extent="1-1"/>
+<wire x1="0.89" y1="179.81" x2="-1.65" y2="179.81" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CF">
 <contactref element="SR:IC2" pad="3"/>
@@ -6535,7 +6584,7 @@ design rules under a new name.</description>
 <signal name="ID:N$30">
 <contactref element="ID:IC2" pad="17"/>
 <contactref element="ID:IC4" pad="11"/>
-<wire x1="-9" y1="-963.19" x2="1.81" y2="-1010.38" width="0" layer="19" extent="1-1"/>
+<wire x1="-8.89" y1="464.82" x2="1.81" y2="-1010.38" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ID:N$31">
 <contactref element="ID:R16" pad="2"/>
