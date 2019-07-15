@@ -234,7 +234,7 @@
 <pin name="OUT" x="10.16" y="0" length="short" direction="out" rot="R180"/>
 <pin name="DIS" x="-10.16" y="7.62" length="short" direction="in"/>
 <pin name="TRI" x="-10.16" y="-7.62" length="short" direction="in"/>
-<pin name="VCC+" x="10.16" y="7.62" length="short" direction="pwr" rot="R180"/>
+<pin name="VCC" x="10.16" y="7.62" length="short" direction="pwr" rot="R180"/>
 <pin name="GND" x="10.16" y="-7.62" length="short" direction="pwr" rot="R180"/>
 <pin name="CON" x="10.16" y="-5.08" length="short" direction="in" rot="R180"/>
 <pin name="/RES" x="10.16" y="5.08" length="short" direction="in" rot="R180"/>
@@ -250,12 +250,12 @@
 <pin name="O2" x="10.16" y="7.62" length="middle" direction="out" function="dot" rot="R180"/>
 <pin name="O3" x="10.16" y="5.08" length="middle" direction="out" function="dot" rot="R180"/>
 <pin name="O4" x="10.16" y="2.54" length="middle" direction="out" function="dot" rot="R180"/>
-<pin name="D1" x="-12.7" y="10.16" length="middle" direction="out"/>
-<pin name="D2" x="-12.7" y="7.62" length="middle" direction="out"/>
-<pin name="D3" x="-12.7" y="5.08" length="middle" direction="out"/>
-<pin name="D4" x="-12.7" y="2.54" length="middle" direction="out"/>
-<pin name="CS" x="-12.7" y="-10.16" length="middle" direction="out" function="dot"/>
-<pin name="WE" x="-12.7" y="-12.7" length="middle" direction="out" function="dot"/>
+<pin name="D1" x="-12.7" y="10.16" length="middle" direction="in"/>
+<pin name="D2" x="-12.7" y="7.62" length="middle" direction="in"/>
+<pin name="D3" x="-12.7" y="5.08" length="middle" direction="in"/>
+<pin name="D4" x="-12.7" y="2.54" length="middle" direction="in"/>
+<pin name="CS" x="-12.7" y="-10.16" length="middle" direction="in" function="dot"/>
+<pin name="WE" x="-12.7" y="-12.7" length="middle" direction="in" function="dot"/>
 <pin name="A4" x="-12.7" y="-7.62" length="middle" direction="in"/>
 <pin name="A3" x="-12.7" y="-5.08" length="middle" direction="in"/>
 <pin name="A2" x="-12.7" y="-2.54" length="middle" direction="in"/>
@@ -284,7 +284,7 @@
 <connect gate="G$1" pin="OUT" pad="3"/>
 <connect gate="G$1" pin="TRE" pad="6"/>
 <connect gate="G$1" pin="TRI" pad="2"/>
-<connect gate="G$1" pin="VCC+" pad="8"/>
+<connect gate="G$1" pin="VCC" pad="8"/>
 </connects>
 <package3dinstances>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:12104696/1"/>
