@@ -23267,6 +23267,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <classes>
 <class number="0" name="default" width="0" drill="0">
 </class>
+<class number="1" name="pwr" width="0.254" drill="0">
+</class>
+<class number="2" name="io" width="0.1524" drill="0">
+</class>
 </classes>
 <modules>
 <module name="CLOCK" prefix="" dx="30.48" dy="25.4">
@@ -29721,7 +29725,6 @@ D4 -&gt; MSB/Sign</text>
 <wire x1="15.24" y1="-48.26" x2="2.54" y2="-48.26" width="0.1524" layer="91"/>
 <wire x1="2.54" y1="-48.26" x2="2.54" y2="-53.34" width="0.1524" layer="91"/>
 <wire x1="2.54" y1="-53.34" x2="0" y2="-53.34" width="0.1524" layer="91"/>
-<label x="2.54" y="-53.34" size="1.27" layer="95" xref="yes"/>
 <pinref part="IC6" gate="A" pin="A"/>
 <wire x1="15.24" y1="-15.24" x2="2.54" y2="-15.24" width="0.1524" layer="91"/>
 <wire x1="2.54" y1="-15.24" x2="2.54" y2="-48.26" width="0.1524" layer="91"/>
@@ -29737,14 +29740,11 @@ D4 -&gt; MSB/Sign</text>
 <segment>
 <pinref part="IC5" gate="B" pin="!Q"/>
 <wire x1="40.64" y1="-53.34" x2="43.18" y2="-53.34" width="0.1524" layer="91"/>
-<label x="45.72" y="-53.34" size="1.27" layer="95" xref="yes"/>
 <pinref part="IC6" gate="A" pin="B"/>
-<wire x1="43.18" y1="-53.34" x2="45.72" y2="-53.34" width="0.1524" layer="91"/>
 <wire x1="15.24" y1="-17.78" x2="5.08" y2="-17.78" width="0.1524" layer="91"/>
 <wire x1="5.08" y1="-17.78" x2="5.08" y2="-33.02" width="0.1524" layer="91"/>
 <wire x1="5.08" y1="-33.02" x2="43.18" y2="-33.02" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="-33.02" x2="43.18" y2="-53.34" width="0.1524" layer="91"/>
-<junction x="43.18" y="-53.34"/>
 </segment>
 </net>
 <net name="2SC" class="0">
@@ -31777,11 +31777,11 @@ Base Address: 0x00</text>
 <attribute name="MOUSER" value="SN74LS173AN"/>
 </part>
 <part name="GND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="LED1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED">
-<attribute name="MOUSER" value="743-INL-3AR30"/>
+<part name="LED1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE">
+<attribute name="MOUSER" value="743-INL-3AB30"/>
 </part>
-<part name="LED2" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="RED">
-<attribute name="MOUSER" value="743-INL-3AR30"/>
+<part name="LED2" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="3MM" package3d_urn="urn:adsk.eagle:package:15797/1" value="BLUE">
+<attribute name="MOUSER" value="743-INL-3AB30"/>
 </part>
 <part name="P+1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="GND1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
