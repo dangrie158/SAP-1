@@ -170,10 +170,14 @@
 <board>
 <fusionsync huburn="a.cGVyc29uYWw6dWUyOWFjMzc0" projecturn="a.cGVyc29uYWw6dWUyOWFjMzc0IzIwMTkwNzE3MjA0MTA0NjI2" f3durn="urn:adsk.wipprod:dm.lineage:8LZut8UQQu-fDP22baHNng" pcbguid="741e7c5d-8ea6-400d-a1f7-199fd3ea2a29" lastpulledtime="" lastsyncedchangeguid="8d65094b-b7e0-494f-3cac-3a44e2877a3d"/>
 <plain>
-<wire x1="0" y1="0" x2="135" y2="0" width="0" layer="20"/>
-<wire x1="135" y1="0" x2="135" y2="300" width="0" layer="20"/>
-<wire x1="135" y1="300" x2="0" y2="300" width="0" layer="20"/>
-<wire x1="0" y1="300" x2="0" y2="0" width="0" layer="20"/>
+<wire x1="0" y1="295.5" x2="0" y2="4.5" width="0" layer="20"/>
+<wire x1="0" y1="4.5" x2="4.5" y2="0" width="0" layer="20" curve="90"/>
+<wire x1="4.5" y1="0" x2="130.5" y2="0" width="0" layer="20"/>
+<wire x1="130.5" y1="0" x2="135" y2="4.5" width="0" layer="20" curve="90"/>
+<wire x1="135" y1="4.5" x2="135" y2="295.5" width="0" layer="20"/>
+<wire x1="135" y1="295.5" x2="130.5" y2="300" width="0" layer="20" curve="90"/>
+<wire x1="130.5" y1="300" x2="4.5" y2="300" width="0" layer="20"/>
+<wire x1="4.5" y1="300" x2="0" y2="295.5" width="0" layer="20" curve="90"/>
 </plain>
 <libraries>
 <library name="rcl" urn="urn:adsk.eagle:library:334">
@@ -6793,10 +6797,14 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <contactref element="CLK:IC6" pad="7"/>
 <contactref element="CLK:IC7" pad="7"/>
 <polygon width="0.254" layer="16" isolate="0.254">
-<vertex x="0" y="300"/>
-<vertex x="135" y="300"/>
-<vertex x="135" y="0"/>
-<vertex x="0" y="0"/>
+<vertex x="135" y="295.5"/>
+<vertex x="135" y="4.5" curve="-90"/>
+<vertex x="130.5" y="0"/>
+<vertex x="4.5" y="0" curve="-90"/>
+<vertex x="0" y="4.5"/>
+<vertex x="0" y="295.5" curve="-90"/>
+<vertex x="4.5" y="300"/>
+<vertex x="130.5" y="300" curve="-90"/>
 </polygon>
 <wire x1="55.88" y1="49.53" x2="58.42" y2="49.53" width="0.254" layer="1"/>
 <wire x1="40.005" y1="39.37" x2="40.005" y2="37.465" width="0.254" layer="1"/>
@@ -8361,10 +8369,14 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="91.44" y1="177.8" x2="91.44" y2="168.91" width="0.254" layer="16"/>
 <via x="91.44" y="168.91" extent="1-16" drill="0.381" shape="octagon"/>
 <polygon width="0.254" layer="1" isolate="0.254">
-<vertex x="0" y="300"/>
-<vertex x="135" y="300"/>
-<vertex x="135" y="0"/>
-<vertex x="0" y="0"/>
+<vertex x="135" y="295.5"/>
+<vertex x="135" y="4.5" curve="-90"/>
+<vertex x="130.5" y="0"/>
+<vertex x="4.5" y="0" curve="-90"/>
+<vertex x="0" y="4.5"/>
+<vertex x="0" y="295.5" curve="-90"/>
+<vertex x="4.5" y="300"/>
+<vertex x="130.5" y="300" curve="-90"/>
 </polygon>
 <wire x1="31.75" y1="113.03" x2="31.75" y2="110.8075" width="0.254" layer="16"/>
 <wire x1="31.75" y1="110.8075" x2="32.7025" y2="109.855" width="0.254" layer="16"/>
