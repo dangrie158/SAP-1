@@ -27528,7 +27528,7 @@ w/ 2's Substract</text>
 <part name="IC8" library="74xx-us" library_urn="urn:adsk.eagle:library:88" deviceset="74*157" device="N" package3d_urn="urn:adsk.eagle:package:922/2" technology="LS">
 <attribute name="MOUSER" value="595-SN74LS157N"/>
 </part>
-<part name="S1" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-12MM" package3d_urn="urn:adsk.eagle:package:40164/1" value="Write">
+<part name="S1" library="SparkFun-Switches" library_urn="urn:adsk.eagle:library:535" deviceset="MOMENTARY-SWITCH-SPST" device="-PTH-12MM" package3d_urn="urn:adsk.eagle:package:40164/1" value="Write Byte">
 <attribute name="MOUSER" value="474-COM-09190"/>
 </part>
 <part name="GND8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
