@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="12.5" altunitdist="mil" altunit="mil"/>
+<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="25" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -179,7 +179,7 @@
 <wire x1="130.5" y1="300" x2="4.5" y2="300" width="0" layer="20"/>
 <wire x1="4.5" y1="300" x2="0" y2="295.5" width="0" layer="20" curve="90"/>
 <text x="67.31" y="287.655" size="1.778" layer="21" font="vector" ratio="10" align="bottom-center">Data Bus</text>
-<text x="28.8925" y="236.5375" size="1.778" layer="21" font="vector" ratio="10" align="bottom-center">8-bit discrete CPU</text>
+<text x="28.8925" y="232.7275" size="1.778" layer="21" font="vector" ratio="10" align="bottom-center">8-bit discrete CPU</text>
 <text x="11.43" y="205.74" size="1.27" layer="21" font="vector" ratio="10" rot="R90" align="center-left">Program</text>
 <text x="15.875" y="205.74" size="1.27" layer="21" font="vector" ratio="10" rot="R90" align="center-left">Run</text>
 <text x="2.54" y="273.05" size="1.27" layer="21" font="vector" ratio="10" rot="R90" align="bottom-center">Single Step</text>
@@ -219,7 +219,7 @@
 <wire x1="66.675" y1="151.13" x2="66.675" y2="61.2775" width="0.1524" layer="21" style="longdash"/>
 <wire x1="67.31" y1="61.2775" x2="67.31" y2="151.13" width="0.1524" layer="21" style="longdash"/>
 <wire x1="67.31" y1="167.64" x2="67.31" y2="281.305" width="0.1524" layer="21" style="longdash"/>
-<text x="65.0875" y="159.385" size="1.016" layer="21" font="vector" ratio="10" rot="R90" align="center">Data Bus</text>
+<text x="65.0875" y="160.02" size="1.016" layer="21" font="vector" ratio="10" rot="R90" align="center">Data Bus</text>
 <wire x1="61.595" y1="281.305" x2="61.595" y2="167.64" width="0.1524" layer="21" style="longdash"/>
 <wire x1="60.96" y1="281.305" x2="60.96" y2="167.64" width="0.1524" layer="21" style="longdash"/>
 <wire x1="59.69" y1="281.305" x2="59.69" y2="167.64" width="0.1524" layer="21" style="longdash"/>
@@ -246,9 +246,9 @@
 <wire x1="78.105" y1="61.2775" x2="78.105" y2="151.13" width="0.1524" layer="21" style="longdash"/>
 <wire x1="78.74" y1="61.2775" x2="78.74" y2="151.13" width="0.1524" layer="21" style="longdash"/>
 <wire x1="79.375" y1="61.2775" x2="79.375" y2="151.13" width="0.1524" layer="21" style="longdash"/>
-<text x="61.2775" y="159.385" size="1.016" layer="21" font="vector" ratio="10" rot="R90" align="center">Clock</text>
-<text x="59.3725" y="159.385" size="1.016" layer="21" font="vector" ratio="10" rot="R90" align="center">Clear</text>
-<text x="73.3425" y="159.385" size="1.016" layer="21" font="vector" ratio="10" rot="R90" align="center">Control Word Bus</text>
+<text x="61.2775" y="160.02" size="1.016" layer="21" font="vector" ratio="10" rot="R90" align="center">Clock</text>
+<text x="59.3725" y="160.02" size="1.016" layer="21" font="vector" ratio="10" rot="R90" align="center">Clear</text>
+<text x="73.3425" y="160.02" size="1.016" layer="21" font="vector" ratio="10" rot="R90" align="center">Control Word Bus</text>
 <wire x1="68.58" y1="167.64" x2="68.58" y2="281.305" width="0.1524" layer="21" style="longdash"/>
 <wire x1="69.215" y1="167.64" x2="69.215" y2="281.305" width="0.1524" layer="21" style="longdash"/>
 <wire x1="69.85" y1="167.64" x2="69.85" y2="281.305" width="0.1524" layer="21" style="longdash"/>
@@ -267,14 +267,77 @@
 <wire x1="78.105" y1="167.64" x2="78.105" y2="281.305" width="0.1524" layer="21" style="longdash"/>
 <wire x1="78.74" y1="167.64" x2="78.74" y2="281.305" width="0.1524" layer="21" style="longdash"/>
 <wire x1="79.375" y1="167.64" x2="79.375" y2="281.305" width="0.1524" layer="21" style="longdash"/>
-<text x="28.8925" y="231.4575" size="1.27" layer="21" font="vector" ratio="10" align="bottom-center">by Daniel Grießhaber
+<text x="28.8925" y="227.6475" size="1.27" layer="21" font="vector" ratio="10" align="bottom-center">by Daniel Grießhaber
 https://danielgriesshaber.de</text>
-<text x="28.8925" y="222.5675" size="0.8128" layer="21" font="vector" ratio="10" align="bottom-center">Specs:
+<text x="28.8925" y="218.7575" size="0.8128" layer="21" font="vector" ratio="10" align="bottom-center">Specs:
 ~300 MHz
 8-bit Data Bus
 16-bit Control Word
 5 Microsteps per Instruction
 16 byte RAM</text>
+<text x="127.3175" y="274.955" size="1.778" layer="21" font="vector" ratio="10" align="bottom-center">5V DC
+@ 2A</text>
+<text x="59.055" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">CLR</text>
+<text x="59.69" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!CLR</text>
+<text x="60.96" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!CLK</text>
+<text x="62.865" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">D8</text>
+<text x="63.5" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">D7</text>
+<text x="64.135" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">D6</text>
+<text x="64.77" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">D5</text>
+<text x="65.405" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">D4</text>
+<text x="66.04" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">D3</text>
+<text x="66.675" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">D2</text>
+<text x="67.31" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">D1</text>
+<text x="68.58" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!MI</text>
+<text x="69.215" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!RO</text>
+<text x="69.85" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">HLT</text>
+<text x="70.485" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!IO</text>
+<text x="71.12" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!JP</text>
+<text x="71.755" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!FI</text>
+<text x="72.39" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!EO</text>
+<text x="73.025" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!II</text>
+<text x="73.66" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!BI</text>
+<text x="74.295" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">RI</text>
+<text x="74.93" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!CO</text>
+<text x="75.565" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">SU</text>
+<text x="76.2" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">OI</text>
+<text x="76.835" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">CE</text>
+<text x="77.47" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!AI</text>
+<text x="78.105" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">!AO</text>
+<text x="78.74" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">CY</text>
+<text x="79.375" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">ZR</text>
+<text x="68.58" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!MI</text>
+<text x="69.215" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!RO</text>
+<text x="69.85" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">HLT</text>
+<text x="70.485" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!IO</text>
+<text x="71.12" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!JP</text>
+<text x="71.755" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!FI</text>
+<text x="72.39" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!EO</text>
+<text x="73.025" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!II</text>
+<text x="73.66" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!BI</text>
+<text x="74.295" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">RI</text>
+<text x="74.93" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!CO</text>
+<text x="75.565" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">SU</text>
+<text x="76.2" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">OI</text>
+<text x="76.835" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">CE</text>
+<text x="77.47" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!AI</text>
+<text x="78.105" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!AO</text>
+<text x="78.74" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">CY</text>
+<text x="79.375" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">ZR</text>
+<text x="67.31" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">D1</text>
+<text x="66.675" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">D2</text>
+<text x="66.04" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">D3</text>
+<text x="65.405" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">D4</text>
+<text x="64.77" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">D5</text>
+<text x="64.135" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">D6</text>
+<text x="63.5" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">D7</text>
+<text x="62.865" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">D8</text>
+<text x="60.96" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!CLK</text>
+<text x="61.595" y="151.765" size="0.508" layer="21" font="vector" rot="R90" align="center-left">CLK</text>
+<text x="61.595" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">CLK</text>
+<text x="59.69" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">!CLR</text>
+<text x="59.055" y="151.765" size="0.508" layer="22" font="vector" rot="MR90" align="center-left">CLR</text>
+<text x="28.8925" y="235.9025" size="2.54" layer="21" font="vector" ratio="10" align="bottom-center">SAP-1</text>
 </plain>
 <libraries>
 <library name="rcl" urn="urn:adsk.eagle:library:334">
@@ -2652,6 +2715,29 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </package3d>
 </packages3d>
 </library>
+<library name="testpad" urn="urn:adsk.eagle:library:385">
+<description>&lt;b&gt;Test Pins/Pads&lt;/b&gt;&lt;p&gt;
+Cream on SMD OFF.&lt;br&gt;
+new: Attribute TP_SIGNAL_NAME&lt;br&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="TP06R" urn="urn:adsk.eagle:footprint:27908/1" library_version="2">
+<description>&lt;b&gt;TEST PAD&lt;/b&gt;</description>
+<smd name="TP" x="0" y="0" dx="0.6" dy="0.6" layer="1" roundness="100" cream="no"/>
+<text x="-0.3" y="0.4001" size="1.27" layer="25">&gt;NAME</text>
+<text x="-0.254" y="-0.381" size="0.0254" layer="27">&gt;VALUE</text>
+<text x="0" y="-1.905" size="1" layer="37">&gt;TP_SIGNAL_NAME</text>
+</package>
+</packages>
+<packages3d>
+<package3d name="TP06R" urn="urn:adsk.eagle:package:27954/1" type="box" library_version="2">
+<description>TEST PAD</description>
+<packageinstances>
+<packageinstance name="TP06R"/>
+</packageinstances>
+</package3d>
+</packages3d>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -3697,11 +3783,10 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <attribute name="NAME" x="124.46" y="200.8632" size="0.8128" layer="25" font="vector" ratio="10" align="bottom-center"/>
 <attribute name="VALUE" x="124.46" y="189.3936875" size="0.8128" layer="25" font="vector" ratio="10" rot="R90" align="center-left"/>
 </element>
-<element name="ALU:C2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="101.6" y="178.435" smashed="yes">
-<attribute name="MOUSER" value="594-K104K15X7RF53H5" x="102.38" y="-1133.315" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="101.6" y="177.0888" size="0.8128" layer="25" font="vector" ratio="10" align="top-center"/>
-<attribute name="SPICEPREFIX" value="C" x="102.38" y="-1133.315" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="100.221" y="177.018" size="0.8128" layer="25" font="vector" ratio="10" rot="R90"/>
+<element name="ALU:C2" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="101.6" y="179.07" smashed="yes">
+<attribute name="MOUSER" value="594-K104K15X7RF53H5" x="102.38" y="-1132.68" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="104.8512" y="179.07" size="0.8128" layer="25" font="vector" ratio="10" align="center-left"/>
+<attribute name="SPICEPREFIX" value="C" x="102.38" y="-1132.68" size="1.778" layer="27" display="off"/>
 </element>
 <element name="ALU:C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="101.6" y="154.305" smashed="yes">
 <attribute name="MOUSER" value="594-K104K15X7RF53H5" x="102.38" y="-1158.095" size="1.778" layer="27" display="off"/>
@@ -3780,20 +3865,20 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <attribute name="NAME" x="125.73" y="31.9532" size="0.8128" layer="25" font="vector" ratio="10" align="bottom-center"/>
 <attribute name="VALUE" x="125.73" y="20.4836875" size="0.8128" layer="25" font="vector" ratio="10" rot="R90" align="center-left"/>
 </element>
-<element name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="E3,5-8" package3d_urn="urn:adsk.eagle:package:23360/2" value="100u" x="119.38" y="276.86" smashed="yes" rot="R180">
-<attribute name="MOUSER" value="710-860040674004" x="118.11" y="276.86" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="119.38" y="272.5928" size="0.8128" layer="25" font="vector" ratio="10" align="top-center"/>
-<attribute name="SPICEPREFIX" value="C" x="118.11" y="276.86" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="119.38" y="274.1803" size="0.8128" layer="25" font="vector" ratio="10" align="top-center"/>
+<element name="C1" library="rcl" library_urn="urn:adsk.eagle:library:334" package="E3,5-8" package3d_urn="urn:adsk.eagle:package:23360/2" value="100u" x="113.03" y="276.86" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="710-860040674004" x="113.03" y="275.59" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="117.2972" y="276.86" size="0.8128" layer="25" font="vector" ratio="10" rot="R90" align="top-center"/>
+<attribute name="SPICEPREFIX" value="C" x="113.03" y="275.59" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="115.7097" y="276.86" size="0.8128" layer="25" font="vector" ratio="10" rot="R90" align="top-center"/>
 </element>
 <element name="U$1" library="Parts" library_urn="urn:adsk.eagle:library:2304016" package="POWER_JACK_PTH" package3d_urn="urn:adsk.eagle:package:2338719/2" value="DC-JACK" x="135" y="285.72" smashed="yes" rot="R90">
 <attribute name="NAME" x="129.3612" y="284.3484" size="0.6096" layer="25" font="vector" ratio="20" rot="R90"/>
 <attribute name="VALUE" x="130.3772" y="283.9674" size="0.6096" layer="27" font="vector" ratio="20" rot="R90"/>
 </element>
-<element name="C6" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="127" y="276.86" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="594-K104K15X7RF53H5" x="-1534.16" y="276.86" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="128.3462" y="276.86" size="0.8128" layer="25" font="vector" ratio="10" rot="R90" align="top-center"/>
-<attribute name="SPICEPREFIX" value="C" x="-1534.16" y="276.86" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="C6" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="120.65" y="276.86" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="594-K104K15X7RF53H5" x="-1540.51" y="276.86" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="121.9962" y="276.86" size="0.8128" layer="25" font="vector" ratio="10" rot="R90" align="top-center"/>
+<attribute name="SPICEPREFIX" value="C" x="-1540.51" y="276.86" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="ID:C7" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C050-024X044" package3d_urn="urn:adsk.eagle:package:23643/1" value="100n" x="30.48" y="13.335" smashed="yes">
 <attribute name="MOUSER" value="594-K104K15X7RF53H5" x="30.48" y="13.335" size="1.778" layer="27" display="off"/>
@@ -3926,7 +4011,7 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <attribute name="OC_NEWARK" value="unknown" x="100.33" y="35.56" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="88.8238" y="34.925" size="0.8128" layer="25" font="vector" ratio="10" align="center-right"/>
 </element>
-<element name="CLK:RV2" library="SparkFun-Electromechanical" package="ALPS_POT_KIT" value="" x="8.89" y="259.08" smashed="yes" rot="R270">
+<element name="CLK:RV2" library="SparkFun-Electromechanical" package="ALPS_POT_KIT" value="100k" x="8.89" y="259.08" smashed="yes" rot="R270">
 <attribute name="NAME" x="8.89" y="264.6546" size="0.8128" layer="25" font="vector" ratio="10" align="bottom-center"/>
 <attribute name="PROD_ID" value="RES-09177" x="8.89" y="259.08" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="4.89" y="254.08" size="1.27" layer="21" font="vector"/>
@@ -3962,6 +4047,97 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <element name="H5" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,2-PAD" package3d_urn="urn:adsk.eagle:package:14282/1" value="MOUNT-PAD-ROUND3.2" x="4.5" y="4.5" smashed="yes"/>
 <element name="H6" library="holes" library_urn="urn:adsk.eagle:library:237" package="3,2-PAD" package3d_urn="urn:adsk.eagle:package:14282/1" value="MOUNT-PAD-ROUND3.2" x="130.5" y="4.5" smashed="yes"/>
 <element name="U$2" library="OwnStuff" library_urn="urn:adsk.eagle:library:2060095" package="LOGO-SILKSCREEN" package3d_urn="urn:adsk.eagle:package:2060168/1" value="" x="29.21" y="241.3" smashed="yes"/>
+<element name="ID:TP1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="69.85" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="69.85" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP2" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="68.58" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="68.58" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP3" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="69.215" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="69.215" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP4" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="74.295" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="74.295" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP5" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="70.485" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="70.485" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP6" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="73.025" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="73.025" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP7" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="78.105" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="78.105" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP8" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="77.47" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="77.47" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP9" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="72.39" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="72.39" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP10" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="75.565" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="75.565" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP11" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="73.66" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="73.66" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP12" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="76.2" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="76.2" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP13" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="76.835" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="76.835" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP14" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="74.93" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="74.93" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP15" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="71.12" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="71.12" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP16" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="71.755" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="71.755" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="CLK:TP1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="60.96" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="60.96" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="CLK:TP2" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="61.595" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="61.595" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP17" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="59.055" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="59.055" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="ID:TP18" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="59.69" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="59.69" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="TP1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="62.865" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="62.865" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="TP2" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="63.5" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="63.5" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="TP3" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="64.135" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="64.135" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="TP4" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="64.77" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="64.77" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="TP5" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="65.405" y="154.94" smashed="yes" rot="MR90">
+<attribute name="TP_SIGNAL_NAME" value="" x="65.405" y="154.94" size="0.508" layer="28" font="vector" rot="MR90" display="off"/>
+<attribute name="VALUE" x="65.024" y="154.686" size="0.0254" layer="28" rot="MR90"/>
+</element>
+<element name="TP6" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="66.04" y="153.67" smashed="yes" rot="MR90">
+<attribute name="TP_SIGNAL_NAME" value="" x="66.04" y="153.67" size="0.508" layer="28" font="vector" rot="MR90" display="off"/>
+</element>
+<element name="TP7" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="66.675" y="154.94" smashed="yes" rot="MR90">
+<attribute name="TP_SIGNAL_NAME" value="" x="66.675" y="154.94" size="0.508" layer="28" font="vector" rot="MR90" display="off"/>
+</element>
+<element name="TP8" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="67.31" y="153.67" smashed="yes" rot="MR90">
+<attribute name="TP_SIGNAL_NAME" value="" x="67.31" y="153.67" size="0.508" layer="28" font="vector" rot="MR90" display="off"/>
+</element>
+<element name="SR:TP1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="78.74" y="154.94" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="78.74" y="154.94" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
+<element name="SR:TP2" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP06R" package3d_urn="urn:adsk.eagle:package:27954/1" value="TPTP06R" x="79.375" y="153.67" smashed="yes" rot="MR0">
+<attribute name="TP_SIGNAL_NAME" value="" x="79.375" y="153.67" size="0.508" layer="28" font="vector" rot="MR0" display="off"/>
+</element>
 </elements>
 <signals>
 <signal name="CLK:N$2">
@@ -5395,6 +5571,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="81.915" y1="40.64" x2="81.915" y2="25.7175" width="0.1524" layer="16"/>
 <wire x1="50.8" y1="107.95" x2="74.295" y2="107.95" width="0.1524" layer="1"/>
 <via x="74.295" y="107.95" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP4" pad="TP"/>
+<wire x1="74.295" y1="153.67" x2="74.295" y2="107.95" width="0.1524" layer="16"/>
 </signal>
 <signal name="!II">
 <contactref element="IR:IC2" pad="10"/>
@@ -5406,7 +5584,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="110.49" y="46.0375" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="110.49" y1="46.0375" x2="73.025" y2="46.0375" width="0.1524" layer="1"/>
 <via x="73.025" y="46.0375" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="73.025" y1="46.0375" x2="73.025" y2="87.9475" width="0.1524" layer="16"/>
+<wire x1="73.025" y1="46.0375" x2="73.025" y2="87.63" width="0.1524" layer="16"/>
+<wire x1="73.025" y1="87.63" x2="73.025" y2="87.9475" width="0.1524" layer="16"/>
 <wire x1="20.32" y1="86.36" x2="20.32" y2="83.82" width="0.1524" layer="16"/>
 <wire x1="31.75" y1="86.36" x2="31.75" y2="83.82" width="0.1524" layer="16"/>
 <wire x1="31.75" y1="86.36" x2="30.7975" y2="87.3125" width="0.1524" layer="1"/>
@@ -5415,6 +5594,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="31.75" y1="86.36" x2="33.3375" y2="87.9475" width="0.1524" layer="1"/>
 <wire x1="33.3375" y1="87.9475" x2="73.025" y2="87.9475" width="0.1524" layer="1"/>
 <via x="73.025" y="87.9475" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP6" pad="TP"/>
+<wire x1="73.025" y1="153.67" x2="73.025" y2="87.9475" width="0.1524" layer="16"/>
 </signal>
 <signal name="HLT">
 <contactref element="CLK:IC7" pad="3"/>
@@ -5435,6 +5616,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="41.91" y="273.05" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="41.91" y1="273.05" x2="69.85" y2="273.05" width="0.1524" layer="1"/>
 <via x="69.85" y="273.05" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP1" pad="TP"/>
+<wire x1="69.85" y1="273.05" x2="69.85" y2="154.94" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="!MI">
 <contactref element="MAR:IC1" pad="10"/>
@@ -5451,6 +5634,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="68.58" y="205.4225" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="31.75" y1="204.47" x2="32.7025" y2="205.4225" width="0.1524" layer="1"/>
 <wire x1="68.58" y1="205.4225" x2="32.7025" y2="205.4225" width="0.1524" layer="1"/>
+<contactref element="ID:TP2" pad="TP"/>
+<wire x1="68.58" y1="205.4225" x2="68.58" y2="154.94" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="!AI">
 <contactref element="RA:IC2" pad="10"/>
@@ -5473,6 +5658,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="97.79" y="244.1575" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="97.79" y1="244.1575" x2="77.47" y2="244.1575" width="0.1524" layer="1"/>
 <via x="77.47" y="244.1575" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP8" pad="TP"/>
+<wire x1="77.47" y1="244.1575" x2="77.47" y2="154.94" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="SU">
 <contactref element="ALU:IC3" pad="2"/>
@@ -5521,6 +5708,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="95.885" y1="174.3075" x2="95.25" y2="174.9425" width="0.1524" layer="1"/>
 <wire x1="95.25" y1="174.9425" x2="75.565" y2="174.9425" width="0.1524" layer="1"/>
 <via x="75.565" y="174.9425" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP10" pad="TP"/>
+<wire x1="75.565" y1="174.9425" x2="75.565" y2="153.67" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="CY">
 <contactref element="ALU:IC2" pad="9"/>
@@ -5534,6 +5723,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="78.74" y1="53.34" x2="78.74" y2="199.39" width="0.1524" layer="16"/>
 <wire x1="97.79" y1="199.39" x2="78.74" y2="199.39" width="0.1524" layer="1"/>
 <via x="78.74" y="199.39" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="SR:TP1" pad="TP"/>
+<wire x1="78.74" y1="199.39" x2="78.74" y2="154.94" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="!BI">
 <contactref element="RB:IC2" pad="10"/>
@@ -5556,6 +5747,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="99.06" y1="134.62" x2="98.1075" y2="135.5725" width="0.1524" layer="1"/>
 <wire x1="98.1075" y1="135.5725" x2="73.66" y2="135.5725" width="0.1524" layer="1"/>
 <via x="73.66" y="135.5725" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP11" pad="TP"/>
+<wire x1="73.66" y1="154.94" x2="73.66" y2="135.5725" width="0.1524" layer="16"/>
 </signal>
 <signal name="D1">
 <contactref element="RA:IC1" pad="18"/>
@@ -5634,6 +5827,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="32.7025" y1="192.7225" x2="67.31" y2="192.7225" width="0.1524" layer="1"/>
 <wire x1="82.8675" y1="289.8775" x2="77.47" y2="284.48" width="0.1524" layer="16"/>
 <wire x1="82.8675" y1="289.8775" x2="82.8675" y2="290.83" width="0.1524" layer="16"/>
+<contactref element="TP8" pad="TP"/>
+<wire x1="67.31" y1="135.89" x2="67.31" y2="153.67" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="D2">
 <contactref element="RA:IC1" pad="17"/>
@@ -5714,6 +5909,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="32.7025" y1="195.2625" x2="66.675" y2="195.2625" width="0.1524" layer="1"/>
 <wire x1="78.4225" y1="287.9725" x2="74.93" y2="284.48" width="0.1524" layer="16"/>
 <wire x1="78.4225" y1="287.9725" x2="78.4225" y2="290.83" width="0.1524" layer="16"/>
+<contactref element="TP7" pad="TP"/>
+<wire x1="66.675" y1="138.43" x2="66.675" y2="154.94" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="D3">
 <contactref element="RA:IC1" pad="16"/>
@@ -5798,6 +5995,9 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="32.7025" y1="197.8025" x2="66.04" y2="197.8025" width="0.1524" layer="1"/>
 <wire x1="72.39" y1="284.48" x2="73.9775" y2="286.0675" width="0.1524" layer="16"/>
 <wire x1="73.9775" y1="286.0675" x2="73.9775" y2="290.83" width="0.1524" layer="16"/>
+<contactref element="TP6" pad="TP"/>
+<wire x1="66.04" y1="140.6525" x2="66.04" y2="153.67" width="0" layer="19" extent="16-16"/>
+<wire x1="66.04" y1="179.07" x2="66.04" y2="140.6525" width="0.1524" layer="16"/>
 </signal>
 <signal name="D4">
 <contactref element="RA:IC1" pad="15"/>
@@ -5880,6 +6080,10 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="69.85" y1="284.48" x2="69.5325" y2="284.7975" width="0.1524" layer="16"/>
 <wire x1="69.5325" y1="284.7975" x2="69.5325" y2="290.83" width="0.1524" layer="16"/>
 <wire x1="91.7575" y1="230.8225" x2="91.7575" y2="234.95" width="0.1524" layer="16"/>
+<contactref element="TP5" pad="TP"/>
+<wire x1="65.405" y1="143.1925" x2="65.405" y2="154.94" width="0" layer="19" extent="16-16"/>
+<wire x1="65.405" y1="181.61" x2="65.405" y2="143.1925" width="0.1524" layer="16"/>
+<wire x1="65.405" y1="181.61" x2="65.405" y2="143.1925" width="0.1524" layer="16"/>
 </signal>
 <signal name="D5">
 <contactref element="RA:IC1" pad="14"/>
@@ -5941,6 +6145,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="44.1325" y1="145.7325" x2="64.77" y2="145.7325" width="0.1524" layer="1"/>
 <wire x1="67.31" y1="284.48" x2="65.0875" y2="286.7025" width="0.1524" layer="16"/>
 <wire x1="65.0875" y1="286.7025" x2="65.0875" y2="290.83" width="0.1524" layer="16"/>
+<contactref element="TP4" pad="TP"/>
+<wire x1="64.77" y1="145.7325" x2="64.77" y2="153.67" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="D6">
 <contactref element="RA:IC1" pad="13"/>
@@ -5997,6 +6203,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="43.18" y1="147.32" x2="48.5775" y2="147.32" width="0.1524" layer="1"/>
 <wire x1="64.77" y1="284.48" x2="60.6425" y2="288.6075" width="0.1524" layer="16"/>
 <wire x1="60.6425" y1="288.6075" x2="60.6425" y2="290.83" width="0.1524" layer="16"/>
+<contactref element="TP3" pad="TP"/>
+<wire x1="64.135" y1="146.3675" x2="64.135" y2="154.94" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="D7">
 <contactref element="RA:IC1" pad="12"/>
@@ -6057,6 +6265,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="63.5" y="148.9075" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="56.1975" y1="290.83" x2="56.1975" y2="290.5125" width="0.1524" layer="16"/>
 <wire x1="62.23" y1="284.48" x2="56.1975" y2="290.5125" width="0.1524" layer="16"/>
+<contactref element="TP2" pad="TP"/>
+<wire x1="63.5" y1="148.9075" x2="63.5" y2="153.67" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="D8">
 <contactref element="RA:IC1" pad="11"/>
@@ -6120,6 +6330,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="59.69" y1="284.48" x2="57.785" y2="286.385" width="0.1524" layer="16"/>
 <wire x1="57.785" y1="286.385" x2="56.1975" y2="286.385" width="0.1524" layer="16"/>
 <wire x1="56.1975" y1="286.385" x2="51.7525" y2="290.83" width="0.1524" layer="16"/>
+<contactref element="TP1" pad="TP"/>
+<wire x1="62.865" y1="151.13" x2="62.865" y2="154.94" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="PC:Q1">
 <contactref element="PC:LED1" pad="A"/>
@@ -6200,6 +6412,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="91.44" y="275.59" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="91.44" y1="275.59" x2="71.12" y2="275.59" width="0.1524" layer="1"/>
 <via x="71.12" y="275.59" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP15" pad="TP"/>
+<wire x1="71.12" y1="52.07" x2="71.12" y2="154.94" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="!CO">
 <contactref element="PC:IC2" pad="19"/>
@@ -6213,6 +6427,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="74.93" y1="269.24" x2="74.93" y2="46.6725" width="0.1524" layer="16"/>
 <wire x1="86.36" y1="269.24" x2="74.93" y2="269.24" width="0.1524" layer="1"/>
 <via x="74.93" y="269.24" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP14" pad="TP"/>
+<wire x1="74.93" y1="46.6725" x2="74.93" y2="154.94" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="!RO">
 <contactref element="RAM:IC3" pad="19"/>
@@ -6225,10 +6441,13 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="114.3" y1="33.02" x2="112.7125" y2="34.6075" width="0.1524" layer="16"/>
 <wire x1="112.7125" y1="61.2775" x2="69.215" y2="61.2775" width="0.1524" layer="1"/>
 <via x="69.215" y="61.2775" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="69.215" y1="131.1275" x2="69.215" y2="61.2775" width="0.1524" layer="16"/>
+<wire x1="69.215" y1="131.1275" x2="69.215" y2="130.81" width="0.1524" layer="16"/>
+<wire x1="69.215" y1="130.81" x2="69.215" y2="61.2775" width="0.1524" layer="16"/>
 <wire x1="43.18" y1="132.08" x2="44.1325" y2="131.1275" width="0.1524" layer="1"/>
 <wire x1="44.1325" y1="131.1275" x2="69.215" y2="131.1275" width="0.1524" layer="1"/>
 <via x="69.215" y="131.1275" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP3" pad="TP"/>
+<wire x1="69.215" y1="153.67" x2="69.215" y2="131.1275" width="0.1524" layer="16"/>
 </signal>
 <signal name="!IO">
 <contactref element="IR:IC1" pad="19"/>
@@ -6245,6 +6464,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="70.485" y="65.0875" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="43.18" y1="66.04" x2="44.1325" y2="65.0875" width="0.1524" layer="1"/>
 <wire x1="70.485" y1="65.0875" x2="44.1325" y2="65.0875" width="0.1524" layer="1"/>
+<contactref element="ID:TP5" pad="TP"/>
+<wire x1="70.485" y1="153.67" x2="70.485" y2="65.0875" width="0.1524" layer="16"/>
 </signal>
 <signal name="!AO">
 <contactref element="RA:IC1" pad="19"/>
@@ -6258,6 +6479,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="78.105" y1="224.79" x2="78.105" y2="29.21" width="0.1524" layer="16"/>
 <wire x1="86.36" y1="224.79" x2="78.105" y2="224.79" width="0.1524" layer="1"/>
 <via x="78.105" y="224.79" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP7" pad="TP"/>
+<wire x1="78.105" y1="224.79" x2="78.105" y2="153.67" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="!EO">
 <contactref element="ALU:IC5" pad="19"/>
@@ -6271,6 +6494,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="72.39" y1="47.9425" x2="72.39" y2="171.45" width="0.1524" layer="16"/>
 <wire x1="86.36" y1="171.45" x2="72.39" y2="171.45" width="0.1524" layer="1"/>
 <via x="72.39" y="171.45" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP9" pad="TP"/>
+<wire x1="72.39" y1="171.45" x2="72.39" y2="154.94" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="!BO">
 <contactref element="RB:IC1" pad="19"/>
@@ -6294,6 +6519,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="96.8375" y1="280.9875" x2="76.835" y2="280.9875" width="0.1524" layer="1"/>
 <wire x1="76.835" y1="280.9875" x2="76.835" y2="32.7025" width="0.1524" layer="16"/>
 <wire x1="97.79" y1="281.94" x2="105.41" y2="281.94" width="0.1524" layer="1"/>
+<contactref element="ID:TP13" pad="TP"/>
+<wire x1="76.835" y1="32.7025" x2="76.835" y2="153.67" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="OUT:DS1">
 <contactref element="OUT:IC1" pad="23"/>
@@ -6910,7 +7137,39 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <contactref element="H4" pad="B3,2"/>
 <contactref element="H6" pad="B3,2"/>
 <contactref element="H5" pad="B3,2"/>
-<wire x1="34.29" y1="31.75" x2="43.18" y2="34.29" width="0" layer="19" extent="1-1"/>
+<contactref element="CLK:IC4" pad="7"/>
+<contactref element="OUT:IC2" pad="13"/>
+<contactref element="OUT:IC2" pad="12"/>
+<contactref element="OUT:IC2" pad="10"/>
+<contactref element="OUT:IC2" pad="9"/>
+<contactref element="OUT:IC2" pad="5"/>
+<contactref element="OUT:IC2" pad="4"/>
+<contactref element="RAM:IC5" pad="13"/>
+<contactref element="RAM:IC5" pad="11"/>
+<contactref element="RAM:IC4" pad="13"/>
+<contactref element="RAM:IC4" pad="11"/>
+<contactref element="CLK:IC5" pad="13"/>
+<contactref element="CLK:IC5" pad="12"/>
+<contactref element="CLK:IC5" pad="10"/>
+<contactref element="CLK:IC5" pad="9"/>
+<contactref element="CLK:IC5" pad="5"/>
+<contactref element="CLK:IC5" pad="4"/>
+<contactref element="CLK:IC7" pad="13"/>
+<contactref element="CLK:IC7" pad="11"/>
+<contactref element="CLK:IC7" pad="9"/>
+<contactref element="ID:IC4" pad="13"/>
+<contactref element="OUT:IC6" pad="13"/>
+<contactref element="OUT:IC6" pad="14"/>
+<contactref element="CLK:IC6" pad="13"/>
+<contactref element="CLK:IC6" pad="12"/>
+<contactref element="RAM:IC9" pad="13"/>
+<contactref element="RAM:IC9" pad="12"/>
+<contactref element="RAM:IC9" pad="10"/>
+<contactref element="RAM:IC9" pad="9"/>
+<contactref element="RAM:IC9" pad="5"/>
+<contactref element="RAM:IC9" pad="4"/>
+<contactref element="ALU:IC7" pad="12"/>
+<contactref element="ALU:IC7" pad="13"/>
 </signal>
 <signal name="CLK">
 <contactref element="CLK:IC6" pad="8"/>
@@ -6981,6 +7240,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="50.8" y1="274.0025" x2="50.4825" y2="274.32" width="0.1524" layer="1"/>
 <wire x1="50.4825" y1="274.32" x2="39.37" y2="274.32" width="0.1524" layer="1"/>
 <via x="39.37" y="274.32" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="CLK:TP2" pad="TP"/>
+<wire x1="61.595" y1="133.6675" x2="61.595" y2="153.67" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="OI">
 <contactref element="OUT:IC2" pad="2"/>
@@ -7001,6 +7262,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="104.14" y="87.9475" extent="1-16" drill="0.381" shape="octagon"/>
 <via x="76.2" y="87.9475" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="104.14" y1="87.9475" x2="76.2" y2="87.9475" width="0.1524" layer="1"/>
+<contactref element="ID:TP12" pad="TP"/>
+<wire x1="76.2" y1="154.94" x2="76.2" y2="87.9475" width="0.1524" layer="16"/>
 </signal>
 <signal name="CLR">
 <contactref element="MAR:IC1" pad="15"/>
@@ -7057,6 +7320,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="31.75" y1="189.23" x2="32.7025" y2="188.2775" width="0.1524" layer="1"/>
 <wire x1="32.7025" y1="188.2775" x2="59.055" y2="188.2775" width="0.1524" layer="1"/>
 <via x="59.055" y="188.2775" extent="1-16" drill="0.381" shape="octagon"/>
+<contactref element="ID:TP17" pad="TP"/>
+<wire x1="59.055" y1="188.2775" x2="59.055" y2="154.94" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="!CLR">
 <contactref element="OUT:IC3" pad="1"/>
@@ -7081,6 +7346,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="59.69" y="80.01" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="34.29" y1="21.59" x2="34.29" y2="24.13" width="0.1524" layer="16"/>
 <wire x1="34.29" y1="24.13" x2="34.29" y2="26.67" width="0.1524" layer="16"/>
+<contactref element="ID:TP18" pad="TP"/>
+<wire x1="59.69" y1="80.01" x2="59.69" y2="153.67" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="ID:MI1">
 <contactref element="ID:IC5" pad="14"/>
@@ -7388,9 +7655,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="28.8925" y1="187.6425" x2="13.6525" y2="187.6425" width="0.1524" layer="1"/>
 <via x="13.6525" y="187.6425" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="13.6525" y1="187.6425" x2="13.6525" y2="182.245" width="0.1524" layer="16"/>
-<wire x1="11.43" y1="182.245" x2="8.9662" y2="184.7088" width="0.1524" layer="16"/>
-<wire x1="8.9662" y1="184.7088" x2="8.9662" y2="194.31" width="0.1524" layer="16"/>
-<wire x1="8.9662" y1="194.31" x2="9.0297" y2="194.31" width="0" layer="19" extent="16-16"/>
+<wire x1="11.43" y1="182.245" x2="9.0297" y2="184.6453" width="0.1524" layer="16"/>
+<wire x1="9.0297" y1="184.6453" x2="9.0297" y2="194.31" width="0.1524" layer="16"/>
 </signal>
 <signal name="N$17">
 <contactref element="RAM:IC2" pad="1"/>
@@ -7636,6 +7902,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="79.375" y="201.295" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="120.65" y1="199.39" x2="118.745" y2="201.295" width="0.1524" layer="1"/>
 <wire x1="118.745" y1="201.295" x2="79.375" y2="201.295" width="0.1524" layer="1"/>
+<contactref element="SR:TP2" pad="TP"/>
+<wire x1="79.375" y1="201.295" x2="79.375" y2="153.67" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="!FI">
 <contactref element="SR:IC2" pad="9"/>
@@ -7653,6 +7921,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="71.755" y="85.4075" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="8.89" y1="86.36" x2="9.8425" y2="85.4075" width="0.1524" layer="1"/>
 <wire x1="71.755" y1="85.4075" x2="9.8425" y2="85.4075" width="0.1524" layer="1"/>
+<contactref element="ID:TP16" pad="TP"/>
+<wire x1="71.755" y1="85.4075" x2="71.755" y2="153.67" width="0.1524" layer="16"/>
 </signal>
 <signal name="CF">
 <contactref element="SR:IC2" pad="3"/>
@@ -7723,6 +7993,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="61.9125" y1="16.51" x2="61.9125" y2="52.3875" width="0.1524" layer="16"/>
 <wire x1="61.9125" y1="52.3875" x2="60.96" y2="53.34" width="0.1524" layer="16"/>
 <wire x1="12.3825" y1="15.5575" x2="37.1475" y2="15.5575" width="0.1524" layer="1"/>
+<contactref element="CLK:TP1" pad="TP"/>
+<wire x1="60.96" y1="53.34" x2="60.96" y2="154.94" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="CLK:N$4">
 <contactref element="CLK:LED1" pad="K"/>
@@ -8163,31 +8435,6 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <contactref element="CLK:R10" pad="2"/>
 <contactref element="CLK:IC4" pad="8"/>
 <contactref element="CLK:R9" pad="2"/>
-<wire x1="29.21" y1="290.83" x2="27.94" y2="289.56" width="0.254" layer="16"/>
-<wire x1="27.94" y1="289.56" x2="27.94" y2="280.67" width="0.254" layer="16"/>
-<wire x1="27.94" y1="280.67" x2="27.94" y2="278.13" width="0.254" layer="16"/>
-<wire x1="27.94" y1="278.13" x2="29.21" y2="276.86" width="0.254" layer="16"/>
-<wire x1="21.59" y1="269.24" x2="22.86" y2="267.97" width="0.254" layer="16"/>
-<wire x1="22.86" y1="267.97" x2="22.86" y2="266.7" width="0.254" layer="16"/>
-<wire x1="21.59" y1="269.24" x2="19.05" y2="269.24" width="0.254" layer="1"/>
-<wire x1="17.78" y1="290.83" x2="19.05" y2="289.56" width="0.254" layer="1"/>
-<wire x1="19.05" y1="289.56" x2="24.13" y2="289.56" width="0.254" layer="1"/>
-<wire x1="24.13" y1="289.56" x2="25.4" y2="290.83" width="0.254" layer="1"/>
-<wire x1="25.4" y1="290.83" x2="29.21" y2="290.83" width="0.254" layer="1"/>
-<wire x1="17.78" y1="290.83" x2="13.97" y2="290.83" width="0.254" layer="1"/>
-<wire x1="13.97" y1="290.83" x2="13.97" y2="287.02" width="0.254" layer="16"/>
-<wire x1="21.59" y1="255.27" x2="21.59" y2="255.5875" width="0.254" layer="16"/>
-<wire x1="21.59" y1="255.5875" x2="18.7325" y2="258.445" width="0.254" layer="16"/>
-<wire x1="29.21" y1="262.89" x2="26.67" y2="262.89" width="0.254" layer="1"/>
-<wire x1="26.67" y1="262.89" x2="22.86" y2="266.7" width="0.254" layer="1"/>
-<wire x1="18.7325" y1="258.445" x2="18.7325" y2="263.8425" width="0.254" layer="16"/>
-<wire x1="18.7325" y1="263.8425" x2="21.59" y2="266.7" width="0.254" layer="16"/>
-<wire x1="21.59" y1="266.7" x2="21.59" y2="269.24" width="0.254" layer="16"/>
-<wire x1="21.59" y1="269.24" x2="29.21" y2="276.86" width="0.254" layer="16"/>
-<wire x1="34.6075" y1="275.59" x2="30.48" y2="275.59" width="0.254" layer="16"/>
-<wire x1="30.48" y1="275.59" x2="29.21" y2="276.86" width="0.254" layer="16"/>
-<wire x1="93.98" y1="266.7" x2="93.98" y2="264.795" width="0.254" layer="16"/>
-<wire x1="93.98" y1="264.795" x2="92.71" y2="263.525" width="0.254" layer="16"/>
 <contactref element="PC:IC1" pad="16"/>
 <contactref element="PC:IC2" pad="20"/>
 <contactref element="MAR:IC1" pad="16"/>
@@ -8230,216 +8477,6 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <contactref element="CLK:IC5" pad="14"/>
 <contactref element="CLK:IC6" pad="14"/>
 <contactref element="CLK:IC7" pad="14"/>
-<wire x1="44.45" y1="270.51" x2="45.72" y2="271.78" width="0.254" layer="1"/>
-<wire x1="45.72" y1="271.78" x2="46.0375" y2="271.78" width="0.254" layer="1"/>
-<wire x1="46.0375" y1="271.78" x2="54.61" y2="271.78" width="0.254" layer="1"/>
-<wire x1="54.61" y1="271.78" x2="55.88" y2="270.51" width="0.254" layer="1"/>
-<wire x1="44.45" y1="290.83" x2="45.72" y2="290.83" width="0.254" layer="16"/>
-<wire x1="45.72" y1="290.83" x2="46.0375" y2="290.5125" width="0.254" layer="16"/>
-<wire x1="46.0375" y1="290.5125" x2="46.0375" y2="271.78" width="0.254" layer="16"/>
-<via x="46.0375" y="271.78" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="93.98" y1="266.7" x2="97.79" y2="266.7" width="0.254" layer="1"/>
-<wire x1="99.06" y1="263.525" x2="97.79" y2="264.795" width="0.254" layer="16"/>
-<wire x1="97.79" y1="264.795" x2="97.79" y2="266.7" width="0.254" layer="16"/>
-<wire x1="109.22" y1="227.33" x2="109.22" y2="225.425" width="0.254" layer="16"/>
-<wire x1="109.22" y1="225.425" x2="110.49" y2="224.155" width="0.254" layer="16"/>
-<wire x1="97.79" y1="227.33" x2="97.79" y2="225.425" width="0.254" layer="16"/>
-<wire x1="97.79" y1="225.425" x2="99.06" y2="224.155" width="0.254" layer="16"/>
-<wire x1="86.36" y1="222.25" x2="86.36" y2="219.71" width="0.254" layer="16"/>
-<wire x1="86.36" y1="219.71" x2="87.63" y2="218.44" width="0.254" layer="16"/>
-<wire x1="86.36" y1="222.25" x2="93.98" y2="222.25" width="0.254" layer="1"/>
-<wire x1="93.98" y1="222.25" x2="99.06" y2="222.25" width="0.254" layer="1"/>
-<via x="99.06" y="222.25" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="99.06" y1="222.25" x2="99.06" y2="224.155" width="0.254" layer="16"/>
-<wire x1="99.06" y1="222.25" x2="110.49" y2="222.25" width="0.254" layer="1"/>
-<via x="110.49" y="222.25" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="110.49" y1="222.25" x2="110.49" y2="224.155" width="0.254" layer="16"/>
-<wire x1="86.36" y1="168.91" x2="86.36" y2="167.005" width="0.254" layer="16"/>
-<wire x1="86.36" y1="167.005" x2="87.63" y2="165.735" width="0.254" layer="16"/>
-<wire x1="97.79" y1="181.61" x2="97.79" y2="179.705" width="0.254" layer="16"/>
-<wire x1="97.79" y1="179.705" x2="99.06" y2="178.435" width="0.254" layer="16"/>
-<wire x1="110.49" y1="180.975" x2="110.49" y2="182.88" width="0.254" layer="16"/>
-<wire x1="110.49" y1="182.88" x2="109.22" y2="184.15" width="0.254" layer="16"/>
-<wire x1="120.65" y1="184.15" x2="121.92" y2="182.88" width="0.254" layer="16"/>
-<wire x1="121.92" y1="182.88" x2="121.92" y2="180.975" width="0.254" layer="16"/>
-<wire x1="120.65" y1="160.02" x2="120.65" y2="158.115" width="0.254" layer="16"/>
-<wire x1="120.65" y1="158.115" x2="121.92" y2="156.845" width="0.254" layer="16"/>
-<wire x1="109.22" y1="160.02" x2="109.22" y2="158.115" width="0.254" layer="16"/>
-<wire x1="109.22" y1="158.115" x2="110.49" y2="156.845" width="0.254" layer="16"/>
-<wire x1="97.79" y1="157.48" x2="97.79" y2="155.575" width="0.254" layer="16"/>
-<wire x1="97.79" y1="155.575" x2="99.06" y2="154.305" width="0.254" layer="16"/>
-<wire x1="99.06" y1="154.305" x2="100.33" y2="155.575" width="0.254" layer="1"/>
-<wire x1="100.33" y1="155.575" x2="109.5375" y2="155.575" width="0.254" layer="1"/>
-<wire x1="109.5375" y1="155.575" x2="110.49" y2="156.5275" width="0.254" layer="1"/>
-<wire x1="110.49" y1="156.5275" x2="110.49" y2="156.845" width="0.254" layer="1"/>
-<wire x1="110.49" y1="156.845" x2="111.76" y2="155.575" width="0.254" layer="1"/>
-<wire x1="120.65" y1="155.575" x2="121.92" y2="156.845" width="0.254" layer="1"/>
-<wire x1="111.76" y1="155.575" x2="120.65" y2="155.575" width="0.254" layer="1"/>
-<wire x1="93.98" y1="168.91" x2="93.98" y2="157.48" width="0.254" layer="16"/>
-<via x="93.98" y="157.48" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="93.98" y1="157.48" x2="97.79" y2="157.48" width="0.254" layer="1"/>
-<wire x1="99.06" y1="178.435" x2="100.33" y2="179.705" width="0.254" layer="1"/>
-<via x="121.92" y="179.705" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="121.92" y1="179.705" x2="121.92" y2="180.975" width="0.254" layer="16"/>
-<wire x1="100.33" y1="179.705" x2="110.49" y2="179.705" width="0.254" layer="1"/>
-<wire x1="110.49" y1="179.705" x2="121.92" y2="179.705" width="0.254" layer="1"/>
-<wire x1="110.49" y1="180.975" x2="110.49" y2="179.705" width="0.254" layer="16"/>
-<via x="110.49" y="179.705" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="87.63" y1="111.76" x2="87.63" y2="109.855" width="0.254" layer="16"/>
-<wire x1="87.63" y1="109.855" x2="88.9" y2="108.585" width="0.254" layer="16"/>
-<wire x1="99.06" y1="116.84" x2="99.06" y2="114.935" width="0.254" layer="16"/>
-<wire x1="99.06" y1="114.935" x2="100.33" y2="113.665" width="0.254" layer="16"/>
-<wire x1="110.49" y1="116.84" x2="110.49" y2="114.935" width="0.254" layer="16"/>
-<wire x1="110.49" y1="114.935" x2="111.76" y2="113.665" width="0.254" layer="16"/>
-<wire x1="87.63" y1="111.76" x2="95.25" y2="111.76" width="0.254" layer="1"/>
-<wire x1="95.25" y1="111.76" x2="100.33" y2="111.76" width="0.254" layer="1"/>
-<wire x1="100.33" y1="111.76" x2="111.76" y2="111.76" width="0.254" layer="1"/>
-<wire x1="100.33" y1="113.665" x2="100.33" y2="111.76" width="0.254" layer="16"/>
-<via x="100.33" y="111.76" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="111.76" y1="113.665" x2="111.76" y2="111.76" width="0.254" layer="16"/>
-<via x="111.76" y="111.76" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="121.92" y1="104.14" x2="129.54" y2="104.14" width="0.254" layer="1"/>
-<wire x1="129.54" y1="104.14" x2="129.54" y2="101.6" width="0.254" layer="16"/>
-<wire x1="121.92" y1="96.52" x2="129.54" y2="96.52" width="0.254" layer="1"/>
-<wire x1="129.54" y1="101.6" x2="130.81" y2="101.6" width="0.254" layer="16"/>
-<wire x1="130.81" y1="101.6" x2="131.1275" y2="101.2825" width="0.254" layer="16"/>
-<wire x1="131.1275" y1="101.2825" x2="131.1275" y2="96.8375" width="0.254" layer="16"/>
-<wire x1="131.1275" y1="96.8375" x2="130.81" y2="96.52" width="0.254" layer="16"/>
-<wire x1="130.81" y1="96.52" x2="129.54" y2="96.52" width="0.254" layer="16"/>
-<wire x1="129.54" y1="93.98" x2="129.54" y2="91.44" width="0.254" layer="16"/>
-<wire x1="129.54" y1="91.44" x2="129.54" y2="88.9" width="0.254" layer="16"/>
-<wire x1="129.54" y1="88.9" x2="128.27" y2="87.63" width="0.254" layer="1"/>
-<wire x1="123.19" y1="87.63" x2="121.92" y2="86.36" width="0.254" layer="1"/>
-<wire x1="128.27" y1="87.63" x2="123.19" y2="87.63" width="0.254" layer="1"/>
-<wire x1="121.92" y1="86.36" x2="121.92" y2="84.455" width="0.254" layer="16"/>
-<wire x1="121.92" y1="84.455" x2="123.19" y2="83.185" width="0.254" layer="16"/>
-<wire x1="99.06" y1="88.9" x2="99.06" y2="86.995" width="0.254" layer="16"/>
-<wire x1="99.06" y1="86.995" x2="100.33" y2="85.725" width="0.254" layer="16"/>
-<wire x1="87.63" y1="81.28" x2="87.63" y2="79.0575" width="0.254" layer="16"/>
-<wire x1="87.63" y1="79.0575" x2="88.5825" y2="78.105" width="0.254" layer="16"/>
-<wire x1="87.63" y1="81.28" x2="88.9" y2="82.55" width="0.254" layer="1"/>
-<wire x1="88.9" y1="82.55" x2="100.33" y2="82.55" width="0.254" layer="1"/>
-<via x="100.33" y="82.55" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="100.33" y1="82.55" x2="100.33" y2="85.725" width="0.254" layer="16"/>
-<wire x1="110.49" y1="86.36" x2="110.49" y2="84.455" width="0.254" layer="16"/>
-<wire x1="110.49" y1="84.455" x2="111.76" y2="83.185" width="0.254" layer="16"/>
-<wire x1="111.76" y1="83.185" x2="111.125" y2="82.55" width="0.254" layer="1"/>
-<wire x1="100.33" y1="82.55" x2="111.125" y2="82.55" width="0.254" layer="1"/>
-<wire x1="121.92" y1="86.36" x2="120.65" y2="87.63" width="0.254" layer="1"/>
-<wire x1="120.65" y1="87.63" x2="111.76" y2="87.63" width="0.254" layer="1"/>
-<wire x1="111.76" y1="87.63" x2="110.49" y2="86.36" width="0.254" layer="1"/>
-<wire x1="88.9" y1="77.7875" x2="88.5825" y2="78.105" width="0.254" layer="16"/>
-<wire x1="88.9" y1="73.66" x2="88.9" y2="77.7875" width="0.254" layer="16"/>
-<wire x1="93.98" y1="72.5678" x2="93.8022" y2="72.39" width="0.254" layer="1"/>
-<wire x1="98.1075" y1="72.39" x2="96.8375" y2="73.66" width="0.254" layer="1"/>
-<wire x1="96.8375" y1="73.66" x2="88.9" y2="73.66" width="0.254" layer="1"/>
-<wire x1="127" y1="64.77" x2="127" y2="63.5" width="0.254" layer="1"/>
-<wire x1="127" y1="63.5" x2="126.6825" y2="63.1825" width="0.254" layer="1"/>
-<wire x1="126.6825" y1="63.1825" x2="119.6975" y2="63.1825" width="0.254" layer="1"/>
-<wire x1="119.6975" y1="63.1825" x2="119.38" y2="63.5" width="0.254" layer="1"/>
-<wire x1="119.38" y1="63.5" x2="119.38" y2="64.77" width="0.254" layer="1"/>
-<wire x1="130.175" y1="69.85" x2="130.175" y2="67.945" width="0.254" layer="16"/>
-<wire x1="130.175" y1="67.945" x2="127" y2="64.77" width="0.254" layer="16"/>
-<wire x1="99.06" y1="59.69" x2="98.1075" y2="60.6425" width="0.254" layer="16"/>
-<wire x1="98.1075" y1="60.6425" x2="98.1075" y2="72.39" width="0.254" layer="16"/>
-<via x="98.1075" y="72.39" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="98.1075" y1="72.39" x2="93.8022" y2="72.39" width="0.254" layer="1"/>
-<wire x1="81.28" y1="66.04" x2="81.28" y2="64.135" width="0.254" layer="16"/>
-<wire x1="81.28" y1="64.135" x2="82.55" y2="62.865" width="0.254" layer="16"/>
-<wire x1="81.28" y1="66.04" x2="83.185" y2="67.945" width="0.254" layer="16"/>
-<wire x1="83.185" y1="67.945" x2="83.185" y2="72.39" width="0.254" layer="16"/>
-<via x="83.185" y="72.39" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="83.185" y1="72.39" x2="84.455" y2="73.66" width="0.254" layer="1"/>
-<wire x1="88.9" y1="73.66" x2="84.455" y2="73.66" width="0.254" layer="1"/>
-<wire x1="118.11" y1="73.66" x2="119.38" y2="72.39" width="0.254" layer="1"/>
-<wire x1="118.11" y1="73.66" x2="88.9" y2="73.66" width="0.254" layer="1"/>
-<via x="119.38" y="72.39" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="119.38" y1="72.39" x2="119.38" y2="64.77" width="0.254" layer="16"/>
-<wire x1="121.92" y1="15.24" x2="121.92" y2="13.335" width="0.254" layer="16"/>
-<wire x1="121.92" y1="13.335" x2="123.19" y2="12.065" width="0.254" layer="16"/>
-<wire x1="110.49" y1="15.24" x2="110.49" y2="13.335" width="0.254" layer="16"/>
-<wire x1="110.49" y1="13.335" x2="111.76" y2="12.065" width="0.254" layer="16"/>
-<wire x1="110.49" y1="15.24" x2="111.76" y2="16.51" width="0.254" layer="1"/>
-<wire x1="111.76" y1="16.51" x2="120.65" y2="16.51" width="0.254" layer="1"/>
-<wire x1="120.65" y1="16.51" x2="121.92" y2="15.24" width="0.254" layer="1"/>
-<wire x1="43.18" y1="25.4" x2="43.18" y2="17.4625" width="0.254" layer="16"/>
-<wire x1="43.18" y1="17.4625" x2="43.18" y2="10.16" width="0.254" layer="16"/>
-<wire x1="43.18" y1="25.4" x2="41.91" y2="26.67" width="0.254" layer="16"/>
-<wire x1="41.91" y1="48.26" x2="43.18" y2="49.53" width="0.254" layer="16"/>
-<wire x1="41.91" y1="26.67" x2="41.91" y2="48.26" width="0.254" layer="16"/>
-<wire x1="40.64" y1="49.53" x2="43.18" y2="49.53" width="0.254" layer="16"/>
-<wire x1="40.005" y1="25.4" x2="43.18" y2="25.4" width="0.254" layer="16"/>
-<wire x1="50.8" y1="25.4" x2="40.005" y2="25.4" width="0.254" layer="1"/>
-<via x="50.8" y="20.32" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="50.8" y1="20.32" x2="50.8" y2="25.4" width="0.254" layer="16"/>
-<wire x1="26.67" y1="16.51" x2="27.6225" y2="17.4625" width="0.254" layer="1"/>
-<via x="43.18" y="17.4625" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="30.48" y1="17.4625" x2="27.6225" y2="17.4625" width="0.254" layer="1"/>
-<wire x1="43.18" y1="17.4625" x2="30.48" y2="17.4625" width="0.254" layer="1"/>
-<wire x1="22.86" y1="26.67" x2="24.13" y2="25.4" width="0.254" layer="1"/>
-<wire x1="24.13" y1="25.4" x2="30.48" y2="25.4" width="0.254" layer="1"/>
-<via x="30.48" y="25.4" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="30.48" y1="25.4" x2="30.48" y2="17.4625" width="0.254" layer="16"/>
-<via x="30.48" y="17.4625" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="26.67" y1="16.51" x2="26.67" y2="14.605" width="0.254" layer="16"/>
-<wire x1="26.67" y1="14.605" x2="27.94" y2="13.335" width="0.254" layer="16"/>
-<wire x1="15.24" y1="13.97" x2="15.24" y2="12.065" width="0.254" layer="16"/>
-<wire x1="15.24" y1="12.065" x2="16.51" y2="10.795" width="0.254" layer="16"/>
-<wire x1="3.81" y1="29.21" x2="11.43" y2="29.21" width="0.254" layer="1"/>
-<wire x1="3.81" y1="31.75" x2="3.81" y2="29.21" width="0.254" layer="16"/>
-<wire x1="3.81" y1="29.21" x2="5.08" y2="29.21" width="0.254" layer="16"/>
-<wire x1="5.08" y1="29.21" x2="5.3975" y2="28.8925" width="0.254" layer="16"/>
-<wire x1="5.3975" y1="28.8925" x2="5.3975" y2="14.2875" width="0.254" layer="16"/>
-<wire x1="5.3975" y1="14.2875" x2="5.08" y2="13.97" width="0.254" layer="16"/>
-<wire x1="5.08" y1="13.97" x2="3.81" y2="13.97" width="0.254" layer="16"/>
-<wire x1="3.81" y1="13.97" x2="3.81" y2="12.065" width="0.254" layer="16"/>
-<wire x1="3.81" y1="12.065" x2="5.08" y2="10.795" width="0.254" layer="16"/>
-<wire x1="15.24" y1="13.97" x2="13.97" y2="12.7" width="0.254" layer="1"/>
-<wire x1="13.97" y1="12.7" x2="5.08" y2="12.7" width="0.254" layer="1"/>
-<wire x1="5.08" y1="12.7" x2="3.81" y2="13.97" width="0.254" layer="1"/>
-<wire x1="16.51" y1="10.795" x2="17.78" y2="9.525" width="0.254" layer="1"/>
-<wire x1="17.78" y1="9.525" x2="27.94" y2="9.525" width="0.254" layer="1"/>
-<via x="27.94" y="9.525" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="27.94" y1="9.525" x2="27.94" y2="13.335" width="0.254" layer="16"/>
-<wire x1="27.94" y1="9.525" x2="42.545" y2="9.525" width="0.254" layer="1"/>
-<wire x1="42.545" y1="9.525" x2="43.18" y2="10.16" width="0.254" layer="1"/>
-<wire x1="50.8" y1="49.53" x2="50.8" y2="48.26" width="0.254" layer="1"/>
-<wire x1="50.8" y1="48.26" x2="50.4825" y2="47.9425" width="0.254" layer="1"/>
-<wire x1="43.4975" y1="47.9425" x2="43.18" y2="48.26" width="0.254" layer="1"/>
-<wire x1="43.18" y1="48.26" x2="43.18" y2="49.53" width="0.254" layer="1"/>
-<wire x1="50.4825" y1="47.9425" x2="43.4975" y2="47.9425" width="0.254" layer="1"/>
-<wire x1="30.48" y1="25.4" x2="30.48" y2="36.89" width="0.254" layer="16"/>
-<wire x1="30.48" y1="36.89" x2="30.52" y2="36.93" width="0.254" layer="16"/>
-<via x="58.7375" y="12.065" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="58.7375" y1="12.065" x2="58.7375" y2="20.32" width="0.254" layer="16"/>
-<via x="58.7375" y="20.32" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="58.7375" y1="20.32" x2="50.8" y2="20.32" width="0.254" layer="1"/>
-<wire x1="111.76" y1="12.065" x2="58.7375" y2="12.065" width="0.254" layer="1"/>
-<wire x1="8.89" y1="68.58" x2="8.89" y2="66.675" width="0.254" layer="16"/>
-<wire x1="8.89" y1="66.675" x2="10.16" y2="65.405" width="0.254" layer="16"/>
-<wire x1="20.32" y1="68.58" x2="20.32" y2="66.675" width="0.254" layer="16"/>
-<wire x1="20.32" y1="66.675" x2="21.59" y2="65.405" width="0.254" layer="16"/>
-<wire x1="31.75" y1="68.58" x2="31.75" y2="66.675" width="0.254" layer="16"/>
-<wire x1="31.75" y1="66.675" x2="33.02" y2="65.405" width="0.254" layer="16"/>
-<wire x1="43.18" y1="63.5" x2="43.18" y2="61.595" width="0.254" layer="16"/>
-<wire x1="43.18" y1="61.595" x2="44.45" y2="60.325" width="0.254" layer="16"/>
-<wire x1="50.8" y1="63.5" x2="43.18" y2="63.5" width="0.254" layer="1"/>
-<wire x1="43.18" y1="63.5" x2="33.02" y2="63.5" width="0.254" layer="1"/>
-<via x="10.16" y="63.5" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="33.02" y1="63.5" x2="21.59" y2="63.5" width="0.254" layer="1"/>
-<wire x1="21.59" y1="63.5" x2="10.16" y2="63.5" width="0.254" layer="1"/>
-<wire x1="10.16" y1="63.5" x2="10.16" y2="65.405" width="0.254" layer="16"/>
-<wire x1="21.59" y1="65.405" x2="21.59" y2="63.5" width="0.254" layer="16"/>
-<via x="21.59" y="63.5" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="33.02" y1="65.405" x2="33.02" y2="63.5" width="0.254" layer="16"/>
-<via x="33.02" y="63.5" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="86.36" y1="168.91" x2="91.44" y2="168.91" width="0.254" layer="1"/>
-<wire x1="91.44" y1="168.91" x2="93.98" y2="168.91" width="0.254" layer="1"/>
-<wire x1="99.06" y1="178.435" x2="98.425" y2="177.8" width="0.254" layer="1"/>
-<wire x1="98.425" y1="177.8" x2="91.44" y2="177.8" width="0.254" layer="1"/>
-<via x="91.44" y="177.8" extent="1-16" drill="0.381" shape="octagon"/>
-<wire x1="91.44" y1="177.8" x2="91.44" y2="168.91" width="0.254" layer="16"/>
-<via x="91.44" y="168.91" extent="1-16" drill="0.381" shape="octagon"/>
 <polygon width="0.254" layer="1" isolate="0.254">
 <vertex x="135" y="295.5"/>
 <vertex x="135" y="4.5" curve="-90"/>
@@ -8450,8 +8487,15 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <vertex x="4.5" y="300"/>
 <vertex x="130.5" y="300" curve="-90"/>
 </polygon>
-<wire x1="31.75" y1="113.03" x2="31.75" y2="110.8075" width="0.254" layer="16"/>
+<wire x1="99.06" y1="116.84" x2="99.06" y2="114.935" width="0.254" layer="16"/>
+<wire x1="99.06" y1="114.935" x2="100.33" y2="113.665" width="0.254" layer="16"/>
+<wire x1="109.22" y1="160.02" x2="109.22" y2="158.115" width="0.254" layer="16"/>
+<wire x1="109.22" y1="158.115" x2="110.49" y2="156.845" width="0.254" layer="16"/>
 <wire x1="31.75" y1="110.8075" x2="32.7025" y2="109.855" width="0.254" layer="16"/>
+<wire x1="31.75" y1="113.03" x2="31.75" y2="110.8075" width="0.254" layer="16"/>
+<wire x1="97.79" y1="225.425" x2="99.06" y2="224.155" width="0.254" layer="16"/>
+<wire x1="97.79" y1="227.33" x2="97.79" y2="225.425" width="0.254" layer="16"/>
+<contactref element="OUT:IC6" pad="15"/>
 </signal>
 <signal name="OUT:N$17">
 <contactref element="OUT:IC1" pad="14"/>
