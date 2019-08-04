@@ -38,3 +38,8 @@ eagle.epf
 *.eps
 
 ~*.xlsx
+
+**/.direnv/**
+**/.vscode/**
+*.pyc
+
