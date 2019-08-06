@@ -3,7 +3,7 @@
 <eagle version="9.4.1">
 <drawing>
 <settings>
-<setting alwaysvectorfont="yes"/>
+<setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="12.5" altunitdist="mil" altunit="mil"/>
@@ -244,7 +244,7 @@
 <wire x1="76.835" y1="61.2775" x2="76.835" y2="151.13" width="0.1524" layer="21" style="longdash"/>
 <wire x1="77.47" y1="61.2775" x2="77.47" y2="151.13" width="0.1524" layer="21" style="longdash"/>
 <wire x1="78.105" y1="61.2775" x2="78.105" y2="151.13" width="0.1524" layer="21" style="longdash"/>
-<wire x1="79.375" y1="60.96" x2="79.375" y2="151.13" width="0.1524" layer="21" style="longdash"/>
+<wire x1="79.375" y1="61.2775" x2="79.375" y2="151.13" width="0.1524" layer="21" style="longdash"/>
 <wire x1="80.01" y1="61.2775" x2="80.01" y2="151.13" width="0.1524" layer="21" style="longdash"/>
 <text x="61.2775" y="161.29" size="1.016" layer="21" font="vector" ratio="10" rot="R90" align="center">Clock</text>
 <text x="59.3725" y="161.29" size="1.016" layer="21" font="vector" ratio="10" rot="R90" align="center">Clear</text>
@@ -359,6 +359,7 @@ https://danielgriesshaber.de</text>
 <text x="127" y="120.65" size="1.778" layer="21" font="vector" ratio="10" align="center-right">GND</text>
 <text x="91.1225" y="69.85" size="1.27" layer="21" font="vector" ratio="10" rot="R90" align="bottom-center">Display Mode</text>
 <text x="93.6625" y="75.8825" size="1.27" layer="21" font="vector" ratio="10" rot="R90" align="center-left">2s</text>
+<text x="41.5925" y="207.645" size="1.778" layer="21" font="vector" ratio="10" align="bottom-center">RAM Address</text>
 </plain>
 <libraries>
 <library name="rcl" urn="urn:adsk.eagle:library:334">
