@@ -40,7 +40,7 @@ CHARS = {
     '6': SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G,
     '7': SEG_A | SEG_B | SEG_C,
     '8': SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G,
-    '9': SEG_A | SEG_B | SEG_C | SEG_E | SEG_F | SEG_G,
+    '9': SEG_A | SEG_B | SEG_C | SEG_D | SEG_F | SEG_G,
     '-': SEG_G,
     '+': 0x00 # dont display anything
 }
