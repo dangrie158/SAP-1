@@ -1,6 +1,11 @@
 PYTHON = python3
 PROGRAMMER_PORT = /dev/tty.wchusbserial*
 
+SPHINXOPTS    ?=
+SPHINXBUILD   ?= sphinx-build
+SOURCEDIR     = Docs-Src
+BUILDDIR      = Docs
+
 LUTs/outputdecoder.bin: Spec/lut_outputdecoder.py
 	$(PYTHON) Spec/lut_outputdecoder.py > $@
 
@@ -16,4 +21,11 @@ clean:
 	-rm LUTs/outputdecoder.bin
 	-rm LUTs/microcode.bin
 
-.PHONY: luts clean
+docs:
+	@$(SPHINXBUILD) -b html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	touch "$(BUILDDIR)/.nojekyll"
+
+livedocs:
+	sphinx-autobuild -b html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+.PHONY: luts clean docs livedocs

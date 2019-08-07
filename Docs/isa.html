@@ -1,0 +1,529 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Instruction Set Architecture (ISA) &#8212; SAP-1 Processor Architecture  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hardware Blocks" href="block-diagram.html" />
+    <link rel="prev" title="SAP-1 Processor Architecture" href="index.html" />
+    <link href="_static/style.css" rel="stylesheet" type="text/css">
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="instruction-set-architecture-isa">
+<h1>Instruction Set Architecture (ISA)<a class="headerlink" href="#instruction-set-architecture-isa" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="control-word">
+<h2>Control Word<a class="headerlink" href="#control-word" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>Control Word (CW)</strong> consists of all the control lines of the
+seperate modules described in the hardware section.
+By driving these control lines, the behaviour of the modules can be controlled.
+Most modules are synchronized with the clock, so a change in any of the control
+bits will take effect on the next clock cycle. For example, driving the <em>AI</em>
+line high will save whatever state the databus is in into Register A on the
+next clock tick (and all further ticks until the control line is pulled low
+again.
+However, not all lines are syncronied with the clock, some will change the
+module behaviour as soon as the line is changed. Generally, all input lines
+are syncronized, while output lines will change immediately. This has the
+nice side-effect that the databus will have the correct data on it before
+the clock cycle latches this data into a module.</p>
+<p>The control word is set by the <strong>Instruction Decoder (ID)</strong> which sets the
+control lines between the clock ticks depending on the current instruction
+and microinstruction. The CW consists of 16 control lines, thus is 16 bits
+long.</p>
+<p>The following table lists all control lines, their function and the position
+they have in the CW. The final control word is thus created by ORing the values
+in the CW column for all active control lines.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 20%" />
+<col style="width: 60%" />
+<col style="width: 6%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>CW</p></td>
+<td><p>Mnemonic</p></td>
+<td><p>Name</p></td>
+<td><p>Description</p></td>
+<td><p>Synced</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0001</p></td>
+<td><p>HLT</p></td>
+<td><p>Halt Clock</p></td>
+<td><p>Stop the main clock. This will also disable single-stepping
+and the processor can only leave this state by resetting the
+system to clear the control word</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0002</p></td>
+<td><p>MI</p></td>
+<td><p>Memory Address In</p></td>
+<td><p>Latch the current state of the databus into the Memory address register (MAR)</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0004</p></td>
+<td><p>RO</p></td>
+<td><p>RAM Out</p></td>
+<td><p>Put the currently selected RAM byte onto the databus</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0008</p></td>
+<td><p>RI</p></td>
+<td><p>RAM In</p></td>
+<td><p>Write the current state of the databus into the active RAM byte</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0010</p></td>
+<td><p>IO</p></td>
+<td><p>Instruction Data Out</p></td>
+<td><p>Put the lower nibble (the data section) of the instruction register (IR)
+onto the databus. The upper nibble will always read as 0</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0020</p></td>
+<td><p>II</p></td>
+<td><p>Instruction Register In</p></td>
+<td><p>Write the current state of the databus into the IR</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0040</p></td>
+<td><p>AO</p></td>
+<td><p>Register A Out</p></td>
+<td><p>Put the content of the register A (RA) onto the databus</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0080</p></td>
+<td><p>AI</p></td>
+<td><p>Register A In</p></td>
+<td><p>Latch the current state of the databus into RA</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0100</p></td>
+<td><p>EO</p></td>
+<td><p>ALU Out</p></td>
+<td><p>Put the sum of register A and B onto the databus</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0200</p></td>
+<td><p>SU</p></td>
+<td><p>ALU Substract</p></td>
+<td><p>compute RA - RB instead of the sum</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0400</p></td>
+<td><p>BI</p></td>
+<td><p>Register B In</p></td>
+<td><p>Latch the current state of the databus into register B (RB)</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0800</p></td>
+<td><p>OI</p></td>
+<td><p>Output Latch</p></td>
+<td><p>Latch the current state of the databus into the output register (OUT)
+This will cause the 7-segment display to display the current value of
+the databus until a new byte is latched into this register</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-even"><td><p>0x1000</p></td>
+<td><p>CE</p></td>
+<td><p>Programcounter Enable</p></td>
+<td><p>Increment the program counter on the next clock-cycle</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x2000</p></td>
+<td><p>CO</p></td>
+<td><p>Programcounter Out</p></td>
+<td><p>Put the current program counter (PC) value the databus. Only the lower
+nibble will ever read as non-zero</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-even"><td><p>0x4000</p></td>
+<td><p>JP</p></td>
+<td><p>Jump (Programcounter In)</p></td>
+<td><p>Latch the current state of the databus into the PC</p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x8000</p></td>
+<td><p>FI</p></td>
+<td><p>Store Flags</p></td>
+<td><p>Latch the current state of the flags (ZF and CF) into the flags register (FR)</p></td>
+<td><p>Y</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="microcode">
+<h2>Microcode<a class="headerlink" href="#microcode" title="Permalink to this headline">¶</a></h2>
+<p>The Processor will run a list of instructions to execute a program.
+Although individual instructions are on a pretty low level, they are
+not quite atomic, since each instruction can consist of multiple
+microinstructions.
+The mapping from an instruction to a list of microinstructions is
+called <strong>microcode</strong>.
+Each Instruction can consist of up to 5 microinstructions (T0 - T4),
+although this could easily be extended to 8 or even 16 steps
+(as described in the hardware section).
+However, since there is no way to advance to the next instruction
+before the 5 microinstructions are all run, it makes sense to limit this
+to only the maximum number of steps needed for any instruction.</p>
+<p>During all microinstruction steps that are not needed, the CW is empty
+(<code class="docutils literal notranslate"><span class="pre">0x0000</span></code>, all control lines are low).</p>
+<div class="section" id="fetch-cycle">
+<h3>Fetch Cycle<a class="headerlink" href="#fetch-cycle" title="Permalink to this headline">¶</a></h3>
+<p>The first 2 microinstaructions are the same for all instructions and are
+responsible to actually fetch the instruction from memory.
+Thus only 3 microinstructions are effectivley available for the actual
+instruction.</p>
+<p>A fetch cycle consists of the following steps (microinstructions)</p>
+<ol class="arabic simple">
+<li><p>Drive the CO and MI lines high (CW:<code class="docutils literal notranslate"><span class="pre">0x2000</span> <span class="pre">+</span> <span class="pre">0x0002</span> <span class="pre">=</span> <span class="pre">0x2002</span></code>).
+This will load the current instruction’s address into the MAR and
+thus the RAM module outputs the instruction as stored in memory.</p></li>
+<li><p>Drive the RO, II and CE lines high
+(CW:<code class="docutils literal notranslate"><span class="pre">0x0004</span> <span class="pre">+</span> <span class="pre">0x0020</span> <span class="pre">+</span> <span class="pre">0x1000</span> <span class="pre">=</span> <span class="pre">0x1024</span></code>).
+This will load the instruction from RAM into the Instruction Register
+and also advance the Programcounter to point to the next instruction’s
+address.</p></li>
+</ol>
+</div>
+<div class="section" id="instruction-table">
+<h3>Instruction Table<a class="headerlink" href="#instruction-table" title="Permalink to this headline">¶</a></h3>
+<p>The following table shows the available instructions and the corresponding
+microinstructions with the corresponding control lines that are driven high
+to achieve the desired behaviour.
+All unspecified control lines need to be driven low.</p>
+<p>A instruction in the SAP-1 architecture consists of 1 byte. The upper nibble
+of this byte (bits 4-7) are the opcode and identify the instruction. The lower
+nibble (bits 0-3) can be used to pass parameters to the instruction (for
+example a RAM Address).
+This data is called <strong>Instruction Data (ID)</strong>.</p>
+<p>As described earlier, not all insructions need the whole 5 microinstructions,
+however since there is no way to reset the microinstruction counter in the
+Instruction Decoder module, all instructions will need 5 clock cycles to
+execute.
+During the unused clock cycles, the CW is empty (<code class="docutils literal notranslate"><span class="pre">0x0000</span></code>).</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 5%" />
+<col style="width: 12%" />
+<col style="width: 6%" />
+<col style="width: 33%" />
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 32%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Opcode</p></td>
+<td><p>Mnemonic</p></td>
+<td><p>Function</p></td>
+<td><p>ID</p></td>
+<td><p>Description</p></td>
+<td></td>
+<td><p>CW</p></td>
+<td><p>Microinstruction Description</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0x0</span></code></p></td>
+<td><p>NOP</p></td>
+<td><p>No-Op</p></td>
+<td></td>
+<td><p>A no op (NOP) does nothing but a fetch cycle, thus simply
+advances to the next instruction</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0x1</span></code></p></td>
+<td rowspan="2"><p>LDA</p></td>
+<td rowspan="2"><p>Load RA</p></td>
+<td rowspan="2"><p>RAM Address</p></td>
+<td rowspan="2"><p>Load the value of the RAM at the address specified by the
+ID of the instruction into RA</p></td>
+<td><p>T2</p></td>
+<td><p>IO, MI</p></td>
+<td><p>Load the lower nibble of the IR into the MAR</p></td>
+</tr>
+<tr class="row-even"><td><p>T3</p></td>
+<td><p>RO, AI</p></td>
+<td><p>Load the selected RAM byte into RA</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><p><code class="docutils literal notranslate"><span class="pre">0x2</span></code></p></td>
+<td rowspan="3"><p>ADD</p></td>
+<td rowspan="3"><p>Caculate sum of data
+and RA, store
+result in RA</p></td>
+<td rowspan="3"><p>RAM Address</p></td>
+<td rowspan="3"><p>Calculate the sum of the value of the RAM value specified by,
+the ID of the instruction and RA and store the result in RA</p></td>
+<td><p>T2</p></td>
+<td><p>IO, MI</p></td>
+<td><p>Load the lower nibble of the IR into the MAR</p></td>
+</tr>
+<tr class="row-even"><td><p>T3</p></td>
+<td><p>RO, BI</p></td>
+<td><p>Load the selected RAM byte into RB</p></td>
+</tr>
+<tr class="row-odd"><td><p>T4</p></td>
+<td><p>EO, AI, FI</p></td>
+<td><ol class="loweralpha simple">
+<li><p>Take the output of the ALU and store it in register A</p></li>
+<li><p>Save the state of the flags into the FR</p></li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td rowspan="3"><p><code class="docutils literal notranslate"><span class="pre">0x3</span></code></p></td>
+<td rowspan="3"><p>SUB</p></td>
+<td rowspan="3"><p>Caculate difference of
+data and RA, store
+result in RA</p></td>
+<td rowspan="3"><p>RAM Address</p></td>
+<td rowspan="3"><p>Calculate the sum of the value of the RAM value specified by
+the ID of the instruction and RA and store the result in RA</p></td>
+<td><p>T2</p></td>
+<td><p>IO, MI</p></td>
+<td><p>Load the lower nibble of the IR into the MAR</p></td>
+</tr>
+<tr class="row-odd"><td><p>T3</p></td>
+<td><p>RO, BI</p></td>
+<td><p>Load the selected RAM byte into RB</p></td>
+</tr>
+<tr class="row-even"><td><p>T4</p></td>
+<td><p>EO, AI, FI</p></td>
+<td><p>a) Set the SU control bit to make the ALU output the difference,
+rather than the sum between RA and RB
+b) Take the output of the ALU and store it in RA
+c) Save the state of the flags into the FR</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0x4</span></code></p></td>
+<td rowspan="2"><p>STA</p></td>
+<td rowspan="2"><p>Store RA contents</p></td>
+<td rowspan="2"><p>RAM Address</p></td>
+<td rowspan="2"><p>Store the contents of RA into the RAM cell specified by
+the ID of the instruction</p></td>
+<td><p>T2</p></td>
+<td><p>IO, MI</p></td>
+<td><p>Load the ID into the MAR</p></td>
+</tr>
+<tr class="row-even"><td><p>T3</p></td>
+<td><p>AO, RI</p></td>
+<td><p>Store the content of RA into RAM</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0x5</span></code></p></td>
+<td><p>LDI</p></td>
+<td><p>Load immediately</p></td>
+<td><p>Data Nibble</p></td>
+<td><p>Load data immediatley into RA</p></td>
+<td><p>T2</p></td>
+<td><p>IO, AI</p></td>
+<td><p>Store the ID of the instruction into RA</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0x6</span></code></p></td>
+<td><p>JMP</p></td>
+<td><p>Jump</p></td>
+<td><p>RAM Address</p></td>
+<td><p>Jump to another instruction (set the PC to the instructions ID)</p></td>
+<td><p>T2</p></td>
+<td><p>IO, JP</p></td>
+<td><p>Set the PC to the ID of the instruction</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0x7</span></code></p></td>
+<td rowspan="2"><p>JC</p></td>
+<td rowspan="2"><p>Jump if carry</p></td>
+<td rowspan="2"><p>RAM Address</p></td>
+<td rowspan="2"><p>Jump to another instruction (set the PC to the instructions ID)
+if the carry flag is currently set
+(the last ALU computation did overflow)</p></td>
+<td><p>T2</p></td>
+<td></td>
+<td><p>NOP if the carry flag is not set</p></td>
+</tr>
+<tr class="row-even"><td><p>T2</p></td>
+<td><p>IO, JP</p></td>
+<td><p>Set the PC to the ID of the instruction if the flag is set</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0x8</span></code></p></td>
+<td rowspan="2"><p>JZ</p></td>
+<td rowspan="2"><p>Jump if zero</p></td>
+<td rowspan="2"><p>RAM Address</p></td>
+<td rowspan="2"><p>Jump to another instruction (set the PC to the instructions ID)
+if the zero flag is currently set
+(the last ALU computation resulted in a zero)</p></td>
+<td><p>T2</p></td>
+<td></td>
+<td><p>NOP if the zero flag is not set</p></td>
+</tr>
+<tr class="row-even"><td><p>T2</p></td>
+<td><p>IO, JP</p></td>
+<td><p>Set the PC to the ID of the instruction if the flag is set</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0x9</span></code></p></td>
+<td></td>
+<td><p><em>&lt;unused&gt;</em></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0xA</span></code></p></td>
+<td></td>
+<td><p><em>&lt;unused&gt;</em></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0xB</span></code></p></td>
+<td></td>
+<td><p><em>&lt;unused&gt;</em></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0xC</span></code></p></td>
+<td></td>
+<td><p><em>&lt;unused&gt;</em></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0xD</span></code></p></td>
+<td></td>
+<td><p><em>&lt;unused&gt;</em></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0xE</span></code></p></td>
+<td><p>OUT</p></td>
+<td><p>Display contents of RA</p></td>
+<td></td>
+<td><p>Set the output display to show the current contents of RA</p></td>
+<td><p>T2</p></td>
+<td><p>AO, OI</p></td>
+<td><p>Latch the current value of RA into the OUT register</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0xF</span></code></p></td>
+<td><p>HLT</p></td>
+<td><p>Halt the clock</p></td>
+<td></td>
+<td><p>Halt all further program execution. Although this will also run,
+a fetch cycle and thus advance the PC, the next instruction will,
+never be executed</p></td>
+<td><p>T2</p></td>
+<td><p>HLT</p></td>
+<td><p>Halt the clock</p></td>
+</tr>
+</tbody>
+</table>
+<p>The Microcode is implemented as a Lookuptable (LUT) in the EEPROMs of the
+Instruction Decoder module.
+See the files <code class="docutils literal notranslate"><span class="pre">spec/ISA.py</span></code> and <code class="docutils literal notranslate"><span class="pre">spec/lut_microcode</span></code> that will generate
+the LUT for those EEPROMs. You can also create your own instructions with
+your own microcode in the unused opcodes.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">SAP-1 Processor Architecture</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Instruction Set Architecture (ISA)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#control-word">Control Word</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#microcode">Microcode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="block-diagram.html">Hardware Blocks</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">SAP-1 Processor Architecture</a></li>
+      <li>Next: <a href="block-diagram.html" title="next chapter">Hardware Blocks</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daniel Grießhaber.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/isa.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

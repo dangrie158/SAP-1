@@ -1,0 +1,8 @@
+div.document {
+    max-width: none !important;
+    width: 80% !important;
+}
+
+div.body {
+    max-width: none !important;
+} 
