@@ -4,7 +4,7 @@ PROGRAMMER_PORT = /dev/tty.wchusbserial*
 SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = Docs-Src
-BUILDDIR      = Docs
+BUILDDIR      = docs
 
 LUTs/outputdecoder.bin: Spec/lut_outputdecoder.py
 	$(PYTHON) Spec/lut_outputdecoder.py > $@
