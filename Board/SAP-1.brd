@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="12.5" altunitdist="mil" altunit="mil"/>
+<grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.5" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -3518,7 +3518,7 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <attribute name="MOUSER" value="594-K103K15X7RF5TH5" x="34.1625" y="106.8175" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="32.6263" y="105.7275" size="0.8128" layer="25" font="vector" ratio="10" align="center-right"/>
 <attribute name="SPICEPREFIX" value="C" x="34.1625" y="106.8175" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="36.3215" y="109.4845" size="0.8128" layer="25" font="vector" ratio="10" rot="R90"/>
+<attribute name="VALUE" x="38.4937" y="105.6513" size="0.8128" layer="25" font="vector" ratio="10" rot="R180" align="top-right"/>
 </element>
 <element name="PC:IC1" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL16" package3d_urn="urn:adsk.eagle:package:922/2" value="74LS161N" x="101.6" y="275.59" smashed="yes" rot="R90">
 <attribute name="MOUSER" value="595-SN74LS161AN" x="101.53" y="276.51" size="1.778" layer="27" rot="R90" display="off"/>
@@ -5766,7 +5766,7 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <contactref element="CLK:IC7" pad="3"/>
 <contactref element="ID:IC1" pad="9"/>
 <contactref element="ID:HLT" pad="A"/>
-<wire x1="76.5175" y1="32.0675" x2="76.5175" y2="25.7175" width="0.1524" layer="16"/>
+<wire x1="76.5175" y1="25.7175" x2="76.5175" y2="32.0675" width="0.1524" layer="16"/>
 <wire x1="75.565" y1="24.765" x2="76.5175" y2="25.7175" width="0.1524" layer="16"/>
 <via x="76.5175" y="32.0675" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="76.5175" y1="32.0675" x2="69.85" y2="32.0675" width="0.1524" layer="1"/>
@@ -5865,10 +5865,10 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <via x="73.66" y="17.78" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="66.04" y1="17.78" x2="73.66" y2="17.78" width="0.1524" layer="1"/>
 <wire x1="73.66" y1="17.78" x2="73.66" y2="31.75" width="0.1524" layer="16"/>
-<wire x1="75.565" y1="33.655" x2="73.66" y2="31.75" width="0.1524" layer="16"/>
+<wire x1="73.66" y1="31.75" x2="75.565" y2="33.655" width="0.1524" layer="16"/>
 <wire x1="75.565" y1="174.9425" x2="75.565" y2="154.94" width="0.1524" layer="16"/>
 <wire x1="75.565" y1="154.94" x2="75.565" y2="153.67" width="0.1524" layer="16"/>
-<wire x1="75.565" y1="153.67" x2="75.565" y2="33.655" width="0.1524" layer="16"/>
+<wire x1="75.565" y1="33.655" x2="75.565" y2="153.67" width="0.1524" layer="16"/>
 <wire x1="110.49" y1="170.18" x2="110.8075" y2="170.4975" width="0.1524" layer="16"/>
 <wire x1="110.8075" y1="170.4975" x2="110.8075" y2="174.3075" width="0.1524" layer="16"/>
 <via x="110.8075" y="174.3075" extent="1-16" drill="0.381" shape="octagon"/>
@@ -7511,9 +7511,9 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <wire x1="71.12" y1="25.4" x2="71.12" y2="21.2725" width="0.1524" layer="16"/>
 <via x="74.6125" y="21.2725" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="71.12" y1="21.2725" x2="74.6125" y2="21.2725" width="0.1524" layer="1"/>
-<wire x1="74.6125" y1="31.4325" x2="76.2" y2="33.02" width="0.1524" layer="16"/>
+<wire x1="76.2" y1="33.02" x2="74.6125" y2="31.4325" width="0.1524" layer="16"/>
 <wire x1="74.6125" y1="31.4325" x2="74.6125" y2="21.2725" width="0.1524" layer="16"/>
-<wire x1="76.2" y1="33.02" x2="76.2" y2="87.9475" width="0.1524" layer="16"/>
+<wire x1="76.2" y1="87.9475" x2="76.2" y2="33.02" width="0.1524" layer="16"/>
 <wire x1="106.68" y1="91.44" x2="104.14" y2="91.44" width="0.1524" layer="1"/>
 <via x="104.14" y="91.44" extent="1-16" drill="0.381" shape="octagon"/>
 <wire x1="104.14" y1="91.44" x2="104.14" y2="87.9475" width="0.1524" layer="16"/>
