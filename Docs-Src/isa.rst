@@ -4,7 +4,6 @@ Instruction Set Architecture (ISA)
 
 Control Word
 ============
-
 The **Control Word (CW)** consists of all the control lines of the
 seperate modules described in the hardware section.
 By driving these control lines, the behaviour of the modules can be controlled.
@@ -72,7 +71,6 @@ in the CW column for all active control lines.
 
 Microcode
 =========
-
 The Processor will run a list of instructions to execute a program.
 Although individual instructions are on a pretty low level, they are
 not quite atomic, since each instruction can consist of multiple
@@ -91,7 +89,6 @@ During all microinstruction steps that are not needed, the CW is empty
 
 Fetch Cycle
 -----------
-
 The first 2 microinstaructions are the same for all instructions and are
 responsible to actually fetch the instruction from memory.
 Thus only 3 microinstructions are effectivley available for the actual
@@ -110,7 +107,6 @@ A fetch cycle consists of the following steps (microinstructions)
 
 Instruction Table
 -----------------
-
 The following table shows the available instructions and the corresponding
 microinstructions with the corresponding control lines that are driven high
 to achieve the desired behaviour.
