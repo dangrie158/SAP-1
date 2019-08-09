@@ -1,17 +1,16 @@
 ===============
 Hardware Blocks
 ===============
-
 The SAP-1 Processor can logically be grouped into the following
 submodules.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    logical-blocks/clk
-   logical-blocks/ra
-   logical-blocks/rb
-   logical-blocks/ir
+   Data Register A <logical-blocks/datareg>
+   Data Register B <logical-blocks/datareg>
+   Instruction Register <logical-blocks/datareg>
    logical-blocks/alu
    logical-blocks/ram
    logical-blocks/mar

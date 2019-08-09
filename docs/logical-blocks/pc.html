@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Output Display (OUT)" href="out.html" />
@@ -30,6 +31,39 @@
             
   <div class="section" id="program-counter-pc">
 <h1>Program Counter (PC)<a class="headerlink" href="#program-counter-pc" title="Permalink to this headline">¶</a></h1>
+<p>The program counter contains the RAM address of the next instruction to
+execute.</p>
+<div class="section" id="mode-of-operation">
+<h2>Mode of Operation<a class="headerlink" href="#mode-of-operation" title="Permalink to this headline">¶</a></h2>
+<p>The PC is 0-initialized, thus the first instruction executed after a reset
+is always at RAM byte 0.
+For the counter, a <a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn74ls161a.pdf">SN74LS161</a>
+<em>4-bit syncronous counter</em> IC is used.</p>
+<div class="section" id="count-increment">
+<h3>Count increment<a class="headerlink" href="#count-increment" title="Permalink to this headline">¶</a></h3>
+<p>The counter will increment it’s value whenever a clock pulse occurs while the
+<span class="math notranslate nohighlight">\(\mathrm{{ENABLE}\)</span> line is active.
+This normally happens as the second microinsruction in a FETCH cycle as
+described in the <a class="reference external" href="../isa.html">ISA</a> section.</p>
+</div>
+<div class="section" id="count-set">
+<h3>Count Set<a class="headerlink" href="#count-set" title="Permalink to this headline">¶</a></h3>
+<p>The current value can be loaded from the databus by enabling the
+active-low <span class="math notranslate nohighlight">\(\mathrm{\overline{LOAD}}\)</span> line which sets the counter
+to the lower nibble of the databus on the next clock cycle.
+This can be used to set the address of the next instruction and thus
+implementing a JUMP instruction.</p>
+<p>To enable writing the current counter’s value to the DB, another
+<a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn54ls245-sp.pdf">74LS245</a>
+<em>Octal Bus Tranciever</em> is used as a buffer.</p>
+</div>
+</div>
+<div class="section" id="schematic">
+<h2>Schematic<a class="headerlink" href="#schematic" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<img alt="../_images/pc.png" src="../_images/pc.png" />
+</div>
+</div>
 </div>
 
 
@@ -54,13 +88,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../isa.html">Instruction Set Architecture (ISA)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../block-diagram.html">Hardware Blocks</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="clk.html">Clock (CLK)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ra.html">Data Register A (RA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rb.html">Data Register B (RB)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ir.html">Instruction Register (IR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Instruction Register</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alu.html">Arithmetic Logic Unit (ALU)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ram.html">Random Access Memory (RAM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mar.html">Memory Address Register (MAR)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Program Counter (PC)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Program Counter (PC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mode-of-operation">Mode of Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic">Schematic</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="out.html">Output Display (OUT)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="id.html">Instruction Decoder (ID)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sr.html">Status Register (SR)</a></li>

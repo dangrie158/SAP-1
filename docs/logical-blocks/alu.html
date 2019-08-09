@@ -12,10 +12,11 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Random Access Memory (RAM)" href="ram.html" />
-    <link rel="prev" title="Instruction Register (IR)" href="ir.html" />
+    <link rel="prev" title="Data and Instruction Registers" href="datareg.html" />
     <link href="../_static/style.css" rel="stylesheet" type="text/css">
 
   </head><body>
@@ -30,6 +31,64 @@
             
   <div class="section" id="arithmetic-logic-unit-alu">
 <h1>Arithmetic Logic Unit (ALU)<a class="headerlink" href="#arithmetic-logic-unit-alu" title="Permalink to this headline">¶</a></h1>
+<p>The ALU enables the Processor to perform simple arithmetic operations.
+In fact, it only can perform the addition or substraction of the values
+in the two data registers RA and RB:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{ALU_{OUT}} &amp;= \mathrm{RA} + \mathrm{RB} \quad \mathrm{or}\\
+\mathrm{ALU_{OUT}} &amp;= \mathrm{RA} - \mathrm{RB}\end{split}\]</div>
+<div class="section" id="mode-of-operation">
+<h2>Mode of Operation<a class="headerlink" href="#mode-of-operation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="addition">
+<h3>Addition<a class="headerlink" href="#addition" title="Permalink to this headline">¶</a></h3>
+<p>The ALU uses 2 <a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn74ls283.pdf">74LS283</a>
+<em>4-bit binary adders with carry</em>.
+The <strong>carry output</strong> (<span class="math notranslate nohighlight">\(\mathrm{ALU\colon C_4}\)</span>) of
+<span class="math notranslate nohighlight">\(\mathrm{ALU\colon IC_1}\)</span> is connected to the <strong>carry input</strong>
+(<span class="math notranslate nohighlight">\(\mathrm{ALU\colon C_0}\)</span>) of <span class="math notranslate nohighlight">\(\mathrm{ALU\colon IC_2}\)</span>,
+thus a carry after bit 4 is propagated to the second nibble of the result.
+The inputs A and B of the ICs are connected directly to the outputs
+of the 74LS173 registers of RA and (through XOR gates) RB instead of
+the DB.
+For addition, the <strong>substract line</strong> <span class="math notranslate nohighlight">\(\mathrm{SU}\)</span> line is low, thus
+the XOR gates output the same value as the input from RB.
+To only drive the DB lines when the result of the computation is needed,
+another 74LS245 is used as tristate buffer, enabling the display of the
+result on <span class="math notranslate nohighlight">\(\mathrm{ALU\colon LED_{1-8}}\)</span> without driving the DB.</p>
+</div>
+<div class="section" id="substraction">
+<h3>Substraction<a class="headerlink" href="#substraction" title="Permalink to this headline">¶</a></h3>
+<p>For substraction of RA and RB, the <span class="math notranslate nohighlight">\(\mathrm{SU}\)</span> signal is active,
+thus the output of the XOR gates is always the <em>logical inverse</em> of the input
+from RB.
+Thus the second byte into the 8-bit adder is the <em>1s complement</em> of RB.
+To calculate a <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">2s complement</a>
+result however, the <span class="math notranslate nohighlight">\(\mathrm{SU}\)</span> signal also drives the
+<span class="math notranslate nohighlight">\(\mathrm{ALU\colon C_0}\)</span> input of <span class="math notranslate nohighlight">\(\mathrm{ALU\colon IC_1}\)</span>,
+effectivley adding 1 to the result.</p>
+</div>
+<div class="section" id="flags">
+<h3>Flags<a class="headerlink" href="#flags" title="Permalink to this headline">¶</a></h3>
+<p>The <em>carry signal</em> <span class="math notranslate nohighlight">\(\mathrm{CY}\)</span> can be read directly from the
+<span class="math notranslate nohighlight">\(\mathrm{ALU\colon C_4}\)</span> pin of the second nibble adder
+<span class="math notranslate nohighlight">\(\mathrm{ALU\colon IC_2}\)</span>.</p>
+<p>For the zero flag signal <span class="math notranslate nohighlight">\(\mathrm{ZR}\)</span>, all output bits are NORed
+together.
+Since there are no 8-input NOR gates available (at least in the commonly
+available 74LS series logic family), a quad 2-input NOR gate
+(<a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn74ls02.pdf">74LS02</a>) is used to
+NOR every 2 bits together, then each of the outputs is ANDed together using
+a quad 2-input AND gate (<a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn74ls02.pdf">74LS02</a>)
+until only a single signal is left that will be active high when all ALU
+output bits are cleared.</p>
+</div>
+</div>
+<div class="section" id="schematic">
+<h2>Schematic<a class="headerlink" href="#schematic" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<img alt="../_images/alu.png" src="../_images/alu.png" />
+</div>
+</div>
 </div>
 
 
@@ -54,10 +113,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../isa.html">Instruction Set Architecture (ISA)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../block-diagram.html">Hardware Blocks</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="clk.html">Clock (CLK)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ra.html">Data Register A (RA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rb.html">Data Register B (RB)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ir.html">Instruction Register (IR)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Arithmetic Logic Unit (ALU)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Instruction Register</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Arithmetic Logic Unit (ALU)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mode-of-operation">Mode of Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic">Schematic</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="ram.html">Random Access Memory (RAM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mar.html">Memory Address Register (MAR)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pc.html">Program Counter (PC)</a></li>
@@ -73,7 +136,7 @@
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="../block-diagram.html">Hardware Blocks</a><ul>
-      <li>Previous: <a href="ir.html" title="previous chapter">Instruction Register (IR)</a></li>
+      <li>Previous: <a href="datareg.html" title="previous chapter">Data and Instruction Registers</a></li>
       <li>Next: <a href="ram.html" title="next chapter">Random Access Memory (RAM)</a></li>
   </ul></li>
   </ul></li>

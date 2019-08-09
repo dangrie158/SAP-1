@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Program Counter (PC)" href="pc.html" />
@@ -30,6 +31,32 @@
             
   <div class="section" id="memory-address-register-mar">
 <h1>Memory Address Register (MAR)<a class="headerlink" href="#memory-address-register-mar" title="Permalink to this headline">¶</a></h1>
+<p>The memory address register stores the address of the data
+the <a class="reference external" href="ram.html">RAM</a> module should be pointing at.</p>
+<div class="section" id="mode-of-operation">
+<h2>Mode of Operation<a class="headerlink" href="#mode-of-operation" title="Permalink to this headline">¶</a></h2>
+<p>The memory address register is very similar in its operation
+principle to any of the <a class="reference external" href="datareg.html">data registers</a>.</p>
+<p>It uses the same <a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn54173.pdf">74LS173</a>
+<em>4-bit D-type registers</em>, however since it’s output is not connected
+to the databus but instead directly to the address pins of the RAM module,
+no buffers are used at the output.</p>
+<p>Instead a <a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn54157.pdf">74LS157</a>
+<em>quadruple 2-to-1 multiplexer</em> is used to select either the
+register contents or a DIP switch array to set the address outputs.
+The DIP switches can be used in <strong>program mode</strong> to set the address manually
+while in <strong>run mode</strong> the address can be loaded as the lower 4 bits
+of the data bus which represent the instruction data (ID) nibble of
+an instruction (see the <a class="reference external" href="../isa.html">ISA</a> section for more detail).</p>
+<p>To select the current mode of operation (run / program), the SPDT switch
+<strong>Program / Run</strong> can be used.</p>
+</div>
+<div class="section" id="schematic">
+<h2>Schematic<a class="headerlink" href="#schematic" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<img alt="../_images/mar.png" src="../_images/mar.png" />
+</div>
+</div>
 </div>
 
 
@@ -54,12 +81,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../isa.html">Instruction Set Architecture (ISA)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../block-diagram.html">Hardware Blocks</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="clk.html">Clock (CLK)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ra.html">Data Register A (RA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rb.html">Data Register B (RB)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ir.html">Instruction Register (IR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Instruction Register</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alu.html">Arithmetic Logic Unit (ALU)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ram.html">Random Access Memory (RAM)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Memory Address Register (MAR)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Memory Address Register (MAR)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mode-of-operation">Mode of Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic">Schematic</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="pc.html">Program Counter (PC)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="out.html">Output Display (OUT)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="id.html">Instruction Decoder (ID)</a></li>

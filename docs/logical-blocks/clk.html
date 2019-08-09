@@ -12,9 +12,10 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Data Register A (RA)" href="ra.html" />
+    <link rel="next" title="Data and Instruction Registers" href="datareg.html" />
     <link rel="prev" title="Hardware Blocks" href="../block-diagram.html" />
     <link href="../_static/style.css" rel="stylesheet" type="text/css">
 
@@ -30,6 +31,69 @@
             
   <div class="section" id="clock-clk">
 <h1>Clock (CLK)<a class="headerlink" href="#clock-clk" title="Permalink to this headline">¶</a></h1>
+<p>The clock module is responsible for all time related coordination
+between the seperate modules.</p>
+<div class="section" id="mode-of-operation">
+<h2>Mode of Operation<a class="headerlink" href="#mode-of-operation" title="Permalink to this headline">¶</a></h2>
+<p>The module has 2 outputs that feed into the other modules,
+the <strong>positive clock line</strong> (<span class="math notranslate nohighlight">\(CLK\)</span>) and its
+<strong>logical inverse</strong> (<span class="math notranslate nohighlight">\(\overline{CLK}\)</span>).
+The <span class="math notranslate nohighlight">\(\overline{CLK}\)</span> signal is always low when the clock signal is
+high and vice-versa, this way the processor has 2 clock signals that are
+on a 180° phase difference.</p>
+<p>The source for the clock pulses is selectable via the <strong>Source Select</strong>
+switch and can either be set to <em>run</em> mode or <em>single-step</em>.</p>
+<div class="section" id="run-mode">
+<h3><em>Run</em> mode<a class="headerlink" href="#run-mode" title="Permalink to this headline">¶</a></h3>
+<p>In <em>run</em> mode, the clock signal is created by a 555 timer in astable
+configuration. The dutycycle of the signal is 50%, while the frequency
+can be set using a potentiometer.
+The clock frequency is set by <span class="math notranslate nohighlight">\(\mathrm{CLK\colon R_1}\)</span>,
+<span class="math notranslate nohighlight">\(\mathrm{CLK\colon R_2} + \mathrm{CLK\colon RV_2}\)</span> and
+<span class="math notranslate nohighlight">\(\mathrm{CLK\colon C_1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{f}_{clk} &amp;= \frac{1.44}{( \mathrm{CLK\colon R_1} + 2 * (\mathrm{CLK\colon R_2} + \mathrm{CLK\colon RV_2}) ) * \mathrm{CLK\colon C_1}} \\
+{f}_{clk} &amp;= \frac{1.44}{( 1kΩ + 2*(1kΩ + [0, 100kΩ]) ) * 1µF} \\
+{f}_{clk} &amp;= [480.0Hz, ~7.1Hz]\end{split}\]</div>
+</div>
+<div class="section" id="single-step-mode">
+<h3><em>Single-step</em> mode<a class="headerlink" href="#single-step-mode" title="Permalink to this headline">¶</a></h3>
+<p>In <em>single-step</em> mode, the positive clock signal is set by pressing the
+<strong>Single Step</strong> button and cleared after releasing it.
+Another 555 timer in monostable configuration is used to debounce
+the button presses to avoid accidentaly creating multiple steps on a
+single press.
+The debounce time is set by the RC network consisting of
+<span class="math notranslate nohighlight">\(\mathrm{CLK\colon R_6}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{CLK\colon C_5}\)</span> and can be
+calculated as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}T_o &amp;= 1.1 * \mathrm{CLK\colon R_6} * \mathrm{CLK\colon C_5} \\
+T_o &amp;= 1.1 * 100nF * 1kΩ \\
+T_o &amp;= 110µS\end{split}\]</div>
+</div>
+<div class="section" id="clock-source-selection-halt-signal">
+<h3>Clock Source selection &amp; Halt signal<a class="headerlink" href="#clock-source-selection-halt-signal" title="Permalink to this headline">¶</a></h3>
+<p>The actual output signal is a logical combination of the two 555 timer
+outputs and the output of a third 555 in bistable mode.
+This third 555 is used to debounce the signal of a single-pole
+double-throw (SPDT) slide-switch.
+The debouncing is neccessary because otherwise a switch bounce could
+generate multiple clock ticks when switching modes while the 2 clock
+signals have a different state.</p>
+<p>In any way, a clock pulse is only output if the
+<strong>halt signal</strong> (<span class="math notranslate nohighlight">\(CLK_{HLT}\)</span>) is inactive.
+This halt signal is part of the <strong>control word (CW)</strong> and can be used to
+stop program execution.</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{CLK} = \neg CLK_{HLT} \land ((\mathrm{CLK_{TICK}} \land \mathrm{CLK_{SEL}}) \lor (CLK_{STEP} \land \neg CLK_{SEL}))\]</div>
+</div>
+</div>
+<div class="section" id="schematic">
+<h2>Schematic<a class="headerlink" href="#schematic" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<img alt="../_images/clk.png" src="../_images/clk.png" />
+</div>
+</div>
 </div>
 
 
@@ -53,10 +117,14 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../isa.html">Instruction Set Architecture (ISA)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../block-diagram.html">Hardware Blocks</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Clock (CLK)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ra.html">Data Register A (RA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rb.html">Data Register B (RB)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ir.html">Instruction Register (IR)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Clock (CLK)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mode-of-operation">Mode of Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic">Schematic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Instruction Register</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alu.html">Arithmetic Logic Unit (ALU)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ram.html">Random Access Memory (RAM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mar.html">Memory Address Register (MAR)</a></li>
@@ -74,7 +142,7 @@
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="../block-diagram.html">Hardware Blocks</a><ul>
       <li>Previous: <a href="../block-diagram.html" title="previous chapter">Hardware Blocks</a></li>
-      <li>Next: <a href="ra.html" title="next chapter">Data Register A (RA)</a></li>
+      <li>Next: <a href="datareg.html" title="next chapter">Data and Instruction Registers</a></li>
   </ul></li>
   </ul></li>
 </ul>

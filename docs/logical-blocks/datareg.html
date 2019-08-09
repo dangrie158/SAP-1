@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Data and Instruction Registers &#8212; SAP-1 Processor Architecture  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Arithmetic Logic Unit (ALU)" href="alu.html" />
+    <link rel="prev" title="Clock (CLK)" href="clk.html" />
+    <link href="../_static/style.css" rel="stylesheet" type="text/css">
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="data-and-instruction-registers">
+<h1>Data and Instruction Registers<a class="headerlink" href="#data-and-instruction-registers" title="Permalink to this headline">¶</a></h1>
+<p>Since the two <strong>Data Registers A and B (RA &amp; RB)</strong>, as well as the
+<strong>Instruction Register (IR)</strong> are very similar in their operation
+as well as their schematic, they are all described in this section.
+However, differences are highlighted were apropriate.</p>
+<div class="section" id="mode-of-operation">
+<h2>Mode of Operation<a class="headerlink" href="#mode-of-operation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-input">
+<h3>Data Input<a class="headerlink" href="#data-input" title="Permalink to this headline">¶</a></h3>
+<p>Each data register consists of 2
+<a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn54173.pdf">74LS173</a> ICs which are
+<em>4-bit D-type registers</em> to form an 8-bit register.
+The two registers share the <strong>clock</strong> (<span class="math notranslate nohighlight">\(\mathit{CLK}\)</span>), <strong>load</strong>
+(<span class="math notranslate nohighlight">\(\mathit{\overline{LOAD}}\)</span>) and <strong>clear</strong> (<span class="math notranslate nohighlight">\(\mathit{CLR}\)</span>)
+signals.
+The register inputs are tied to the <strong>databus (DB)</strong> pins.
+Thus, when the <span class="math notranslate nohighlight">\(\mathit{\overline{LOAD}}\)</span> signal is active, the registers
+store whatever value is on the DB at the next rising edge of the
+<span class="math notranslate nohighlight">\(\mathit{CLK}\)</span>.</p>
+</div>
+<div class="section" id="data-output">
+<h3>Data Output<a class="headerlink" href="#data-output" title="Permalink to this headline">¶</a></h3>
+<p>A register also needs to be able to output the value it stored to the DB.
+However, since only a single module should drive the DB at any time,
+the registers outputs can’t be directly connected to the DB lines.
+Although the 74LS173 ICs have 3-state outputs, it’s enable lines are
+tied to ground and thus always active.
+Instead, a <a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn54ls245-sp.pdf">74LS245</a>
+<em>Octal Bus Tranciever</em> is used as a 3-state buffer.
+This has the advantage that it is possible to display the register content
+on the <span class="math notranslate nohighlight">\(\mathrm{LED}_{1-8}\)</span> without driving the DB.</p>
+<p>The 74LS245 outputs are enabled by the active-low <strong>output</strong> line
+(<span class="math notranslate nohighlight">\(\mathit{\overline{OUT}}\)</span>) which will out the register data onto
+the DB.</p>
+</div>
+<div class="section" id="register-pecularities">
+<h3>Register Pecularities<a class="headerlink" href="#register-pecularities" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="data-register-a-ra">
+<h4>Data Register A (RA)<a class="headerlink" href="#data-register-a-ra" title="Permalink to this headline">¶</a></h4>
+<p>The register described above and the schematic below match the implementation
+of Register A directly.</p>
+</div>
+<div class="section" id="data-register-b-rb">
+<h4>Data Register B (RB)<a class="headerlink" href="#data-register-b-rb" title="Permalink to this headline">¶</a></h4>
+<p>Register B is similar to Register A, however it’s output line is not connected
+to the control word, to the register can not be read from the DB.
+This also means that <span class="math notranslate nohighlight">\(\mathit{RB:IC_1}\)</span> does not actually need to be
+populated.</p>
+</div>
+<div class="section" id="instruction-register-ir">
+<h4>Instruction Register (IR)<a class="headerlink" href="#instruction-register-ir" title="Permalink to this headline">¶</a></h4>
+<p>The Instruction Register is similar to Register A, however only the lower
+nibble is connected to the databus on it’s output. This means that, while
+the whole register can be set via the DB, only the lower nibble can be read
+back.
+This behaviour is used to only read back the instrctions data part (ID) when
+using parametrized instructions.
+For more information on the ID, see the
+<a class="reference external" href="../isa.html">Instruction Set Architecture</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="schematic">
+<h2>Schematic<a class="headerlink" href="#schematic" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<img alt="../_images/ra.png" src="../_images/ra.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">SAP-1 Processor Architecture</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../isa.html">Instruction Set Architecture (ISA)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../block-diagram.html">Hardware Blocks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="clk.html">Clock (CLK)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data Register A</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mode-of-operation">Mode of Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic">Schematic</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data Register B</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mode-of-operation">Mode of Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic">Schematic</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Instruction Register</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mode-of-operation">Mode of Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic">Schematic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="alu.html">Arithmetic Logic Unit (ALU)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ram.html">Random Access Memory (RAM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mar.html">Memory Address Register (MAR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pc.html">Program Counter (PC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="out.html">Output Display (OUT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="id.html">Instruction Decoder (ID)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sr.html">Status Register (SR)</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../block-diagram.html">Hardware Blocks</a><ul>
+      <li>Previous: <a href="clk.html" title="previous chapter">Clock (CLK)</a></li>
+      <li>Next: <a href="alu.html" title="next chapter">Arithmetic Logic Unit (ALU)</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Daniel Grießhaber.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/logical-blocks/datareg.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,3 +1,5 @@
 =========================
 Instruction Register (IR)
 =========================
+
+.. figure:: images/ir.png

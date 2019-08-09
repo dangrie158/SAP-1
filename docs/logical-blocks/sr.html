@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Instruction Decoder (ID)" href="id.html" />
@@ -29,6 +30,29 @@
             
   <div class="section" id="status-register-sr">
 <h1>Status Register (SR)<a class="headerlink" href="#status-register-sr" title="Permalink to this headline">¶</a></h1>
+<p>The status registers job is to buffer the state of of the carry
+(<span class="math notranslate nohighlight">\(\mathrm{CY}\)</span>) and zero (<span class="math notranslate nohighlight">\(\mathrm{ZR}\)</span>) flags of the ALU
+across microinstructions.
+This is neccessary as the result of any ALU computation is stored in
+register A and since the ALU uses the unbuffered outputs from the
+registers, writing back the result and thus changing the registers content
+may change the flags.
+Thus, the flags need to be saved before writing back the result of any ALU
+computation to Register A.</p>
+<div class="section" id="mode-of-operation">
+<h2>Mode of Operation<a class="headerlink" href="#mode-of-operation" title="Permalink to this headline">¶</a></h2>
+<p>The SR may be the simplest register in the system. It only uses 2 out of
+the 4 bits available in a single <a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn54173.pdf">74LS173</a>
+<em>4-bit D-type register</em> IC.
+As the register is not connected to the databus but instead to the
+<a class="reference external" href="id.html">instruction decoder</a>, the outputs are unbuffered.</p>
+</div>
+<div class="section" id="schematic">
+<h2>Schematic<a class="headerlink" href="#schematic" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<img alt="../_images/sr.png" src="../_images/sr.png" />
+</div>
+</div>
 </div>
 
 
@@ -53,16 +77,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../isa.html">Instruction Set Architecture (ISA)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../block-diagram.html">Hardware Blocks</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="clk.html">Clock (CLK)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ra.html">Data Register A (RA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rb.html">Data Register B (RB)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ir.html">Instruction Register (IR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Instruction Register</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alu.html">Arithmetic Logic Unit (ALU)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ram.html">Random Access Memory (RAM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mar.html">Memory Address Register (MAR)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pc.html">Program Counter (PC)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="out.html">Output Display (OUT)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="id.html">Instruction Decoder (ID)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Status Register (SR)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Status Register (SR)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mode-of-operation">Mode of Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic">Schematic</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

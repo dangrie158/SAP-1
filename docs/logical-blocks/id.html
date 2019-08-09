@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Status Register (SR)" href="sr.html" />
@@ -30,6 +31,68 @@
             
   <div class="section" id="instruction-decoder-id">
 <h1>Instruction Decoder (ID)<a class="headerlink" href="#instruction-decoder-id" title="Permalink to this headline">¶</a></h1>
+<p>The instruction decoders job is to generate the control word (CW) which
+consists of the control lines of the other modules thus controlling the
+behaviour of the processor and all its submodules.
+The control word is created based on the current instruction, the
+microinstruction in this instruction and the state of the processors flags.</p>
+<div class="section" id="mode-of-operation">
+<h2>Mode of Operation<a class="headerlink" href="#mode-of-operation" title="Permalink to this headline">¶</a></h2>
+<p>The instrcution decoder uses 2
+<a class="reference external" href="http://cva.stanford.edu/classes/cs99s/datasheets/at28c16.pdf">28C16</a>
+<em>2K x 8-bit parallel EEPROMs</em> to decode the combination of the 4 instruction
+bits <span class="math notranslate nohighlight">\(\mathrm{I_1} - \mathrm{I_4}\)</span>, the micro instruction counter
+<span class="math notranslate nohighlight">\(\mathrm{MI_1} - \mathrm{MI_3}\)</span> and the flags <span class="math notranslate nohighlight">\(\mathrm{CF}\)</span> and
+<span class="math notranslate nohighlight">\(\mathrm{ZF}\)</span> to a 16-bit control word.
+The address line <span class="math notranslate nohighlight">\(\mathrm{A_7}\)</span> is pulled low for <span class="math notranslate nohighlight">\(\mathrm{IC_1}\)</span>
+while tied to VCC for <span class="math notranslate nohighlight">\(\mathrm{IC_2}\)</span>.
+This way it is possible to flash both EEPROMs with the same lookup table for
+instruction decoding.</p>
+<div class="section" id="cw-lookup-table">
+<h3>CW Lookup Table<a class="headerlink" href="#cw-lookup-table" title="Permalink to this headline">¶</a></h3>
+<p>The control word for each microinstruction for all instructions is described in
+the <a class="reference external" href="../isa.html">instruction set architecture</a>.</p>
+</div>
+<div class="section" id="microinstruction-counter">
+<h3>Microinstruction Counter<a class="headerlink" href="#microinstruction-counter" title="Permalink to this headline">¶</a></h3>
+<p>The current microinstruction step is counted by a
+<a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn74ls161a.pdf">SN74LS161</a>
+<em>4-bit syncronous counter</em> of which only 3 bits are used to count the 5
+possible number of microsteps.
+The outputs <span class="math notranslate nohighlight">\(\mathrm{Q_A} - \mathrm{Q_C}\)</span> of the counter are decoded
+using a <a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn74ls138.pdf">SN74LS138</a>
+<em>3-line to 8-line</em> decoder.
+The output of the 6th decoded line is fed through a dual NAND gate to form
+an OR gate with inverted inputs.
+Thus the counter will be reset to zero, immediately after reaching the value 6,
+effectivley counting 0-5.
+The second input to the first NOR gate implements a active-low reset signal
+for the counter connected to the reset circuit.</p>
+</div>
+<div class="section" id="active-high-control-word">
+<h3>Active High Control Word<a class="headerlink" href="#active-high-control-word" title="Permalink to this headline">¶</a></h3>
+<p>Some lines in the CW are active-low.
+To normalize the behaviour of all control lines, to active high, the 2
+inverters <span class="math notranslate nohighlight">\(\mathrm{ID\colon IC_3}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{ID\colon IC_4}\)</span>
+are used to flip the polarity of the active low signals before outputting.
+This makes programming of the instruction decoder easier.</p>
+</div>
+<div class="section" id="system-reset">
+<h3>System Reset<a class="headerlink" href="#system-reset" title="Permalink to this headline">¶</a></h3>
+<p>The control word module also contains the reset circuit which controls the
+<span class="math notranslate nohighlight">\(\mathrm{CLR}\)</span> signal and it’s logical inverse
+<span class="math notranslate nohighlight">\(\overline{\mathrm{CLR}}\)</span> that is used for modules with an active-low
+clear line.</p>
+<p>To buffer the signal of the reset button and invert it’s state, the 2 remaining
+NAND gates of the microinstruction counter are used.</p>
+</div>
+</div>
+<div class="section" id="schematic">
+<h2>Schematic<a class="headerlink" href="#schematic" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<img alt="../_images/id.png" src="../_images/id.png" />
+</div>
+</div>
 </div>
 
 
@@ -54,15 +117,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../isa.html">Instruction Set Architecture (ISA)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../block-diagram.html">Hardware Blocks</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="clk.html">Clock (CLK)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ra.html">Data Register A (RA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rb.html">Data Register B (RB)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ir.html">Instruction Register (IR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Instruction Register</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alu.html">Arithmetic Logic Unit (ALU)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ram.html">Random Access Memory (RAM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mar.html">Memory Address Register (MAR)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pc.html">Program Counter (PC)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="out.html">Output Display (OUT)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Instruction Decoder (ID)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Instruction Decoder (ID)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mode-of-operation">Mode of Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic">Schematic</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="sr.html">Status Register (SR)</a></li>
 </ul>
 </li>

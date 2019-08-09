@@ -1,3 +1,8 @@
 ====================
 Data Register A (RA)
 ====================
+
+Schematic
+=================
+
+.. figure:: images/ra.png

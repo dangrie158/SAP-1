@@ -1,3 +1,5 @@
 ====================
 Data Register B (RB)
 ====================
+
+.. figure:: images/rb.png

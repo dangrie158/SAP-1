@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Instruction Decoder (ID)" href="id.html" />
@@ -30,6 +31,62 @@
             
   <div class="section" id="output-display-out">
 <h1>Output Display (OUT)<a class="headerlink" href="#output-display-out" title="Permalink to this headline">¶</a></h1>
+<p>The output display can load the contents of the databus and
+display it as a decimal integer on the 4x 7-segment displays.</p>
+<p>It supports the display of either a unsigned <span class="math notranslate nohighlight">\(\left[ 0, 255\right]\)</span>
+or 2s-complement signed <span class="math notranslate nohighlight">\(\left[ -128, 127\right]\)</span> 8-bit value.</p>
+<div class="section" id="mode-of-operation">
+<h2>Mode of Operation<a class="headerlink" href="#mode-of-operation" title="Permalink to this headline">¶</a></h2>
+<p>The value to display is read from the databus and saved in a
+<a class="reference external" href="https://www.ti.com/lit/ds/symlink/sn54ls273-sp.pdf">SN74LS273</a>
+<em>octal d-type flip-flop</em> on a riding clock edge when the
+<span class="math notranslate nohighlight">\(LOAD\)</span> signal is active.
+Due to the lack of an enable pin on the register IC, the load signal is
+implemented by ANDing the <span class="math notranslate nohighlight">\(CLK\)</span> and <span class="math notranslate nohighlight">\(LOAD\)</span> signal.</p>
+<div class="section" id="bcd-decoder">
+<h3>BCD decoder<a class="headerlink" href="#bcd-decoder" title="Permalink to this headline">¶</a></h3>
+<p>The decoding of the binary display is implemented as a lookup table (LUT)
+using a <a class="reference external" href="http://cva.stanford.edu/classes/cs99s/datasheets/at28c16.pdf">28C16</a>
+<em>2K x 8-bit parallel EEPROM</em>.
+This IC has 11 address pins <span class="math notranslate nohighlight">\(A_0-A_{10}\)</span> of which the first 8 are used to
+input the display-value.
+The next 2 address bits are used to select the digit of the display currently
+active.
+This leaves the last address pin to select the display mode (unsigned or
+signed) using <span class="math notranslate nohighlight">\(\mathrm{OUT\colon S_3}\)</span>.</p>
+</div>
+<div class="section" id="digit-multiplexing">
+<h3>Digit multiplexing<a class="headerlink" href="#digit-multiplexing" title="Permalink to this headline">¶</a></h3>
+<p>Since the EEPROM decoder can only drive a single digit at any time with it’s 8
+output lines, the 4 digits need to be multiplexed.
+This is done by sequentially driving the common-cathode pin of each digit low
+while simultaneously setting the <span class="math notranslate nohighlight">\(A_8\)</span> and <span class="math notranslate nohighlight">\(A_9\)</span> address pins of
+the EEPROM which in turn will drive the anodes of the selected display digit
+to the apropriate value.</p>
+<p>The binary digit select signal that drives the address lines is implemented
+by a single <a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn54ls76a.pdf">SN74LS76</a>
+<em>dual J-K flip flop</em> IC to implement a 2 bit binary counter.
+This counter is driven by an astable <a class="reference external" href="http://www.ti.com/lit/gpn/lm555">LM555</a>
+oscillator that runs fast enough to cycle through the digits without
+perceivable flickering:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{f}_{out} &amp;= \frac{1.44}{\mathrm{OUT\colon R_1} + 2* \mathrm{OUT\colon R3}) * \mathrm{OUT\colon C_7}} \\
+{f}_{out} &amp;= \frac{1.44}{201kΩ * 10nF} \\
+{f}_{out} &amp;= ~716Hz\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}{f}_{multiplex} &amp;= \frac{{f}_{out}}{4} \\
+{f}_{multiplex} &amp;= ~179Hz\end{split}\]</div>
+<p>The bianry coded digit select signal is then decoded using a
+<a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn54ls139a-sp.pdf">SN74LS139</a>
+<em>2-line to 4-line decoder with active low outputs</em> to drive the cathodes.</p>
+</div>
+</div>
+<div class="section" id="schematic">
+<h2>Schematic<a class="headerlink" href="#schematic" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<img alt="../_images/out.png" src="../_images/out.png" />
+</div>
+</div>
 </div>
 
 
@@ -54,14 +111,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../isa.html">Instruction Set Architecture (ISA)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../block-diagram.html">Hardware Blocks</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="clk.html">Clock (CLK)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ra.html">Data Register A (RA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rb.html">Data Register B (RB)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ir.html">Instruction Register (IR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Data Register B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datareg.html">Instruction Register</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alu.html">Arithmetic Logic Unit (ALU)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ram.html">Random Access Memory (RAM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mar.html">Memory Address Register (MAR)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pc.html">Program Counter (PC)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Output Display (OUT)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Output Display (OUT)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mode-of-operation">Mode of Operation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schematic">Schematic</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="id.html">Instruction Decoder (ID)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sr.html">Status Register (SR)</a></li>
 </ul>
