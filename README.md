@@ -14,7 +14,7 @@ This project is mostly based on the [8-bit Breadboard computer](https://eater.ne
 
 ## Documentation
 
-Check the projects [Wiki](https://github.com/dangrie158/SAP-1/wiki/) for the documentation of the ISA and Hardware
+Check the projects [Pages](https://dangrie158.github.io/SAP-1/) for the documentation of the ISA and Hardware modules.
 
 ## Submodules:
 
