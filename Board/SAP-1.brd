@@ -3804,11 +3804,11 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <attribute name="PROD_ID" value="SWCH-09185" x="-1228.14" y="42.21" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="SF_SKU" value="COM-09190" x="-1228.14" y="42.21" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="ID:R17" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="10k" x="36.83" y="20.32" smashed="yes" rot="R270">
-<attribute name="MOUSER" value="594-5063JD10K00F" x="-1228.22" y="19.81" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="ID:R17" library="rcl" library_urn="urn:adsk.eagle:library:334" package="0204/7" package3d_urn="urn:adsk.eagle:package:23498/2" value="1k" x="36.83" y="20.32" smashed="yes" rot="R270">
+<attribute name="MOUSER" value="594-5063JD1K000F" x="-1228.22" y="19.81" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="36.83" y="25.4762" size="0.8128" layer="25" font="vector" ratio="10" rot="R90" align="center-left"/>
 <attribute name="SPICEPREFIX" value="R" x="-1228.22" y="19.81" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="36.83" y="19.373715625" size="0.8128" layer="25" font="vector" ratio="10" rot="R90" align="center-left"/>
+<attribute name="VALUE" x="36.83" y="19.739475" size="0.8128" layer="25" font="vector" ratio="10" rot="R90" align="center-left"/>
 </element>
 <element name="ID:IC7" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS00N" x="30.48" y="24.13" smashed="yes" rot="R90">
 <attribute name="MOUSER" value="595-SN74LS00N" x="29.8" y="25.29" size="1.778" layer="27" rot="R90" display="off"/>
