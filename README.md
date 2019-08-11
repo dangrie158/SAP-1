@@ -4,6 +4,8 @@ A simple 8-bit micro-processor using mostly discrete logic chips.
 
 This project is mostly based on the [8-bit Breadboard computer](https://eater.net/8bit) by [Ben Eater](https://eater.net)
 
+![Image of the Processor Board](Docs-Src/images/overview.jpg)
+
 ## Banner Specs
 
 - ~400 Hz Clock
