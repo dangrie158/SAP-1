@@ -12,6 +12,10 @@ A simple 8-bit micro-processor using mostly discrete logic chips.
 This project is mostly based on the `8-bit Breadboard computer <https://eater.net/8bit>`_
 by `Ben Eater <https://eater.net>`_
 
+.. figure:: images/overview.jpg
+
+   Overview of the assembled processor board running `Example-Programs/Counter.s`
+
 Banner Specs
 ============
 
