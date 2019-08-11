@@ -44,7 +44,7 @@ if __name__ == "__main__":
         # iterate over both chip select states
         for chip in [CS_LOW_BYTE, CS_HIG_BYTE]:
             # iterate over all possible opcodes
-            for opcode, mnemonic in ISA.OPCODES.items():
+            for opcode, mnemonic in ISA.INSTRUCTIONS.items():
 
                 ucode = ISA.MICROCODE[mnemonic]
 

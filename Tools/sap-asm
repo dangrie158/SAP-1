@@ -1,0 +1,229 @@
+#!/usr/bin/env python3
+
+"""
+A simple assembler for the SAP-1 instruction set
+
+Expects a listing of instructions as input and outputs
+a binary program or a listing of instructions.
+The input should contain one instruction per line in the form:
+
+.code:
+    <mnemo> <data>
+
+.data:
+    <addr> <data>
+
+In the data section, the conctent of specific RAM cells can be manually
+specified.
+"""
+
+import argparse
+import sys
+import os
+from dataclasses import dataclass, field
+from typing import Sequence, Mapping
+
+# add the Spec directory to PYTHONPATH for importing the ISA
+sys.path.append(os.path.join(os.path.dirname(__file__), "../Spec"))
+import ISA
+
+
+@dataclass
+class Instruction:
+    mnemo: str
+    opcode: int
+    data: int = 0
+
+
+@dataclass
+class Program:
+    instructions: Sequence[Instruction] = field(default_factory=list)
+    labels: Mapping[str, int] = field(default_factory=dict)
+    data: Mapping[int, int] = field(default_factory=dict)
+
+    def assemble(self):
+        assembly = {}
+
+        # the list of free addresses in the RAM
+        free_addresses = list(range(0xF + 1))
+
+        # first put in the data into the specified addresses
+        for address, value in self.data.items():
+            assembly[address] = bytes([value])
+            free_addresses.pop(address)
+
+        # save the mapping of instruction-numbers to addresses
+        instruction_addresses = {}
+        for num, instruction in enumerate(self.instructions):
+            try:
+                next_free_address = free_addresses.pop(0)
+            except IndexError:
+                raise ValueError("Out of memory. Program too long.")
+
+            instruction_addresses[num] = next_free_address
+
+        for address, instruction_num in instruction_addresses.items():
+            # get the current instruction
+            instruction = self.instructions[instruction_num]
+
+            # resolve any label to an address
+            if isinstance(instruction.data, str):
+                try:
+                    instruction.data = instruction_addresses[
+                        self.labels[instruction.data]
+                    ]
+                except KeyError:
+                    raise ValueError(f"unknown label '{instruction.data}'")
+            assembly[address] = bytes([instruction.opcode << 4 | instruction.data])
+
+        return assembly
+
+
+def parse_number(num: str) -> int:
+    """
+    Convert a string into an int with correct base.
+    The base is determined by the prefix of the number. The prefix '0x'
+    will assume the number to be in base 16, all other cases are assumed
+    as base 10
+    """
+    if num.strip().startswith("0x"):
+        return int(num, base=16)
+    else:
+        return int(num, base=10)
+
+
+def parse_data_section(lines: Sequence[str]) -> Mapping[int, int]:
+    data = {}
+    for line in lines:
+        line = line.strip()
+
+        # first empty line ends the data section
+        if not line:
+            break
+
+        try:
+            address, value = line.split(":")
+        except (TypeError, ValueError):
+            raise SyntaxError(
+                "Data definitions need to be in the form <address>: <data>", line
+            )
+
+        # convert string values to an int
+        address, value = map(parse_number, [address, value])
+
+        if address > 0xF or address < 0x0:
+            raise ValueError("address can only be 4 bit long", line)
+
+        if address == 0x0:
+            raise ValueError("address 0x0 can not be used for data", line)
+
+        if value > 0xFF or value < 0x00:
+            raise ValueError("value can only be 8-bit long", line)
+
+        data[address] = value
+
+    return data
+
+
+def parseFile(file):
+    program = Program()
+    lines = file.split(os.linesep)
+    cur_line = 0
+    while cur_line < len(lines):
+        line = lines[cur_line].strip()
+        cur_line += 1
+
+        # skip empty lines
+        if not line:
+            continue
+        # parse section labels
+        if line.endswith(":"):
+            # check the special case for data section
+            if line == ".data:":
+                new_data = parse_data_section(lines[cur_line:])
+                program.data.update(new_data)
+                cur_line += len(new_data)
+            else:
+                # save the label to point to the next instruction
+                label = line[:-1]
+                program.labels[label] = len(program.instructions)
+
+        else:
+            # try to parse the instruction
+            instruction = line.split(" ")
+            mnemo = instruction[0]
+            if mnemo not in ISA.OPCODES:
+                raise SyntaxError(f"Unknown instruction: {mnemo}", line)
+
+            if mnemo in ISA.MNEMOS_WITH_DATA:
+                try:
+                    opcode = ISA.OPCODES[mnemo]
+                    try:
+                        data = parse_number(instruction[1])
+                    except ValueError:
+                        # for now, assume the data is a label, resolve later
+                        data = instruction[1]
+                except (TypeError, ValueError):
+                    raise SyntaxError(
+                        "Instructions that have a parameter need to be in the form <instruction mnemo> <data>",
+                        line,
+                    )
+
+            else:
+                if len(instruction) > 1:
+                    raise SyntaxError(
+                        f"Instruction {mnemo} does not expect a parameter", line
+                    )
+
+                opcode = ISA.OPCODES[mnemo]
+                data = 0
+
+            if isinstance(data, int) and (data > 0xF or data < 0x0):
+                raise ValueError("Parameter can only be 4 bits long", line)
+
+            program.instructions.append(Instruction(mnemo, opcode, data))
+
+    return program
+
+
+# define some ANSI colors for printing
+BLUE = "\033[34m"
+GREEN = "\033[32m"
+RED = "\033[31m"
+ENDC = "\033[0m"
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Assemble SAP-1 programs.")
+    parser.add_argument(
+        "--display",
+        "-d",
+        action="store_true",
+        default=False,
+        help="print the output in human readable form. Automatically set to true if stdout is a TTY.",
+    )
+    parser.add_argument("input", metavar="FILE", help="input assembly file")
+
+    args = parser.parse_args()
+
+    with open(args.input, "r") as infile:
+        listing = infile.read()
+
+    assembly = parseFile(listing).assemble()
+
+    if args.display or sys.stdout.isatty():
+
+        def render_leds(num):
+            return bin(num)[2:].replace("0", "○").replace("1", "●").rjust(4, "○")
+
+        for address, value in sorted(assembly.items()):
+            opcode = (value[0] >> 4) & 0xF
+            param = value[0] & 0xF
+            print(
+                f"{BLUE}{render_leds(address)}: {GREEN}{render_leds(opcode)}{RED}{render_leds(param)}{ENDC}"
+            )
+    else:
+        # write a binary with all 16 memory addresses set
+        for address in range(0xF + 1):
+            data = assembly[address] if address in assembly else b"\0"
+            sys.stdout.buffer.write(data)
+

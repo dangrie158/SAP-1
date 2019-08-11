@@ -147,7 +147,7 @@ MICROCODE = {
 }
 
 # maps numeric opcodes to their mnemonic name
-OPCODES = {
+INSTRUCTIONS = {
     0x0: "NOP",
     0x1: "LDA",
     0x2: "ADD",
@@ -165,3 +165,21 @@ OPCODES = {
     0xE: "OUT",
     0xF: "HLT",
 }
+
+# maps mnemonics to opcodes
+OPCODES = {
+    "NOP": 0x0,
+    "LDA": 0x1,
+    "ADD": 0x2,
+    "SUB": 0x3,
+    "STA": 0x4,
+    "LDI": 0x5,
+    "JMP": 0x6,
+    "JC": 0x7,
+    "JZ": 0x8,
+    "OUT": 0xE,
+    "HLT": 0xF,
+}
+
+# defines instructions that expect a data section
+MNEMOS_WITH_DATA = ["LDA", "ADD", "SUB", "STA", "LDI", "JMP", "JC", "JZ"]
