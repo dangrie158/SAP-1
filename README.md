@@ -6,7 +6,7 @@ This project is mostly based on the [8-bit Breadboard computer](https://eater.ne
 
 ## Banner Specs
 
-- ~300 Hz Clock
+- ~400 Hz Clock
 - 8-bit Data Bus
 - 16-bit Control Word
 - 5 Microsteps per Instruction
@@ -40,7 +40,40 @@ Check the projects [Pages](https://dangrie158.github.io/SAP-1/) for the document
 | ```Spec/lut_microcode.py```     | script to create the microcode LUT binary for the ID EEPROMS. Uses ```ISA.py```               |
 | ```Spec/lut_outputdecoder.py``` | script to create the LUT binary for the output decode EEPROM                                  |
 | ```LUTs/*.bin```                | precreated binaries for the EEPROMS                                                           |
+| ```Example-Programs/*.s```      | Some Example Programs in SAP-1 assembly                                                       |
+| ```Tools/sap-asm```             | Assembler for SAP-1 assembly listings. Outputs binaries or prints programming instructions.   |
 | ```Simulations/```              | [iCircuit](http://icircuitapp.com) simulation files for some parts of the architecture        |
+
+## Writing Code
+The documentation has an extensive section on the [Instruction Set Architecture](https://dangrie158.github.io/SAP-1/isa.html) you can use to get started writing programs.
+
+### Assembler:
+
+In the ``Tools`` directory an assembler is available that can either output binary files or, if it detects stdout to be a TTY, prints programming instructions for you to manually program the RAM using the DIP-Switches.
+
+```
+$ cat Example-Programs/Counter.s 
+.data:
+0xF: 0x1
+
+LDA 0xF
+loop:
+OUT
+ADD 0xF
+JMP loop
+
+$ Tools/sap-asm Example-Programs/Counter.s
+○○○○: ○○○●●●●●
+○○○●: ●●●○○○○○
+○○●○: ○○●○●●●●
+○○●●: ○●●○○○○●
+●●●●: ○○○○○○○●
+
+$ Tools/sap-asm Example-Programs/Counter.s | hexdump 
+0000000 1f e0 2f 61 00 00 00 00 00 00 00 00 00 00 00 01
+0000010
+```
+
 
 ## Programming the EEPROM LUTs
 
