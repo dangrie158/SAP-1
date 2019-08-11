@@ -30,6 +30,118 @@
             
   <div class="section" id="sap-1-processor-architecture">
 <h1>SAP-1 Processor Architecture<a class="headerlink" href="#sap-1-processor-architecture" title="Permalink to this headline">¶</a></h1>
+<p>A simple 8-bit micro-processor using mostly discrete logic chips.</p>
+<p>This project is mostly based on the <a class="reference external" href="https://eater.net/8bit">8-bit Breadboard computer</a>
+by <a class="reference external" href="https://eater.net">Ben Eater</a></p>
+<div class="section" id="banner-specs">
+<h2>Banner Specs<a class="headerlink" href="#banner-specs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>~400 Hz Clock</p></li>
+<li><p>8-bit Data Bus</p></li>
+<li><p>16-bit Control Word</p></li>
+<li><p>5 Microsteps per Instruction</p></li>
+<li><p>16 byte RAM</p></li>
+</ul>
+</div>
+<div class="section" id="source-i-want-to-build-my-own">
+<h2>Source (I want to build my own)<a class="headerlink" href="#source-i-want-to-build-my-own" title="Permalink to this headline">¶</a></h2>
+<p>Check the projects <a class="reference external" href="https://github.com/dangrie158/SAP-1/">Github</a> for all files neccecary.</p>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Clock with adjustable frequency and single-step button</p></li>
+<li><p>2 8-bit Data Registers (A &amp; B)</p></li>
+<li><dl class="simple">
+<dt>ALU implementing sum and difference between Registers A &amp; B,</dt><dd><p>carry and zero flag</p>
+</dd>
+</dl>
+</li>
+<li><p>Flag Register to save the ALU flags between instructions</p></li>
+<li><p>4-bit Instruction Counter with load (jump)</p></li>
+<li><dl class="simple">
+<dt>Output module to display a byte as positive decimal or</dt><dd><p>2s-complement with data latch</p>
+</dd>
+</dl>
+</li>
+<li><p>Random Access Memory with 16 Bytes for instructions and data</p></li>
+<li><p>4-bit Memory Address Register to address the 16 bytes of RAM</p></li>
+<li><dl class="simple">
+<dt>8-bit Instruction Register with the upper nibble representing</dt><dd><p>the opcode, the lower nibble can be used for instruction parameters</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Instruction Decoder to run the microcode of the 16 different instructions</dt><dd><p>with 5 microinstuctions each. Uses a 16-bit control word to control the
+other modules</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="writing-code">
+<h2>Writing Code<a class="headerlink" href="#writing-code" title="Permalink to this headline">¶</a></h2>
+<p>The documentation has an extensive section on the
+<a class="reference external" href="https://dangrie158.github.io/SAP-1/isa.html">Instruction Set Architecture</a>
+you can use to get started writing programs.</p>
+<div class="section" id="assembler">
+<h3>Assembler<a class="headerlink" href="#assembler" title="Permalink to this headline">¶</a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">Tools</span></code> directory an assembler is available that can
+either output binary files or, if it detects stdout to be a TTY,
+prints programming instructions for you to manually program the RAM
+using the DIP-Switches.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat Example-Programs/Counter.s
+.data:
+0xF: 0x1
+
+LDA 0xF
+loop:
+OUT
+ADD 0xF
+JMP loop
+
+$ Tools/sap-asm Example-Programs/Counter.s
+○○○○: ○○○●●●●●
+○○○●: ●●●○○○○○
+○○●○: ○○●○●●●●
+○○●●: ○●●○○○○●
+●●●●: ○○○○○○○●
+
+$ Tools/sap-asm Example-Programs/Counter.s <span class="p">|</span> hexdump
+<span class="m">0000000</span> 1f e0 2f <span class="m">61</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">01</span>
+<span class="m">0000010</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="programming-the-eeprom-luts">
+<h2>Programming the EEPROM LUTs<a class="headerlink" href="#programming-the-eeprom-luts" title="Permalink to this headline">¶</a></h2>
+<p>The provided <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> offers some convenient rules to
+create the LUTs and program them to an EEPROM.
+To program the LUTs you can use an
+<a class="reference external" href="https://github.com/dangrie158/EEPROgraMmer">Arduino based programmer</a>
+with only 2 external chips (+EEPROM) which is the officially
+supported method using the <a class="reference external" href="https://pypi.org/project/eepro/">eepro</a>
+CLI.</p>
+<p>However, you can also use any other programmer to flash
+the binary files created by the scripts.</p>
+<p>If you want to use <code class="docutils literal notranslate"><span class="pre">eepro</span></code>, make sure the package is installed</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install -r requirements.txt
+</pre></div>
+</div>
+<p>Then you can programm the needed 3 EEPROMS (1x Output Decoder,
+2x Microcode) using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make program_lut <span class="nv">file</span><span class="o">=</span>LUTs/microcode.bin     <span class="c1"># &lt; for the microcode EEPROMS</span>
+make program_lut <span class="nv">file</span><span class="o">=</span>LUTs/outputdecoder.bin <span class="c1"># &lt; for the Out Decoder EEPROM</span>
+</pre></div>
+</div>
+<p>The rule makes sure the LUTs are created or updated if
+the creating script has changed since last creation.</p>
+<p>If you want to use any other programmer, just run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make luts
+</pre></div>
+</div>
+<p>to create the binaries in the <code class="docutils literal notranslate"><span class="pre">LUTs/</span></code> directory.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
@@ -101,6 +213,7 @@
 </ul>
 </li>
 </ul>
+</div>
 </div>
 </div>
 
