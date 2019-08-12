@@ -20,6 +20,7 @@ specified.
 import argparse
 import sys
 import os
+import re
 from dataclasses import dataclass, field
 from typing import Sequence, Mapping
 
@@ -27,6 +28,8 @@ from typing import Sequence, Mapping
 sys.path.append(os.path.join(os.path.dirname(__file__), "../Spec"))
 import ISA
 
+# a comment 
+COMMENT_START_CHARACTER = r"(^#|\s#)"
 
 @dataclass
 class Instruction:
@@ -91,34 +94,52 @@ def parse_number(num: str) -> int:
     else:
         return int(num, base=10)
 
+def decomment(line: str) -> str:
+    """
+    remove any comments from the line (everything after a
+    comment start character) and strip any leading and training
+    whitespaces from the result
+    """
+    # find returns -1 when substring is not found
+    # which would be a valid index, thus we need to check
+    # if the string was actually found
+    comment = re.search(COMMENT_START_CHARACTER, line)
+    if comment is not None:
+        return line[:comment.start()].strip()
+    return line
 
 def parse_data_section(lines: Sequence[str]) -> Mapping[int, int]:
     data = {}
-    for line in lines:
-        line = line.strip()
+    for line_num, line in enumerate(lines):
+        line_without_comments = decomment(line)
 
         # first empty line ends the data section
-        if not line:
+        if not line_without_comments:
             break
 
         try:
-            address, value = line.split(":")
+            address, value = line_without_comments.split(":")
         except (TypeError, ValueError):
             raise SyntaxError(
-                "Data definitions need to be in the form <address>: <data>", line
+                "Data definitions need to be in the form <address>: <data>", ("", line_num, 0, line)
             )
 
-        # convert string values to an int
-        address, value = map(parse_number, [address, value])
+        try:
+            # convert string values to an int
+            address, value = map(parse_number, [address, value])
+        except ValueError:
+            raise SyntaxError(
+                "Failed to parse data definition", ("", line_num, 0, line)
+            )
 
         if address > 0xF or address < 0x0:
-            raise ValueError("address can only be 4 bit long", line)
+            raise OverflowError("address can only be 4 bit long", line)
 
         if address == 0x0:
             raise ValueError("address 0x0 can not be used for data", line)
 
         if value > 0xFF or value < 0x00:
-            raise ValueError("value can only be 8-bit long", line)
+            raise OverflowError("value can only be 8-bit long", line)
 
         data[address] = value
 
@@ -126,53 +147,58 @@ def parse_data_section(lines: Sequence[str]) -> Mapping[int, int]:
 
 
 def parseFile(file):
+    with open(args.input, "r") as infile:
+        listing = infile.read()
+
     program = Program()
-    lines = file.split(os.linesep)
+    lines = listing.split(os.linesep)
     cur_line = 0
     while cur_line < len(lines):
         line = lines[cur_line].strip()
+        line_without_comments = decomment(line)
         cur_line += 1
 
         # skip empty lines
-        if not line:
+        if not line_without_comments:
             continue
         # parse section labels
-        if line.endswith(":"):
+        if line_without_comments.endswith(":"):
             # check the special case for data section
-            if line == ".data:":
-                new_data = parse_data_section(lines[cur_line:])
-                program.data.update(new_data)
+            if line_without_comments == ".data:":
+                try:
+                    new_data = parse_data_section(lines[cur_line:])
+                    program.data.update(new_data)
+                except SyntaxError as e:
+                    raise SyntaxError(e.msg, (file, e.lineno + cur_line, e.offset, e.text))
                 cur_line += len(new_data)
             else:
                 # save the label to point to the next instruction
-                label = line[:-1]
+                label = line_without_comments[:-1]
                 program.labels[label] = len(program.instructions)
 
         else:
             # try to parse the instruction
-            instruction = line.split(" ")
+            instruction = line_without_comments.split(" ")
             mnemo = instruction[0]
             if mnemo not in ISA.OPCODES:
-                raise SyntaxError(f"Unknown instruction: {mnemo}", line)
+                raise SyntaxError(f"Unknown instruction: {mnemo}.", (file, cur_line, 0, line))
 
             if mnemo in ISA.MNEMOS_WITH_DATA:
+                opcode = ISA.OPCODES[mnemo]
                 try:
-                    opcode = ISA.OPCODES[mnemo]
-                    try:
-                        data = parse_number(instruction[1])
-                    except ValueError:
-                        # for now, assume the data is a label, resolve later
-                        data = instruction[1]
-                except (TypeError, ValueError):
+                    data = parse_number(instruction[1])
+                except ValueError:
+                    # for now, assume the data is a label, resolve later
+                    data = instruction[1]
+                except (TypeError, ValueError, IndexError):
                     raise SyntaxError(
-                        "Instructions that have a parameter need to be in the form <instruction mnemo> <data>",
-                        line,
+                        "Instructions that have a parameter need to be in the form <instruction mnemo> <data>"
+                        , (file, cur_line, len(mnemo) + 1, line),
                     )
-
             else:
                 if len(instruction) > 1:
                     raise SyntaxError(
-                        f"Instruction {mnemo} does not expect a parameter", line
+                        f"Instruction {mnemo} does not expect a parameter", (file, cur_line, len(mnemo) + 1, line)
                     )
 
                 opcode = ISA.OPCODES[mnemo]
@@ -205,10 +231,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    with open(args.input, "r") as infile:
-        listing = infile.read()
-
-    assembly = parseFile(listing).assemble()
+    assembly = parseFile(args.input).assemble()
 
     if args.display or sys.stdout.isatty():
 
