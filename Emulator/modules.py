@@ -78,6 +78,23 @@ class MemoryAddressRegister:
         self.address = address_register.q
 
 
+class FlagsRegister:
+    def __init__(self, name, carry, zero, clk, load, clr):
+        data_in = [carry, zero] + [Signal.GND] * 2
+        address_register = SN74LS173(
+            f"{name}:IC2",
+            d=data_in,
+            clk=clk,
+            m=Signal.GND,
+            n=Signal.GND,
+            g1=load,
+            g2=load,
+            clr=clr,
+        )
+
+        self.CF = address_register.q[0]
+        self.ZF = address_register.q[1]
+
 class ALU:
     def __init__(self, name, databus, operand_1, operand_2, su, out):
         # calculate the ones complement of the second operand if the sub signal is high

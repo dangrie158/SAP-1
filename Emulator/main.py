@@ -23,6 +23,8 @@ MI = Signal("MAR In", State.HIGH)
 SU = Signal("ALU Substract", State.LOW)
 EO = Signal("ALU Out", State.HIGH)
 
+FI = Signal("Flags In", State.HIGH)
+
 RA = DataRegister("RA", databus, clk, load=AI, out=AO, clr=clr)
 RB = DataRegister("RB", databus, clk, load=BI, out=Signal.VCC, clr=clr)
 IR = InstructionRegister("IR", databus, clk, load=II, out=IO, clr=clr)
@@ -35,6 +37,7 @@ ALU = ALU(
     su=SU,
     out=EO
 )
+FR = FlagsRegister("FR", ALU.carry, ALU.zero, clk, load=FI, clr=clr)
 
 # print(bool(ALU.zero))
 # BI.state = State.LOW
