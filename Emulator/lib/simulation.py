@@ -25,13 +25,10 @@ class State(Enum):
             return False
 
 
-BoolOrState = Union[State, bool]
-
-
 class Signal:
     sig_num: int = 0
 
-    def __init__(self, name: str = None, initial: BoolOrState = State.HIGH_Z):
+    def __init__(self, name: str = None, initial: State = State.HIGH_Z):
         self.name = name
         self.handlers = []
         self._state = initial
@@ -57,8 +54,11 @@ class Signal:
     @state.setter
     def state(self, new_state: Union[State, bool]) -> None:
         self._state = new_state
+        self.notify()
+
+    def notify(self):
         for handler in self.handlers:
-            handler(new_state)
+            handler(self._state)
 
     def toggle(self) -> None:
         self.state = not self.state
@@ -78,7 +78,7 @@ Signal.FLOATING = Signal("unconnected", State.HIGH_Z)
 class Junction:
     junction_num: int = 0
 
-    def __init__(self, name: str = None, initial: Optional[BoolOrState] = None):
+    def __init__(self, name: str = None, initial: Optional[State] = None):
         self.name = name
         self.handlers = []
         self._signals = []
@@ -152,14 +152,14 @@ class Bus:
         return len(self._lines)
 
     @staticmethod
-    def to_int(lines, order='little'):
-        bin_state = ''.join(['1' if line.state else '0' for line in lines])
-
-        if order == 'little':
+    def to_int(lines, order="little"):
+        bin_state = "".join(["1" if line.state else "0" for line in lines])
+        if order == "little":
             # reverse the bitmap
             bin_state = bin_state[::-1]
 
         return int(bin_state, 2)
+
 
 class Clock(threading.Thread):
 

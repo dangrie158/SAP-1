@@ -4,11 +4,12 @@ from .modules import *
 simulation_clock = Clock(freq=1)
 
 databus = Bus("Databus", width=8)
+control_word = Bus("Control Word", width=16)
 
-clk = Signal("clk", State.LOW)
-i_clk = Signal("!clk", lambda: not clk)
-clr = Signal("clr", State.LOW)
-i_clr = Signal("clr", lambda: not clk)
+clk = Signal("CLK", State.LOW)
+i_clk = Signal("!CLK", lambda: not clk)
+clr = Signal("CLR", State.LOW)
+i_clr = Signal("CLR", lambda: not clr)
 
 AI = Signal("A In", State.HIGH)
 AO = Signal("A Out", State.HIGH)
@@ -47,6 +48,7 @@ ALU = ALU(
 FR = FlagsRegister("FR", ALU.carry, ALU.zero, clk, load=FI, clr=clr)
 RAM = RAM("RAM", databus, MAR.address, load=RI, out=RO)
 PC = ProgramCounter("PC", databus, CE, clk, CI, i_clr, CO)
+ID = InstructionDecoder("ID", "LUTs/microcode.bin", control_word, IR.opcode, FR.CF, FR.ZF, i_clk, i_clr)
 
 # print(bool(ALU.zero))
 # BI.state = State.LOW
@@ -66,12 +68,16 @@ PC = ProgramCounter("PC", databus, CE, clk, CI, i_clr, CO)
 # EO.state=State.LOW
 # print(bool(ALU.zero))
 
-CO.state = State.LOW
-CE.state = State.HIGH
+# CO.state = State.LOW
+# CE.state = State.HIGH
 
 @simulation_clock.every(simulation_clock.neg_edge)
 @simulation_clock.every(simulation_clock.pos_edge)
 def update():
     clk.toggle()
-    print(databus.state)
+    i_clk.notify()
+    # print(databus.state)
+    print([sig for sig in control_word])
+    #print(bool(ID.microinstruction_counter.clr))
+    #print([bool(sig.state) for sig in ID.microinstruction_counter.q])
 

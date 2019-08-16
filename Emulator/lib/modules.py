@@ -94,6 +94,7 @@ class FlagsRegister:
         self.CF = address_register.q[0]
         self.ZF = address_register.q[1]
 
+
 class ALU:
     def __init__(self, name, databus, operand_1, operand_2, su, out):
         # calculate the ones complement of the second operand if the sub signal is high
@@ -130,32 +131,153 @@ class ALU:
         self.zero = Signal(f"{name}:ZERO", zero_detect_and.z[2])
         self.carry = Signal(f"{name}:CARRY", adder_2.c4)
 
+
 class RAM:
     def __init__(self, name, databus, address, load, out):
-        
-        ram_1 = SN74LS189(f"{name}:IC1", a=address, d=databus[:4], cs=Signal.GND, we=load)
-        ram_2 = SN74LS189(f"{name}:IC2", a=address, d=databus[4:], cs=Signal.GND, we=load)
 
-        inverter_1 = SN74LS04(f"{name}:IC4", a=ram_1.o[:] + [Signal.GND]*2)
-        inverter_2 = SN74LS04(f"{name}:IC5", a=ram_2.o[:] + [Signal.GND]*2)
+        ram_1 = SN74LS189(
+            f"{name}:IC1", a=address, d=databus[:4], cs=Signal.GND, we=load
+        )
+        ram_2 = SN74LS189(
+            f"{name}:IC2", a=address, d=databus[4:], cs=Signal.GND, we=load
+        )
+
+        inverter_1 = SN74LS04(f"{name}:IC4", a=ram_1.o[:] + [Signal.GND] * 2)
+        inverter_2 = SN74LS04(f"{name}:IC5", a=ram_2.o[:] + [Signal.GND] * 2)
 
         buffer = SN74LS245(
             f"{name}:IC3", a=inverter_1.z[:4] + inverter_2.z[:4], dir=Signal.VCC, g=out
         )
         databus.append(buffer.b)
 
+
 class ProgramCounter:
     def __init__(self, name, databus, enable, clk, load, clr, out):
 
-        counter = SN74LS161(f"{name}:IC1", a=databus[:4], clk=clk, enp=enable, ent=enable, ld=load, clr=clr)
-        
+        counter = SN74LS161(
+            f"{name}:IC1",
+            a=databus[:4],
+            clk=clk,
+            enp=enable,
+            ent=enable,
+            ld=load,
+            clr=clr,
+        )
+
         buffer = SN74LS245(
             f"{name}:IC2", a=counter.q[:] + [Signal.GND] * 4, dir=Signal.VCC, g=out
         )
 
         databus.append(buffer.b)
 
-class InstructionDecoder:
-    def __init__(self, name, control_word, instruction, clear_flag, zero_flag, clk, clr):
 
-        counter = SN74LS161(f"{name}:IC5", a=[Signal.GND] * 4, clk=clk, enp=Signal.VCC, ent=Signal.VCC, ld=Signal.VCC, clr=clr)
+class InstructionDecoder:
+    def __init__(
+        self,
+        name,
+        microcode_rom,
+        control_word,
+        instruction,
+        clear_flag,
+        zero_flag,
+        clk,
+        clr,
+    ):
+
+        microinstruction_counter = SN74LS161(
+            f"{name}:IC5",
+            a=[Signal.GND] * 4,
+            clk=clk,
+            enp=Signal.VCC,
+            ent=Signal.VCC,
+            ld=Signal.VCC,
+            clr=clr,
+        )
+
+        microinstruction_decoder = SN74LS138(
+            a=microinstruction_counter.q[:3],
+            g1=Signal.VCC,
+            g2a=Signal.GND,
+            g2b=Signal.GND,
+        )
+
+        reset_nor = SN74LS00("IC7")
+        # the 6th step should reset the counter (5 actual microsteps)
+        reset_nor.a[2] = microinstruction_decoder.y[5]
+        # also, the inverted clear should reset
+        reset_nor.b[2] = clr
+
+        # invert the  active low reset signal
+        reset_nor.a[3] = reset_nor.z[2]
+        reset_nor.b[3] = reset_nor.z[2]
+        microinstruction_counter.clr = reset_nor.z[3]
+
+        microcode_rom1 = AT28C16(
+            "IC1",
+            microcode_rom,
+            a=microinstruction_counter.q[:3]
+            + instruction
+            + [
+                Signal.GND,  # chip select pin for lower CW byte
+                clear_flag,
+                zero_flag,
+                Signal.GND,
+            ],
+            we=Signal.VCC,
+            oe=Signal.GND,
+            ce=Signal.GND,
+        )
+
+        microcode_rom2 = AT28C16(
+            "IC2",
+            microcode_rom,
+            a=microinstruction_counter.q[:3]
+            + instruction
+            + [
+                Signal.VCC,  # chip select pin for upper CW byte
+                clear_flag,
+                zero_flag,
+                Signal.GND,
+            ],
+            we=Signal.VCC,
+            oe=Signal.GND,
+            ce=Signal.GND,
+        )
+
+        cw_inverter_1 = SN74LS04("IC3")
+        cw_inverter_2 = SN74LS04("IC4")
+
+        cw_inverter_1.a[0] = microcode_rom1.d[1]
+        cw_inverter_1.a[1] = microcode_rom1.d[2]
+        cw_inverter_1.a[2] = microcode_rom1.d[4]
+        cw_inverter_1.a[3] = microcode_rom1.d[5]
+        cw_inverter_1.a[4] = microcode_rom1.d[6]
+        cw_inverter_1.a[5] = microcode_rom1.d[7]
+        cw_inverter_2.a[0] = microcode_rom2.d[0]
+        cw_inverter_2.a[1] = microcode_rom2.d[2]
+        cw_inverter_2.a[2] = microcode_rom1.d[5]
+        cw_inverter_2.a[3] = microcode_rom1.d[6]
+        cw_inverter_2.a[4] = microcode_rom1.d[7]
+        cw_inverter_2.a[5] = Signal.GND
+
+        control_word.append(
+            [
+                microcode_rom1.d[0],  # HLT
+                cw_inverter_1.a[0],  # MI
+                cw_inverter_1.a[1],  # RO
+                microcode_rom1.d[3],  # RI
+                cw_inverter_1.a[2],  # IO
+                cw_inverter_1.a[3],  # II
+                cw_inverter_1.a[4],  # AO
+                cw_inverter_1.a[5],  # AI
+                cw_inverter_2.a[0],  # EO
+                microcode_rom1.d[1],  # SU
+                cw_inverter_2.a[1],  # BI
+                microcode_rom1.d[3],  # OI
+                microcode_rom1.d[4],  # CE
+                cw_inverter_2.a[2],  # CO
+                cw_inverter_2.a[3],  # JP
+                cw_inverter_2.a[4],  # FI
+            ]
+        )
+

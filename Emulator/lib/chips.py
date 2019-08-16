@@ -7,6 +7,7 @@ from functools import partial
 
 from .simulation import Signal, State, Bus
 
+
 class IC:
     input_signals = []
     output_signals = {}
@@ -167,7 +168,8 @@ class SN74LS138(IC):
     output_busses = {
         "y": (
             num_bits,
-            lambda self, bit: (State.from_bool(Bus.to_int(self.a) == bit))
+            # output line are inverted, only the current bit is low
+            lambda self, bit: State.from_bool(Bus.to_int(self.a) != bit)
             if self.g1 and (not self.g2a and not self.g2b)
             else State.HIGH_Z,
         )
@@ -185,14 +187,17 @@ class SN74LS161(IC):
     output_busses = {
         "q": (
             num_bits,
-            lambda self, x: State.from_bool(format(self.count, "04b")[x] == "1"),
+            # bring the count into little endian by inverting the bit num
+            lambda self, x: State.from_bool(
+                format(self.count, "04b")[self.num_bits - x - 1] == "1"
+            ),
         )
     }
 
     def __init__(self, name: Optional[str] = None, **kwargs: Mapping[str, Signal]):
         super().__init__(name, **kwargs)
         self.count = 0
-
+        self.clk.on_change(lambda _: self.clr.notify())
         self.clk.on_change(self._load)
         self.clr.on_change(self._clear)
 
@@ -206,7 +211,7 @@ class SN74LS161(IC):
 
     def _clear(self, new_val):
         # clear on rising edge of clear
-        if not self._clear:
+        if not self.clr:
             self.count = 0
 
 
@@ -234,6 +239,7 @@ class SN74LS173(IC):
         # initially the register contents are 0
         self.reg = [State.LOW] * 4
 
+        self.clk.on_change(lambda _: self.clr.notify())
         self.clk.on_change(self._update)
         self.g1.on_change(self._update)
         self.g2.on_change(self._update)
@@ -249,7 +255,7 @@ class SN74LS173(IC):
                     for num in range(self.num_bits):
                         self.reg[num] = self.d[num].state
 
-    def clear(self) -> None:
+    def clear(self, _) -> None:
         # the clear bit is active-high
         if self.clear:
             for bit in range(self.num_bits):
@@ -270,7 +276,8 @@ class SN74LS189(IC):
         if not self.cs and self.we:
             address = Bus.to_int(self.a)
             contents = self.contents[address]
-            return State.HIGH if format(contents[bit], "04b")[bit] == "1" else State.LOW
+            # output bits of the chip are inverted
+            return State.HIGH if format(contents[bit], "04b")[bit] == "0" else State.LOW
         else:
             return State.HIGH_Z
 
@@ -341,3 +348,39 @@ class SN74LS283(IC):
 
     def _get_bit(self, x):
         return State.HIGH if self._partial_sum(x) in (1, 3) else State.LOW
+
+
+class AT28C16(IC):
+    """
+    16K (2K x 8) Parallel EEPROM
+    """
+
+    num_bytes = 2048
+    addr_bits = math.ceil(math.log2(num_bytes))
+
+    input_signals = ["we", "oe", "ce"]
+    input_busses = {"a": addr_bits}
+    output_busses = {
+        "d": (
+            8,
+            lambda self, bit: State.from_bool(
+                format(self.contents[Bus.to_int(self.a)], "08b")[bit] == "1"
+                if not self.oe and not self.ce
+                else State.HIGH_Z
+            ),
+        )
+    }
+
+    def __init__(self, name, rom_file, **kwargs: Mapping[str, Signal]):
+        super().__init__(name, **kwargs)
+
+        self.we.on_change(
+            lambda x: ValueError(
+                "Writing not supported. 'dir' pin needs to be tied high"
+            )
+            if not x
+            else None
+        )
+
+        with open(rom_file, "rb") as rom:
+            self.contents = rom.read()
