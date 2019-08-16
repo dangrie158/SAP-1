@@ -155,6 +155,26 @@ class SN74LS86(IC):
     }
 
 
+class SN74LS138(IC):
+    """
+    1−of−8 Decoder/ Demultiplexer
+    """
+
+    num_bits = 8
+    num_addr_lines = math.ceil(math.log2(num_bits))
+
+    input_signals = ["g1", "g2a", "g2b"]
+    input_busses = {"a": num_addr_lines}
+    output_busses = {
+        "y": (
+            num_bits,
+            lambda self, bit: (State.from_bool(Bus.to_int(self.a) == bit))
+            if self.g1 and (not self.g2a and not self.g2b)
+            else State.HIGH_Z,
+        )
+    }
+
+
 class SN74LS161(IC):
     """
     Synchronous 4-bit counter
@@ -163,7 +183,12 @@ class SN74LS161(IC):
     num_bits = 4
     input_signals = ["clk", "enp", "ent", "ld", "clr"]
     input_busses = {"a": num_bits}
-    output_busses = {"q": (num_bits, lambda self, x: format(self.count, "04b")[x])}
+    output_busses = {
+        "q": (
+            num_bits,
+            lambda self, x: State.from_bool(format(self.count, "04b")[x] == "1"),
+        )
+    }
 
     def __init__(self, name: Optional[str] = None, **kwargs: Mapping[str, Signal]):
         super().__init__(name, **kwargs)
@@ -174,7 +199,7 @@ class SN74LS161(IC):
 
     def _load(self, new_val):
         if self.clk and not self.ld:
-            self.count = Bus("", self.a).to_int()
+            self.count = Bus.to_int(self.a)
 
         if self.clk and self.enp and self.ent:
             self.count += 1
@@ -244,10 +269,9 @@ class SN74LS189(IC):
 
     def get_output_bit(self, bit) -> Signal:
         if not self.cs and self.we:
-            address = Bus("", self.a).to_int()
+            address = Bus.to_int(self.a)
             contents = self.contents[address]
-            bit_state = State.HIGH if contents[bit] == 1 else State.LOW
-            return self.contents[address] if not self.m and not self.n else State.HIGH_Z
+            return State.HIGH if format(contents[bit], "04b")[bit] == "1" else State.LOW
         else:
             return State.HIGH_Z
 
@@ -260,15 +284,15 @@ class SN74LS189(IC):
 
         # create the ram content buffer (initialize randomly)
         # just like the real thing would do
-        self.contents = [0] * random.getrandbits(SN74LS189.word_width)
+        self.contents = [random.getrandbits(SN74LS189.word_width)] * self.num_words
 
         # write the data contents on the falling edge of the erite pin
         self.we.on_change(lambda x: self._write_word() if not x else None)
 
     def _write_word():
         if not self.cs:
-            input_val = Bus("", self.d).to_int()
-            address = Bus("", self.a).to_int()
+            input_val = Bus.to_int(self.d)
+            address = Bus.to_int(self.a)
 
             self.contents[address] = input_val
 

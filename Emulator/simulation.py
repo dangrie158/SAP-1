@@ -11,8 +11,8 @@ class State(Enum):
     HIGH = 1
     HIGH_Z = 2
 
-    @classmethod
-    def from_bool(cls, state: bool) -> "State":
+    @staticmethod
+    def from_bool(state: bool) -> "State":
         return State.HIGH if state else State.LOW
 
     def __bool__(self) -> bool:
@@ -151,8 +151,9 @@ class Bus:
     def __len__(self):
         return len(self._lines)
 
-    def to_int(self, order='little'):
-        bin_state = ''.join(['1' if line.state else '0' for line in self._lines])
+    @staticmethod
+    def to_int(lines, order='little'):
+        bin_state = ''.join(['1' if line.state else '0' for line in lines])
 
         if order == 'little':
             # reverse the bitmap
