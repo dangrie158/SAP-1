@@ -94,6 +94,19 @@ class IC:
             )
 
 
+class SN74LS00(IC):
+    """
+    Quad 2-input positive-NAND gates
+    """
+
+    num_gates = 4
+    input_busses = {"a": num_gates, "b": num_gates}
+
+    output_busses = {
+        "z": (num_gates, lambda self, bit: not (self.a[bit] and self.b[bit]))
+    }
+
+
 class SN74LS02(IC):
     """
     Quadruple 2-input positive-NOR gates
@@ -146,12 +159,11 @@ class SN74LS161(IC):
     """
     Synchronous 4-bit counter
     """
+
     num_bits = 4
     input_signals = ["clk", "enp", "ent", "ld", "clr"]
     input_busses = {"a": num_bits}
-    output_busses = {
-        "q": (num_bits, lambda self, x: format(self.count, '04b')[x])
-    }
+    output_busses = {"q": (num_bits, lambda self, x: format(self.count, "04b")[x])}
 
     def __init__(self, name: Optional[str] = None, **kwargs: Mapping[str, Signal]):
         super().__init__(name, **kwargs)
@@ -166,7 +178,7 @@ class SN74LS161(IC):
 
         if self.clk and self.enp and self.ent:
             self.count += 1
-            self.count %= (2 ** self.num_bits)
+            self.count %= 2 ** self.num_bits
 
     def _clear(self, new_val):
         # clear on rising edge of clear
@@ -224,6 +236,7 @@ class SN74LS189(IC):
     """
     64-Bit Random Access Memory with 3-STATE Outputs
     """
+
     num_bits = 64
     word_width = 4
     num_words = num_bits // word_width
