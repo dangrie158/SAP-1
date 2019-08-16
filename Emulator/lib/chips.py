@@ -5,8 +5,7 @@ from types import MethodType
 from pprint import pformat
 from functools import partial
 
-from simulation import Signal, State, Bus
-
+from .simulation import Signal, State, Bus
 
 class IC:
     input_signals = []

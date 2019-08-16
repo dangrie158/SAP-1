@@ -1,5 +1,5 @@
-from simulation import Clock, Signal, State
-from chips import *
+from .simulation import Clock, Signal, State
+from .chips import *
 
 
 class DataRegister:
@@ -154,3 +154,8 @@ class ProgramCounter:
         )
 
         databus.append(buffer.b)
+
+class InstructionDecoder:
+    def __init__(self, name, control_word, instruction, clear_flag, zero_flag, clk, clr):
+
+        counter = SN74LS161(f"{name}:IC5", a=[Signal.GND] * 4, clk=clk, enp=Signal.VCC, ent=Signal.VCC, ld=Signal.VCC, clr=clr)
