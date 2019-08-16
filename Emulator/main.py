@@ -28,6 +28,10 @@ FI = Signal("Flags In", State.HIGH)
 RO = Signal("RAM Out", State.HIGH)
 RI = Signal("RAM In", State.HIGH)
 
+CE = Signal("Counter Enable", State.LOW)
+CI = Signal("Counter In", State.HIGH)
+CO = Signal("Counter Out", State.HIGH)
+
 RA = DataRegister("RA", databus, clk, load=AI, out=AO, clr=clr)
 RB = DataRegister("RB", databus, clk, load=BI, out=Signal.VCC, clr=clr)
 IR = InstructionRegister("IR", databus, clk, load=II, out=IO, clr=clr)
@@ -42,24 +46,28 @@ ALU = ALU(
 )
 FR = FlagsRegister("FR", ALU.carry, ALU.zero, clk, load=FI, clr=clr)
 RAM = RAM("RAM", databus, MAR.address, load=RI, out=RO)
+PC = ProgramCounter("PC", databus, CE, clk, CI, i_clr, CO)
 
-print(bool(ALU.zero))
-BI.state = State.LOW
-AI.state = State.LOW
-val1 = State.HIGH
-val2 = State.LOW
-test = [Signal(initial= lambda: val1) for _ in range(4)] + [Signal(initial= lambda: val2) for _ in range(4)]
+# print(bool(ALU.zero))
+# BI.state = State.LOW
+# AI.state = State.LOW
+# val1 = State.HIGH
+# val2 = State.LOW
+# test = [Signal(initial= lambda: val1) for _ in range(4)] + [Signal(initial= lambda: val2) for _ in range(4)]
 
-databus.append(test)
-clk.toggle()
-clk.toggle()
-BI.state = State.HIGH
-AI.state = State.HIGH
-val1 = State.HIGH_Z
-val2 = State.HIGH_Z
+# databus.append(test)
+# clk.toggle()
+# clk.toggle()
+# BI.state = State.HIGH
+# AI.state = State.HIGH
+# val1 = State.HIGH_Z
+# val2 = State.HIGH_Z
 
-EO.state=State.LOW
-print(bool(ALU.zero))
+# EO.state=State.LOW
+# print(bool(ALU.zero))
+
+CO.state = State.LOW
+CE.state = State.HIGH
 
 
 @simulation_clock.every(simulation_clock.neg_edge)

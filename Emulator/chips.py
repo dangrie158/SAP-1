@@ -106,10 +106,6 @@ class SN74LS02(IC):
         "z": (num_gates, lambda self, bit: not (self.a[bit] or self.b[bit]))
     }
 
-    def get_output(self, bit):
-        # NOR
-        return not (self.a[bit] or self.b[bit])
-
 
 class SN74LS04(IC):
     """
@@ -146,6 +142,38 @@ class SN74LS86(IC):
     }
 
 
+class SN74LS161(IC):
+    """
+    Synchronous 4-bit counter
+    """
+    num_bits = 4
+    input_signals = ["clk", "enp", "ent", "ld", "clr"]
+    input_busses = {"a": num_bits}
+    output_busses = {
+        "q": (num_bits, lambda self, x: format(self.count, '04b')[x])
+    }
+
+    def __init__(self, name: Optional[str] = None, **kwargs: Mapping[str, Signal]):
+        super().__init__(name, **kwargs)
+        self.count = 0
+
+        self.clk.on_change(self._load)
+        self.clr.on_change(self._clear)
+
+    def _load(self, new_val):
+        if self.clk and not self.ld:
+            self.count = Bus("", self.a).to_int()
+
+        if self.clk and self.enp and self.ent:
+            self.count += 1
+            self.count %= (2 ** self.num_bits)
+
+    def _clear(self, new_val):
+        # clear on rising edge of clear
+        if not self._clear:
+            self.count = 0
+
+
 class SN74LS173(IC):
     """
     4-Bit D-Type Registers With 3-State Outputs
@@ -168,9 +196,7 @@ class SN74LS173(IC):
         super().__init__(name, **kwargs)
 
         # initially the register contents are 0
-        self.reg = [
-            Signal(f"{self.name}:D{num}", State.LOW) for num in range(self.num_bits)
-        ]
+        self.reg = [State.LOW] * 4
 
         self.clk.on_change(self._update)
         self.g1.on_change(self._update)
@@ -185,19 +211,23 @@ class SN74LS173(IC):
                 if not self.g1 and not self.g2:
                     # latch the data in
                     for num in range(self.num_bits):
-                        self.reg[num].state = self.d[num].state
+                        self.reg[num] = self.d[num].state
 
     def clear(self) -> None:
         # the clear bit is active-high
         if self.clear:
             for bit in range(self.num_bits):
-                self.reg[bit].set(State.LOW)
+                self.reg[bit] = State.LOW
 
 
 class SN74LS189(IC):
     """
     64-Bit Random Access Memory with 3-STATE Outputs
     """
+    num_bits = 64
+    word_width = 4
+    num_words = num_bits // word_width
+    num_addr_bits = math.ceil(math.log2(num_words))
 
     def get_output_bit(self, bit) -> Signal:
         if not self.cs and self.we:
@@ -208,21 +238,16 @@ class SN74LS189(IC):
         else:
             return State.HIGH_Z
 
-    num_bits = 64
-    word_width = 4
-    num_words = num_bits // word_width
-    num_addr_bits = math.ceil(math.log2(num_words))
-
     input_signals = ["cs", "we"]
     input_busses = {"a": num_addr_bits, "d": num_addr_bits}
     output_busses = {"o": (word_width, get_output_bit)}
 
     def __init__(self, *args, **kwargs):
-        super().__init(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         # create the ram content buffer (initialize randomly)
         # just like the real thing would do
-        self.contents = [0] * random.getrandbits(word_width)
+        self.contents = [0] * random.getrandbits(SN74LS189.word_width)
 
         # write the data contents on the falling edge of the erite pin
         self.we.on_change(lambda x: self._write_word() if not x else None)

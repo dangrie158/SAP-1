@@ -133,11 +133,24 @@ class ALU:
 class RAM:
     def __init__(self, name, databus, address, load, out):
         
+        ram_1 = SN74LS189(f"{name}:IC1", a=address, d=databus[:4], cs=Signal.GND, we=load)
+        ram_2 = SN74LS189(f"{name}:IC2", a=address, d=databus[4:], cs=Signal.GND, we=load)
 
-        inverter_1 = SN74LS04(f"{name}:IC4", a=[Signal.GND]*6)
-        inverter_2 = SN74LS04(f"{name}:IC5", a=[Signal.GND]*6)
+        inverter_1 = SN74LS04(f"{name}:IC4", a=ram_1.o[:] + [Signal.GND]*2)
+        inverter_2 = SN74LS04(f"{name}:IC5", a=ram_2.o[:] + [Signal.GND]*2)
 
         buffer = SN74LS245(
             f"{name}:IC3", a=inverter_1.z[:4] + inverter_2.z[:4], dir=Signal.VCC, g=out
         )
+        databus.append(buffer.b)
+
+class ProgramCounter:
+    def __init__(self, name, databus, enable, clk, load, clr, out):
+
+        counter = SN74LS161(f"{name}:IC1", a=databus[:4], clk=clk, enp=enable, ent=enable, ld=load, clr=clr)
+        
+        buffer = SN74LS245(
+            f"{name}:IC2", a=counter.q[:] + [Signal.GND] * 4, dir=Signal.VCC, g=out
+        )
+
         databus.append(buffer.b)
