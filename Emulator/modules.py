@@ -27,7 +27,6 @@ class DataRegister:
         buffer = SN74LS245(
             f"{name}:IC1", a=lower_nibble.q + upper_nibble.q, dir=Signal.VCC, g=out
         )
-
         databus.append(buffer.b)
         self.contents = lower_nibble.q + upper_nibble.q
 
@@ -108,10 +107,10 @@ class ALU:
             f"{name}:IC2", a=operand_1[4:], b=ones_complementor_2.z, c0=adder_1.c4
         )
 
-        self.buffer = SN74LS245(
+        buffer = SN74LS245(
             f"{name}:IC5", a=adder_1.e + adder_2.e, dir=Signal.VCC, g=out
         )
-        databus.append(self.buffer.b)
+        databus.append(buffer.b)
 
         zero_detect_nor = SN74LS02(
             f"{name}:IC6",
@@ -130,3 +129,15 @@ class ALU:
 
         self.zero = Signal(f"{name}:ZERO", zero_detect_and.z[2])
         self.carry = Signal(f"{name}:CARRY", adder_2.c4)
+
+class RAM:
+    def __init__(self, name, databus, address, load, out):
+        
+
+        inverter_1 = SN74LS04(f"{name}:IC4", a=[Signal.GND]*6)
+        inverter_2 = SN74LS04(f"{name}:IC5", a=[Signal.GND]*6)
+
+        buffer = SN74LS245(
+            f"{name}:IC3", a=inverter_1.z[:4] + inverter_2.z[:4], dir=Signal.VCC, g=out
+        )
+        databus.append(buffer.b)

@@ -1,11 +1,18 @@
-from simulation import Signal, State, Bus
+import math
+import random
 from typing import Sequence, Mapping, Optional
+from types import MethodType
 from pprint import pformat
 from functools import partial
 
+from simulation import Signal, State, Bus
+
 
 class IC:
-    signals = []
+    input_signals = []
+    output_signals = {}
+    input_busses = {}
+    output_busses = {}
 
     def __init__(self, name: Optional[str] = None, **kwargs: Mapping[str, Signal]):
 
@@ -13,7 +20,7 @@ class IC:
         if self.name is None:
             self.name = self.__class__.__name__
 
-        for signal_name in self.signals:
+        for signal_name in self.input_signals:
             setattr(
                 self,
                 signal_name,
@@ -23,89 +30,120 @@ class IC:
                 ),
             )
 
+        for bus_name, width in self.input_busses.items():
+            setattr(
+                self,
+                bus_name,
+                kwargs.pop(
+                    bus_name,
+                    [
+                        Signal(f"{self.name}:{bus_name.upper()}{sig_num}", State.HIGH)
+                        for sig_num in range(width)
+                    ],
+                ),
+            )
+            # check if the created bus has actually the required length
+            IC.check_bus_length(getattr(self, bus_name), width)
+
+        # create the output signal getters
+        for signal_name, state_fun in self.output_signals.items():
+            setattr(
+                self,
+                signal_name,
+                Signal(
+                    f"{self.name.upper()}:{signal_name.upper()}",
+                    MethodType(state_fun, self),
+                ),
+            )
+
+        # create the output bus getters
+        for bus_name, bus_info in self.output_busses.items():
+            bus_width, bit_fun = bus_info
+            setattr(
+                self,
+                bus_name,
+                [
+                    Signal(
+                        f"{self.name.upper()}:{bus_name.upper()}{bit}",
+                        partial(MethodType(bit_fun, self), bit),
+                    )
+                    for bit in range(bus_width)
+                ],
+            )
+
         unknown_signals = [
             signal for signal in kwargs.keys() if signal not in self.signals
         ]
         if len(unknown_signals) > 0:
             raise ValueError(f"provided unknown signal names: {unknown_signals}")
 
+    def get_bus_output(self, bus_name, bus_width, bit_fun):
+        return
+
+    def get_signal_output(self, signal_name, state_fun):
+        return Signal(f"{self.name}:{signal_name}", bit_fun)
+
     def __str__(self):
         return f"IC<{self.name}>: { pformat({signal: pformat(getattr(self, signal)) for signal in self.signals }) }"
 
-    def check_bus_length(self, bus, target_width):
+    @classmethod
+    def check_bus_length(cls, bus, target_width):
         if not hasattr(bus, "__len__") or len(bus) != target_width:
             raise ValueError(
-                f"{self.__class__.__name__} takes exacly {target_width} input signals in '{bus.__dict__.get('name', '<unknown bus>')}'"
+                f"{cls.__name__} takes exacly {target_width} input signals in '{bus[0].get('name', '<unknown bus>')}'"
             )
 
 
-class LogicGate(IC):
-    """
-    A general logic gate with multiple gates. 
-    """
-
-    signals = ["a", "b"]
-
-    def __init__(self, name: Optional[str] = None, **kwargs: Mapping[str, Signal]):
-        super().__init__(name, **kwargs)
-
-        super().check_bus_length(self.a, self.num_gates)
-        super().check_bus_length(self.b, self.num_gates)
-
-    def get_output(self, bit):
-        raise NotImplementedError("You need to implement a logic function")
-
-    @property
-    def z(self) -> Sequence[Signal]:
-        get_bit = lambda bit: self.a[bit] != self.b[bit]
-
-        return [
-            Signal(f"{self.name}:Z{bit}", partial(self.get_output, bit))
-            for bit in range(self.num_gates)
-        ]
-        return Bus(
-            f"{self.name}:Z",
-            [
-                Signal(f"{self.name}:Z{bit}", partial(self.get_output, bit))
-                for bit in range(self.num_gates)
-            ],
-        )
-
-
-class SN74LS02(LogicGate):
+class SN74LS02(IC):
     """
     Quadruple 2-input positive-NOR gates
     """
 
     num_gates = 4
+    input_busses = {"a": num_gates, "b": num_gates}
+
+    output_busses = {
+        "z": (num_gates, lambda self, bit: not (self.a[bit] or self.b[bit]))
+    }
 
     def get_output(self, bit):
         # NOR
-        return not self.a[bit] or self.b[bit]
+        return not (self.a[bit] or self.b[bit])
 
 
-class SN74LS08(LogicGate):
+class SN74LS04(IC):
+    """
+    Hex Inverter
+    """
+
+    num_gates = 6
+    input_busses = {"a": num_gates}
+
+    output_busses = {"z": (num_gates, lambda self, bit: not self.a[bit])}
+
+
+class SN74LS08(IC):
     """
     Quadruple 2-input positive-AND gates
     """
 
     num_gates = 4
+    input_busses = {"a": num_gates, "b": num_gates}
 
-    def get_output(self, bit):
-        # AND
-        return self.a[bit] and self.b[bit]
+    output_busses = {"z": (num_gates, lambda self, bit: self.a[bit] and self.b[bit])}
 
 
-class SN74LS86(LogicGate):
+class SN74LS86(IC):
     """
     Quadruple 2-Input Exclusive-OR Gate
     """
 
     num_gates = 4
+    input_busses = {"a": num_gates, "b": num_gates}
 
-    def get_output(self, bit):
-        # logical xor
-        return bool(self.a[bit]) != bool(self.b[bit])
+    output_busses = {
+        "z": (num_gates, lambda self, bit: bool(self.a[bit]) != bool(self.b[bit]))
+    }
 
 
 class SN74LS173(IC):
@@ -114,12 +152,20 @@ class SN74LS173(IC):
     """
 
     num_bits = 4
-    signals = ["d", "clk", "m", "n", "g1", "g2", "clr"]
+    input_signals = ["clk", "m", "n", "g1", "g2", "clr"]
+    input_busses = {"d": num_bits}
+
+    output_busses = {
+        "q": (
+            num_bits,
+            lambda self, bit: self.reg[bit]
+            if not self.m and not self.n
+            else State.HIGH_Z,
+        )
+    }
 
     def __init__(self, name: Optional[str] = None, **kwargs: Mapping[str, Signal]):
         super().__init__(name, **kwargs)
-
-        super().check_bus_length(self.d, self.num_bits)
 
         # initially the register contents are 0
         self.reg = [
@@ -130,17 +176,6 @@ class SN74LS173(IC):
         self.g1.on_change(self._update)
         self.g2.on_change(self._update)
         self.clr.on_change(self.clear)
-
-    @property
-    def q(self) -> Sequence[Signal]:
-        get_bit = (
-            lambda bit: self.reg[bit] if not self.m and not self.n else State.HIGH_Z
-        )
-
-        return [
-            Signal(f"{self.name}:D{bit}", partial(get_bit, bit))
-            for bit in range(self.num_bits)
-        ]
 
     def _update(self, _) -> None:
         if not self.clr:
@@ -159,32 +194,69 @@ class SN74LS173(IC):
                 self.reg[bit].set(State.LOW)
 
 
+class SN74LS189(IC):
+    """
+    64-Bit Random Access Memory with 3-STATE Outputs
+    """
+
+    def get_output_bit(self, bit) -> Signal:
+        if not self.cs and self.we:
+            address = Bus("", self.a).to_int()
+            contents = self.contents[address]
+            bit_state = State.HIGH if contents[bit] == 1 else State.LOW
+            return self.contents[address] if not self.m and not self.n else State.HIGH_Z
+        else:
+            return State.HIGH_Z
+
+    num_bits = 64
+    word_width = 4
+    num_words = num_bits // word_width
+    num_addr_bits = math.ceil(math.log2(num_words))
+
+    input_signals = ["cs", "we"]
+    input_busses = {"a": num_addr_bits, "d": num_addr_bits}
+    output_busses = {"o": (word_width, get_output_bit)}
+
+    def __init__(self, *args, **kwargs):
+        super().__init(*args, **kwargs)
+
+        # create the ram content buffer (initialize randomly)
+        # just like the real thing would do
+        self.contents = [0] * random.getrandbits(word_width)
+
+        # write the data contents on the falling edge of the erite pin
+        self.we.on_change(lambda x: self._write_word() if not x else None)
+
+    def _write_word():
+        if not self.cs:
+            input_val = Bus("", self.d).to_int()
+            address = Bus("", self.a).to_int()
+
+            self.contents[address] = input_val
+
+
 class SN74LS245(IC):
     """
     Octal Bus Transceiver
     """
 
     num_bits = 8
-    signals = ["a", "dir", "g"]
+    input_signals = ["dir", "g"]
+    input_busses = {"a": num_bits}
+    output_busses = {
+        "b": (num_bits, lambda self, x: self.a[x] if not self.g else State.HIGH_Z)
+    }
 
     def __init__(self, name: Optional[str] = None, **kwargs: Mapping[str, Signal]):
         super().__init__(name, **kwargs)
 
-        super().check_bus_length(self.a, self.num_bits)
-
-        if not self.dir:
-            raise ValueError(
+        self.dir.on_change(
+            lambda x: ValueError(
                 "Bidirectional Operation not supported. 'dir' pin needs to be tied high"
             )
-
-    @property
-    def b(self):
-        get_bit = lambda x: self.a[x] if not self.g else State.HIGH_Z
-
-        return [
-            Signal(f"{self.name}:B{bit}", partial(get_bit, bit))
-            for bit in range(self.num_bits)
-        ]
+            if not x
+            else None
+        )
 
 
 class SN74LS283(IC):
@@ -193,36 +265,18 @@ class SN74LS283(IC):
     """
 
     num_bits = 4
-    signals = ["a", "b", "c0"]
+    input_signals = ["c0"]
+    input_busses = {"a": num_bits, "b": num_bits}
+    output_signals = {"c4": lambda self: self._get_carry_bit(3)}
+    output_busses = {"e": (num_bits, lambda self, bit: partial(self._get_bit, bit))}
 
-    def __init__(self, name: Optional[str] = None, **kwargs: Mapping[str, Signal]):
-        super().__init__(name, **kwargs)
-
-        super().check_bus_length(self.a, self.num_bits)
-        super().check_bus_length(self.b, self.num_bits)
-
-        self._partial_sum = lambda x: sum(
+    def _partial_sum(self, x):
+        return sum(
             [1 for bit in [self.a[x], self.b[x], self._get_carry_bit(x - 1)] if bit]
         )
-        self._get_carry_bit = lambda x: self.c0 if x == -1 else self._partial_sum(x) > 1
-        self._get_bit = (
-            lambda x: State.HIGH if self._partial_sum(x) in (1, 3) else State.LOW
-        )
 
-    @property
-    def e(self):
-        return [
-            Signal(f"{self.name}:E{bit}", partial(self._get_bit, bit))
-            for bit in range(self.num_bits)
-        ]
-        return Bus(
-            f"{self.name}:E",
-            [
-                Signal(f"{self.name}:E{bit}", partial(self._get_bit, bit))
-                for bit in range(self.num_bits)
-            ],
-        )
+    def _get_carry_bit(self, x):
+        return self.c0 if x == -1 else self._partial_sum(x) > 1
 
-    @property
-    def c4(self):
-        return Signal(f"{self.name}:C4", lambda: self._get_carry_bit(3))
+    def _get_bit(self, x):
+        return State.HIGH if self._partial_sum(x) in (1, 3) else State.LOW

@@ -151,6 +151,14 @@ class Bus:
     def __len__(self):
         return len(self._lines)
 
+    def to_int(self, order='little'):
+        bin_state = ''.join(['1' if line.state else '0' for line in self._lines])
+
+        if order == 'little':
+            # reverse the bitmap
+            bin_state = bin_state[::-1]
+
+        return int(bin_state, 2)
 
 class Clock(threading.Thread):
 
