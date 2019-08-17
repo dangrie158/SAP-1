@@ -178,36 +178,35 @@ def parseFile(file):
 
         else:
             # try to parse the instruction
-            instruction = line_without_comments.split(" ")
-            mnemo = instruction[0]
-            if mnemo not in ISA.OPCODES:
+            instruction_parts = line_without_comments.split(" ")
+            mnemo = instruction_parts[0]
+            if mnemo not in ISA.InstructionSet:
                 raise SyntaxError(f"Unknown instruction: {mnemo}.", (file, cur_line, 0, line))
 
-            if mnemo in ISA.MNEMOS_WITH_DATA:
-                opcode = ISA.OPCODES[mnemo]
+            instruction = ISA.InstructionSet[mnemo]
+            if instruction.hasParameter:
                 try:
-                    data = parse_number(instruction[1])
+                    data = parse_number(instruction_parts[1])
                 except ValueError:
                     # for now, assume the data is a label, resolve later
-                    data = instruction[1]
+                    data = instruction_parts[1]
                 except (TypeError, ValueError, IndexError):
                     raise SyntaxError(
                         "Instructions that have a parameter need to be in the form <instruction mnemo> <data>"
                         , (file, cur_line, len(mnemo) + 1, line),
                     )
             else:
-                if len(instruction) > 1:
+                if len(instruction_parts) > 1:
                     raise SyntaxError(
                         f"Instruction {mnemo} does not expect a parameter", (file, cur_line, len(mnemo) + 1, line)
                     )
 
-                opcode = ISA.OPCODES[mnemo]
                 data = 0
 
             if isinstance(data, int) and (data > 0xF or data < 0x0):
                 raise ValueError("Parameter can only be 4 bits long", line)
 
-            program.instructions.append(Instruction(mnemo, opcode, data))
+            program.instructions.append(Instruction(mnemo, instruction.opcode, data))
 
     return program
 

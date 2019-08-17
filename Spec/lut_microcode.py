@@ -37,16 +37,17 @@ FLAG_CF = 1 << 9
 
 if __name__ == "__main__":
     # create a buffer for the eeprom memory with empty control words (NOP microinstructions)
-    eeprom_content = bytearray([ISA.NOP] * 2048)
+    eeprom_content = bytearray([ISA.CW.NOP] * 2048)
 
     # iterate for all possible combination of flag bits
     for flags in [0x0, FLAG_ZF, FLAG_CF, FLAG_ZF | FLAG_CF]:
         # iterate over both chip select states
         for chip in [CS_LOW_BYTE, CS_HIG_BYTE]:
             # iterate over all possible opcodes
-            for opcode, mnemonic in ISA.INSTRUCTIONS.items():
+            for mnemonic, instruction in ISA.InstructionSet.items():
 
-                ucode = ISA.MICROCODE[mnemonic]
+                ucode = instruction.microcode
+                opcode = instruction.opcode
 
                 # iterate over all microsteps in this instruction
                 for microstep, control_word in enumerate(ucode):
@@ -59,11 +60,11 @@ if __name__ == "__main__":
                     ) & 0xFF
 
                     # mask the conditional jump ucodes after the fetchcycle depending on the flag state
-                    if microstep >= len(ISA.FETCH_CYCLE) and (
+                    if microstep >= len(ISA.Instruction.FETCH_CYCLE) and (
                         (mnemonic == "JC" and not FLAG_CF & flags)
                         or (mnemonic == "JZ" and not FLAG_ZF & flags)
                     ):
-                        cw_byte = ISA.NOP
+                        cw_byte = ISA.CW.NOP
 
                     eeprom_content[address] = cw_byte
 
