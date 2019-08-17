@@ -243,7 +243,7 @@ class SN74LS173(IC):
         super().__init__(name, **kwargs)
 
         # initially the register contents are 0
-        self.reg = [State.LOW] * 4
+        self.reg = [State.LOW] * self.num_bits
 
         self.clk.on_change(lambda _: self.clr.notify())
         self.clk.on_change(self._update)
@@ -333,6 +333,46 @@ class SN74LS245(IC):
             if not x
             else None
         )
+
+
+class SN74LS273(IC):
+    """
+    8-Bit D-Type Register
+    """
+
+    num_bits = 8
+    input_signals = ["clk", "clr"]
+    input_busses = {"d": num_bits}
+
+    output_busses = {
+        "q": (
+            num_bits,
+            lambda self, bit: self.reg[bit]
+        )
+    }
+
+    def __init__(self, name: Optional[str] = None, **kwargs: Mapping[str, Signal]):
+        super().__init__(name, **kwargs)
+
+        # initially the register contents are 0
+        self.reg = [State.LOW] * self.num_bits
+
+        self.clk.on_change(lambda _: self.clr.notify())
+        self.clk.on_change(self._update)
+        self.clr.on_change(self.clear)
+
+    def _update(self, _) -> None:
+        if self.clr and self.clk:
+            # rising edge of the clock
+            # latch the data in
+            for num in range(self.num_bits):
+                self.reg[num] = self.d[num].state
+
+    def clear(self, _) -> None:
+        # the clear bit is active-low
+        if not self.clr:
+            for bit in range(self.num_bits):
+                self.reg[bit] = State.LOW
 
 
 class SN74LS283(IC):

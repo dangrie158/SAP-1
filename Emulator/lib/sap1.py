@@ -35,6 +35,7 @@ FR = FlagsRegister("FR", ALU.carry, ALU.zero, clk, load=control_word['FI'], clr=
 RAM = RAM("RAM", databus, MAR.address, clk, load=control_word['RI'], out=control_word['RO'])
 PC = ProgramCounter("PC", databus, control_word['CE'], clk, control_word['JP'], i_clr, control_word['CO'])
 ID = InstructionDecoder("ID", "LUTs/microcode.bin", control_word, IR.opcode, FR.CF, FR.ZF, i_clk, i_clr)
+OUT = OutputDisplay("OUT", databus, clk, control_word['OI'], i_clr)
 
 # print(bool(ALU.zero))
 # BI.state = State.LOW
@@ -64,18 +65,14 @@ def update():
     clk.toggle()
     clk.notify()
     i_clk.notify()
-    #print(control_word)
-    # print(databus.state)
-    pprint([sig.name for i, sig in enumerate(ID.control_word_positive_logic) if bool(sig)])
-    #pprint([sig.state for sig in ID.microcode_rom1.a])
+
+    print("-"*20)
     opcode_num = Bus.to_int(IR.opcode)
-    print(opcode_num, ISA.InstructionSet.by_opcode(opcode_num).name)
-    #print(Bus.to_int(MAR.address))
+    print(f"Instruction {ISA.InstructionSet.by_opcode(opcode_num).name}")
     print(f"program counter {PC.counter.count}")
-    #print(databus.state)
     print(f"memory address {Bus.to_int(MAR.address)}")
-    #print([bool(sig.state) for sig in ID.microinstruction_counter.q])
-    clk.notify()
-    i_clk.notify()
+    print(f"RA contents {Bus.to_int(RA.contents)}")
+    print(f"RB contents {Bus.to_int(RB.contents)}")
+    print(f"Output contents {Bus.to_int(OUT.contents)}")
 
 

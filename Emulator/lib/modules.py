@@ -294,3 +294,25 @@ class InstructionDecoder:
             ]
         )
 
+class OutputDisplay():
+    def __init__(
+        self,
+        name,
+        databus,
+        clk,
+        load,
+        clr
+    ):
+
+        # and gate is used to syncronize the loading with the clock signal
+        clk_sync = SN74LS08("IC2", a=[clk] + [Signal.GND] * 3, b=[load] + [Signal.GND] * 3)
+        clk.on_change(lambda x: clk_sync.z[0].notify())
+
+        register = SN74LS273(
+            f"{name}:IC3",
+            d=databus,
+            clk=clk_sync.z[0],
+            clr=clr
+        )
+
+        self.contents = register.q

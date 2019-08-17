@@ -221,5 +221,6 @@ class Clock(threading.Thread):
             update_duration = time.clock() - start_time
 
             # wait a half cycle before updating with the different edge
+            #print(update_duration)
             time.sleep((self.tick_duration / 2) - update_duration)
 
