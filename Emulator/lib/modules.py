@@ -133,13 +133,17 @@ class ALU:
 
 
 class RAM:
-    def __init__(self, name, databus, address, load, out):
+    def __init__(self, name, databus, address, clk, load, out):
+
+        we_inverter = SN74LS00(
+            "IC9", a=[load] + [Signal.GND] * 3, b=[clk] + [Signal.GND] * 3
+        )
 
         ram_1 = SN74LS189(
-            f"{name}:IC1", a=address, d=databus[:4], cs=Signal.GND, we=load
+            f"{name}:IC1", a=address, d=databus[:4], cs=Signal.GND, we=we_inverter.z[0]
         )
         ram_2 = SN74LS189(
-            f"{name}:IC2", a=address, d=databus[4:], cs=Signal.GND, we=load
+            f"{name}:IC2", a=address, d=databus[4:], cs=Signal.GND, we=we_inverter.z[0]
         )
 
         inverter_1 = SN74LS04(f"{name}:IC4", a=ram_1.o[:] + [Signal.GND] * 2)
@@ -154,7 +158,7 @@ class RAM:
 class ProgramCounter:
     def __init__(self, name, databus, enable, clk, load, clr, out):
 
-        counter = SN74LS161(
+        self.counter = SN74LS161(
             f"{name}:IC1",
             a=databus[:4],
             clk=clk,
@@ -165,7 +169,7 @@ class ProgramCounter:
         )
 
         buffer = SN74LS245(
-            f"{name}:IC2", a=counter.q[:] + [Signal.GND] * 4, dir=Signal.VCC, g=out
+            f"{name}:IC2", a=self.counter.q[:] + [Signal.GND] * 4, dir=Signal.VCC, g=out
         )
 
         databus.append(buffer.b)
@@ -212,7 +216,7 @@ class InstructionDecoder:
         reset_nor.b[3] = reset_nor.z[2]
         microinstruction_counter.clr = reset_nor.z[3]
 
-        microcode_rom1 = AT28C16(
+        self.microcode_rom1 = AT28C16(
             "IC1",
             microcode_rom,
             a=microinstruction_counter.q[:3]
@@ -244,40 +248,49 @@ class InstructionDecoder:
             ce=Signal.GND,
         )
 
+        # create a bus with a positive logic fpr the control word,
+        # to make for easier debugging
+        self.control_word_positive_logic = Bus(
+            ("CWP", [line.name for line in control_word._lines]), 16
+        )
+        self.control_word_positive_logic.append(
+            self.microcode_rom1.d[:] + microcode_rom2.d[:]
+        )
+
         cw_inverter_1 = SN74LS04("IC3")
         cw_inverter_2 = SN74LS04("IC4")
 
-        cw_inverter_1.a[0] = microcode_rom1.d[1]
-        cw_inverter_1.a[1] = microcode_rom1.d[2]
-        cw_inverter_1.a[2] = microcode_rom1.d[4]
-        cw_inverter_1.a[3] = microcode_rom1.d[5]
-        cw_inverter_1.a[4] = microcode_rom1.d[6]
-        cw_inverter_1.a[5] = microcode_rom1.d[7]
+        cw_inverter_1.a[0] = self.microcode_rom1.d[1]
+        cw_inverter_1.a[1] = self.microcode_rom1.d[2]
+        cw_inverter_1.a[2] = self.microcode_rom1.d[4]
+        cw_inverter_1.a[3] = self.microcode_rom1.d[5]
+        cw_inverter_1.a[4] = self.microcode_rom1.d[6]
+        cw_inverter_1.a[5] = self.microcode_rom1.d[7]
         cw_inverter_2.a[0] = microcode_rom2.d[0]
         cw_inverter_2.a[1] = microcode_rom2.d[2]
-        cw_inverter_2.a[2] = microcode_rom1.d[5]
-        cw_inverter_2.a[3] = microcode_rom1.d[6]
-        cw_inverter_2.a[4] = microcode_rom1.d[7]
+        cw_inverter_2.a[2] = microcode_rom2.d[5]
+        cw_inverter_2.a[3] = microcode_rom2.d[6]
+        cw_inverter_2.a[4] = microcode_rom2.d[7]
         cw_inverter_2.a[5] = Signal.GND
 
         control_word.append(
             [
-                microcode_rom1.d[0],  # HLT
-                cw_inverter_1.a[0],  # MI
-                cw_inverter_1.a[1],  # RO
-                microcode_rom1.d[3],  # RI
-                cw_inverter_1.a[2],  # IO
-                cw_inverter_1.a[3],  # II
-                cw_inverter_1.a[4],  # AO
-                cw_inverter_1.a[5],  # AI
-                cw_inverter_2.a[0],  # EO
-                microcode_rom1.d[1],  # SU
-                cw_inverter_2.a[1],  # BI
-                microcode_rom1.d[3],  # OI
-                microcode_rom1.d[4],  # CE
-                cw_inverter_2.a[2],  # CO
-                cw_inverter_2.a[3],  # JP
-                cw_inverter_2.a[4],  # FI
+                self.microcode_rom1.d[0],  # HLT
+                cw_inverter_1.z[0],  # MI
+                cw_inverter_1.z[1],  # RO
+                self.microcode_rom1.d[3],  # RI
+                cw_inverter_1.z[2],  # IO
+                cw_inverter_1.z[3],  # II
+                cw_inverter_1.z[4],  # AO
+                cw_inverter_1.z[5],  # AI
+                cw_inverter_2.z[0],  # EO
+                microcode_rom2.d[1],  # SU
+                cw_inverter_2.z[1],  # BI
+                microcode_rom2.d[3],  # OI
+                microcode_rom2.d[4],  # CE
+                cw_inverter_2.z[2],  # CO
+                cw_inverter_2.z[3],  # JP
+                cw_inverter_2.z[4],  # FI
             ]
         )
 

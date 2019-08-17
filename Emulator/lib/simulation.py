@@ -46,15 +46,20 @@ class Signal:
         if isinstance(self._state, bool):
             return State.from_bool(self._state)
 
-        if hasattr(self._state, "__call__"):
-            return Signal(self.name, self._state()).state
-
-        return self._state
+        state = self._state
+        while hasattr(state, "__call__"):
+            state = Signal(self.name, self._state())
+        if isinstance(state, Signal):
+            return state.state
+        else:
+            return state
 
     @state.setter
     def state(self, new_state: Union[State, bool]) -> None:
+        has_changed = self.state != new_state
         self._state = new_state
-        self.notify()
+        if has_changed:
+            self.notify()
 
     def notify(self):
         for handler in self.handlers:
@@ -112,7 +117,7 @@ class Junction:
         else:
             if len(driving_signals) > 1:
                 raise ValueError(
-                    "More that one driving (non High Z) signal in junction"
+                    f"More that one driving (non High Z) signal in junction {self.name}: {[sig.name for sig in driving_signals]}"
                 )
 
             return driving_signals[0].state
@@ -126,8 +131,13 @@ class Junction:
 
 class Bus:
     def __init__(self, name, width):
-        self.name = name
-        self._lines = [Junction(f"D{num}") for num in range(width)]
+        if hasattr(name, '__len__') and len(name) == 2:
+            self.name, line_names = name
+            if len(line_names) != width:
+                raise ValueError(f"When passing names for the individual lines, you need to pass exactly the same number of names as the bus '{self.name}' is wide")
+        else:
+            self.name, line_names = name, [f"D{num}" for num in range(width)]
+        self._lines = [Junction(f"{line_names[num]}") for num in range(width)]
 
     @property
     def state(self) -> Sequence[State]:
@@ -139,13 +149,18 @@ class Bus:
     def append(self, signals):
         if len(signals) != len(self._lines):
             raise ValueError(
-                f"tried to append {len(signals)} Signals to a {len(self._lines)} wide bus"
+                f"tried to append {len(signals)} Signals to a {len(self._lines)} wide bus {self.name}"
             )
 
         for num, signal in enumerate(signals):
             self._lines[num].append(signal)
 
     def __getitem__(self, key):
+        if isinstance(key, str):
+            item = next((x for x in self._lines if x.name == key), None)
+            if item is None:
+                raise KeyError(f"no net named {key} in bus {self.name}")
+            return item
         return self._lines[key]
 
     def __len__(self):

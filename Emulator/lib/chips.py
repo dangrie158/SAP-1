@@ -72,7 +72,7 @@ class IC:
             )
 
         unknown_signals = [
-            signal for signal in kwargs.keys() if signal not in self.signals
+            signal for signal in kwargs.keys() if signal not in self.input_signals
         ]
         if len(unknown_signals) > 0:
             raise ValueError(f"provided unknown signal names: {unknown_signals}")
@@ -197,17 +197,23 @@ class SN74LS161(IC):
     def __init__(self, name: Optional[str] = None, **kwargs: Mapping[str, Signal]):
         super().__init__(name, **kwargs)
         self.count = 0
+        self.last_clock_state = False
         self.clk.on_change(lambda _: self.clr.notify())
         self.clk.on_change(self._load)
         self.clr.on_change(self._clear)
 
     def _load(self, new_val):
-        if self.clk and not self.ld:
-            self.count = Bus.to_int(self.a)
+        # avoid counting on multiple clock notifications
+        new_state = bool(self.clk.state)
+        if new_state != self.last_clock_state:
+            self.last_clock_state = bool(self.clk.state)
 
-        if self.clk and self.enp and self.ent:
-            self.count += 1
-            self.count %= 2 ** self.num_bits
+            if self.clk and not self.ld:
+                self.count = Bus.to_int(self.a)
+
+            if self.clk and self.enp and self.ent:
+                self.count += 1
+                self.count %= 2 ** self.num_bits
 
     def _clear(self, new_val):
         # clear on rising edge of clear
@@ -257,7 +263,7 @@ class SN74LS173(IC):
 
     def clear(self, _) -> None:
         # the clear bit is active-high
-        if self.clear:
+        if self.clr:
             for bit in range(self.num_bits):
                 self.reg[bit] = State.LOW
 
@@ -277,7 +283,7 @@ class SN74LS189(IC):
             address = Bus.to_int(self.a)
             contents = self.contents[address]
             # output bits of the chip are inverted
-            return State.HIGH if format(contents[bit], "04b")[bit] == "0" else State.LOW
+            return State.HIGH if format(contents, "04b")[bit] == "0" else State.LOW
         else:
             return State.HIGH_Z
 
@@ -290,7 +296,9 @@ class SN74LS189(IC):
 
         # create the ram content buffer (initialize randomly)
         # just like the real thing would do
-        self.contents = [random.getrandbits(SN74LS189.word_width)] * self.num_words
+        self.contents = [0] * self.num_words
+        for addr in range(self.num_words):
+            self.contents[addr] = random.getrandbits(SN74LS189.word_width)
 
         # write the data contents on the falling edge of the erite pin
         self.we.on_change(lambda x: self._write_word() if not x else None)
@@ -364,10 +372,13 @@ class AT28C16(IC):
         "d": (
             8,
             lambda self, bit: State.from_bool(
-                format(self.contents[Bus.to_int(self.a)], "08b")[bit] == "1"
-                if not self.oe and not self.ce
-                else State.HIGH_Z
-            ),
+                # read the content at the addressed position,
+                # reverse the bit-order an check if the bit is set
+                format(self.contents[Bus.to_int(self.a)], "08b")[::-1][bit]
+                == "1"
+            )
+            if not self.oe and not self.ce
+            else State.HIGH_Z,
         )
     }
 
@@ -384,3 +395,9 @@ class AT28C16(IC):
 
         with open(rom_file, "rb") as rom:
             self.contents = rom.read()
+
+        if len(self.contents) != self.num_bytes:
+            raise ValueError(
+                f"Unexpected size of {len(self.contents)} bytes in rom file. Needs exactly {self.num_bytes}"
+            )
+
