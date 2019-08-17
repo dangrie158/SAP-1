@@ -3,15 +3,16 @@ This module defines the instruction set architecture (ISA)
 of the processor
 """
 
-from enum import IntFlag
+from enum import IntEnum
 from dataclasses import dataclass
 from typing import Sequence
 
+# an empty control word does not modify the state of the processor during
+# a microinstruction and is thus a noop
+CW_NOP = 0x00
 
-class CW(IntFlag):
-    # an empty control word does not modify the state of the processor during
-    # a microinstruction and is thus a noop
-    NOP = 0x00
+
+class CW(IntEnum):
 
     # Halt clock
     # The Processor can only leave this state by resetting
@@ -96,91 +97,125 @@ class Instruction:
     opcode: int
     hasParameter: bool
 
-    # a fetch cycle takes the first 2 microinstructions of every instruction
-    # 1. the current PC value is loaded into the MAR
-    # 2. a) the content of the RAM at this address is latched into the IR
-    # 2. b) The PC is advanced to the next instruction
-    FETCH_CYCLE = [CW.CO | CW.MI, CW.RO | CW.II | CW.CE]
+class MetaInstructionSet(type):
+    @property
+    def set(cls):
+        return {k: i for k, i in cls.__dict__.items() if isinstance(i, Instruction)}
 
-InstructionSet = {
+    @property
+    def instructions(cls):
+        return [i for i in cls.__dict__.values() if isinstance(i, Instruction)]
+
+    @property
+    def __getitem__(cls, key):
+        return cls.set[key]
+
+class InstructionSet(dict, metaclass=MetaInstructionSet):
+    @classmethod
+    def by_opcode(cls, opcode):
+        return next((i for i in cls.instructions if i.opcode == opcode), cls.NOP)
+
+    @classmethod
+    def instructions_with_parameter(cls, opcode):
+        return next((i for k, i in cls if i.opcode == opcode), cls.NOP)
 
 
-    # A no op (NOP) does nothing but a fetch cycle, thus simply advances to the next instruction
-    "NOP": Instruction("NOP", Instruction.FETCH_CYCLE + [], 0x0, False),
+# a fetch cycle takes the first 2 microinstructions of every instruction
+# 1. the current PC value is loaded into the MAR
+# 2. a) the content of the RAM at this address is latched into the IR
+# 2. b) The PC is advanced to the next instruction
+InstructionSet.FETCH_CYCLE = [CW.CO | CW.MI, CW.RO | CW.II | CW.CE]
 
-    # Load the value of the RAM at the address specified by the ID of the instruction into RA
-    #
-    # 1. Load the lower nibble of the IR into the MAR
-    # 2. Load the selected RAM byte into RA
-    "LDA": Instruction("LDA", Instruction.FETCH_CYCLE + [CW.IO | CW.MI, CW.RO | CW.AI], 0x01, True),
+# A no op (NOP) does nothing but a fetch cycle, thus simply advances to the next instruction
+InstructionSet.NOP = Instruction("NOP", InstructionSet.FETCH_CYCLE + [], 0x0, False)
+# Load the value of the RAM at the address specified by the ID of the instruction into RA
+#
+# 1. Load the lower nibble of the IR into the MAR
+# 2. Load the selected RAM byte into RA
 
-    # Calculate the sum of the value of the RAM value specified by
-    # the ID of the instruction and RA and store the result in RA
-    #
-    # 1. Load the lower nibble of the IR into the MAR
-    # 2. Load the selected RAM byte into RB
-    # 3. a) Take the output of the ALU and store it in register A
-    # 3. b) Save the state of the flags into the FR
-    "ADD": Instruction(
-        "ADD",
-        Instruction.FETCH_CYCLE + [CW.IO | CW.MI, CW.RO | CW.BI, CW.EO | CW.AI | CW.FI],
-        0x02,
-        True
-    ),
+InstructionSet.LDA = Instruction(
+    "LDA", InstructionSet.FETCH_CYCLE + [CW.IO | CW.MI, CW.RO | CW.AI], 0x01, True
+)
 
-    # Calculate the difference of the value of the RAM value specified by
-    # the ID of the instruction and RA and store the result in RA
-    #
-    # 1. Load the lower nibble of the IR into the MAR
-    # 2. Load the selected RAM byte into RB
-    # 3. a) Set the SU control bit to make the ALU output the difference
-    #   rather than the sum between RA and RB
-    # 3. b) Take the output of the ALU and store it in register A
-    # 3. c) Save the state of the flags into the FR
-    "SUB": Instruction(
-        "SUB",
-        Instruction.FETCH_CYCLE + [CW.IO | CW.MI, CW.RO | CW.BI, CW.SU | CW.EO | CW.AI | CW.FI],
-        0x03,
-        True
-    ),
+# Calculate the sum of the value of the RAM value specified by
+# the ID of the instruction and RA and store the result in RA
+#
+# 1. Load the lower nibble of the IR into the MAR
+# 2. Load the selected RAM byte into RB
+# 3. a) Take the output of the ALU and store it in register A
+# 3. b) Save the state of the flags into the FR
+InstructionSet.ADD = Instruction(
+    "ADD",
+    InstructionSet.FETCH_CYCLE + [CW.IO | CW.MI, CW.RO | CW.BI, CW.EO | CW.AI | CW.FI],
+    0x02,
+    True,
+)
 
-    # Store the contents of RA into the RAM cell specified by the ID of the instruction
-    #
-    # 1. Load the ID into the MAR
-    # 2. Store the content of RA into RAM
-    "STA": Instruction("STA", Instruction.FETCH_CYCLE + [CW.IO | CW.MI, CW.AO | CW.RI], 0x04, True),
+# Calculate the difference of the value of the RAM value specified by
+# the ID of the instruction and RA and store the result in RA
+#
+# 1. Load the lower nibble of the IR into the MAR
+# 2. Load the selected RAM byte into RB
+# 3. a) Set the SU control bit to make the ALU output the difference
+#   rather than the sum between RA and RB
+# 3. b) Take the output of the ALU and store it in register A
+# 3. c) Save the state of the flags into the FR
+InstructionSet.SUB = Instruction(
+    "SUB",
+    InstructionSet.FETCH_CYCLE
+    + [CW.IO | CW.MI, CW.RO | CW.BI, CW.SU | CW.EO | CW.AI | CW.FI],
+    0x03,
+    True,
+)
 
-    # Load data immediatley into RA
-    #
-    # 1. Store the ID of the instruction into RA
-    "LDI": Instruction("LDI", Instruction.FETCH_CYCLE + [CW.IO | CW.AI], 0x05, True),
+# Store the contents of RA into the RAM cell specified by the ID of the instruction
+#
+# 1. Load the ID into the MAR
+# 2. Store the content of RA into RAM
+InstructionSet.STA = Instruction(
+    "STA", InstructionSet.FETCH_CYCLE + [CW.IO | CW.MI, CW.AO | CW.RI], 0x04, True
+)
 
-    # Jump to another instruction (set the PC to the instructions ID)
-    #
-    # 1. Set the PC to the ID of the instruction
-    "JMP": Instruction("JMP", Instruction.FETCH_CYCLE + [CW.IO | CW.JP], 0x06, True),
+# Load data immediatley into RA
+#
+# 1. Store the ID of the instruction into RA
+InstructionSet.LDI = Instruction(
+    "LDI", InstructionSet.FETCH_CYCLE + [CW.IO | CW.AI], 0x05, True
+)
 
-    # Jump to another instruction if the carry flag is set
-    # this has the same microinstruction steps as a normal JMP
-    # but will be overwritten as NOP in cases where the flag is
-    # not set (address bit FLAG_CF (A9) is cleared)
-    "JC": Instruction("JC", Instruction.FETCH_CYCLE + [CW.IO | CW.JP], 0x07, True),
+# Jump to another instruction (set the PC to the instructions ID)
+#
+# 1. Set the PC to the ID of the instruction
+InstructionSet.JMP = Instruction(
+    "JMP", InstructionSet.FETCH_CYCLE + [CW.IO | CW.JP], 0x06, True
+)
 
-    # Jump to another instruction if the zero flag is set
-    # this has the same microinstruction steps as a normal JMP
-    # but will be overwritten as NOP in cases where the flag is
-    # not set (address bit FLAG_ZF (A8) is cleared)
-    "JZ": Instruction("JZ", Instruction.FETCH_CYCLE + [CW.IO | CW.JP], 0x08, True),
+# Jump to another instruction if the carry flag is set
+# this has the same microinstruction steps as a normal JMP
+# but will be overwritten as NOP in cases where the flag is
+# not set (address bit FLAG_CF (A9) is cleared)
+InstructionSet.JC = Instruction(
+    "JC", InstructionSet.FETCH_CYCLE + [CW.IO | CW.JP], 0x07, True
+)
 
-    # Set the output display to show the current contents of RA
-    #
-    # 1. Latch the current value of RA into the OUT register
-    "OUT": Instruction("OUT", Instruction.FETCH_CYCLE + [CW.AO | CW.OI], 0x0E, False),
+# Jump to another instruction if the zero flag is set
+# this has the same microinstruction steps as a normal JMP
+# but will be overwritten as NOP in cases where the flag is
+# not set (address bit FLAG_ZF (A8) is cleared)
+InstructionSet.JZ = Instruction(
+    "JZ", InstructionSet.FETCH_CYCLE + [CW.IO | CW.JP], 0x08, True
+)
 
-    # Halt all further program execution. Although this will also run
-    # a fetch cycle and thus advance the PC, the next instruction will
-    # never be executed
-    #
-    # 1. Halt the clock
-    "HLT": Instruction("HLT", Instruction.FETCH_CYCLE + [CW.HLT], 0xF, False),
-}
+# Set the output display to show the current contents of RA
+#
+# 1. Latch the current value of RA into the OUT register
+InstructionSet.OUT = Instruction(
+    "OUT", InstructionSet.FETCH_CYCLE + [CW.AO | CW.OI], 0x0E, False
+)
+
+# Halt all further program execution. Although this will also run
+# a fetch cycle and thus advance the PC, the next instruction will
+# never be executed
+#
+# 1. Halt the clock
+InstructionSet.HLT = Instruction("HLT", InstructionSet.FETCH_CYCLE + [CW.HLT], 0xF, False)

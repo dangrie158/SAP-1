@@ -180,10 +180,10 @@ def parseFile(file):
             # try to parse the instruction
             instruction_parts = line_without_comments.split(" ")
             mnemo = instruction_parts[0]
-            if mnemo not in ISA.InstructionSet:
+            if mnemo not in ISA.InstructionSet.set:
                 raise SyntaxError(f"Unknown instruction: {mnemo}.", (file, cur_line, 0, line))
 
-            instruction = ISA.InstructionSet[mnemo]
+            instruction = ISA.InstructionSet.set[mnemo]
             if instruction.hasParameter:
                 try:
                     data = parse_number(instruction_parts[1])
