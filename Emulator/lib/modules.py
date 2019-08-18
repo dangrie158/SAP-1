@@ -33,7 +33,7 @@ class DataRegister:
 
 class InstructionRegister:
     def __init__(self, name, databus, clk, load, clr, out):
-        parameter = SN74LS173(
+        parameter_register = SN74LS173(
             f"{name}:IC2",
             d=databus[:4],
             clk=clk,
@@ -54,11 +54,12 @@ class InstructionRegister:
             clr=clr,
         )
         buffer = SN74LS245(
-            f"{name}:IC1", a=parameter.q + ([Signal.GND] * 4), dir=Signal.VCC, g=out
+            f"{name}:IC1", a=parameter_register.q + ([Signal.GND] * 4), dir=Signal.VCC, g=out
         )
 
         databus.append(buffer.b)
         self.opcode = opcode_register.q
+        self.contents = parameter_register.q + opcode_register.q
 
 
 class MemoryAddressRegister:
@@ -139,20 +140,30 @@ class RAM:
             "IC9", a=[load] + [Signal.GND] * 3, b=[clk] + [Signal.GND] * 3
         )
 
-        ram_1 = SN74LS189(
+        self.ram_1 = SN74LS189(
             f"{name}:IC1", a=address, d=databus[:4], cs=Signal.GND, we=we_inverter.z[0]
         )
-        ram_2 = SN74LS189(
+        self.ram_2 = SN74LS189(
             f"{name}:IC2", a=address, d=databus[4:], cs=Signal.GND, we=we_inverter.z[0]
         )
 
-        inverter_1 = SN74LS04(f"{name}:IC4", a=ram_1.o[:] + [Signal.GND] * 2)
-        inverter_2 = SN74LS04(f"{name}:IC5", a=ram_2.o[:] + [Signal.GND] * 2)
+        inverter_1 = SN74LS04(f"{name}:IC4", a=self.ram_1.o[:] + [Signal.GND] * 2)
+        inverter_2 = SN74LS04(f"{name}:IC5", a=self.ram_2.o[:] + [Signal.GND] * 2)
 
         buffer = SN74LS245(
             f"{name}:IC3", a=inverter_1.z[:4] + inverter_2.z[:4], dir=Signal.VCC, g=out
         )
         databus.append(buffer.b)
+
+    def load_contents(self, contents):
+        for addr, byte in enumerate(contents):
+            # reverse the byte order
+            byte = byte
+            print(f"data {byte & 0x0F}, ins {(byte & 0xF0) >> 4}")
+            parameter = int(format(byte & 0x0F, '04b')[::-1], 2)
+            instruction = int(format((byte & 0xF0) >> 4, '04b')[::-1], 2)
+            self.ram_1.contents[addr] = parameter
+            self.ram_2.contents[addr] = instruction
 
 
 class ProgramCounter:
