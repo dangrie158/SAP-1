@@ -43,3 +43,4 @@ eagle.epf
 **/.vscode/**
 *.pyc
 
+**/.mypy_cache/**
