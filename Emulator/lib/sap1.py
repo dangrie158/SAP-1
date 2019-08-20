@@ -1,12 +1,14 @@
 import sys
 import os
+from enum import IntEnum
+from collections import deque
+import time
 
 from .simulation import Signal, State, Junction, Bus
 from .modules import *
 
 
-# add the Spec directory to PYTHONPATH for importing the ISA
-sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
+# add the main directory to PYTHONPATH for importing the ISA
 sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
 from Spec import ISA
 import Tools.asm
@@ -14,10 +16,19 @@ import Tools.asm
 
 class SAP1:
 
+    class ClockSource(IntEnum):
+        RUNNING = 0
+        SINGLE_STEP = 1
+        HALTED = 2
+
     def __init__(self, simulation_clock):
         self.databus = Bus("Databus", width=8)
         self.control_word = Bus(("Control Word", tuple(ISA.CW.__members__.keys())), width=16)
 
+        self.clock_source = self.ClockSource.RUNNING
+        self.past_runtimes = deque(maxlen=20)
+        self.last_run_start = time.clock()
+        self.avg_freq = -1.0
         self.clk = Signal("CLK", State.LOW)
         self.i_clk = Signal("!CLK", lambda: not self.clk)
         self.clr = Signal("CLR", State.LOW)
@@ -86,18 +97,23 @@ class SAP1:
     # CE.state = State.HIGH
 
     def update(self):
-        self.clk.toggle()
+        self.past_runtimes.append(time.clock() - self.last_run_start)
+        self.last_run_start = time.clock()
+        self.avg_freq = sum([1/x for x in self.past_runtimes]) / len(self.past_runtimes)
+        if self.clock_source is self.ClockSource.RUNNING:
+            self.clk.toggle()
+        
         self.clk.notify()
         self.i_clk.notify()
 
-        print("-"*20)
-        opcode_num = Bus.to_int(self.IR.opcode)
-        print(f"Instruction {ISA.InstructionSet.by_opcode(opcode_num).name}")
-        print(f"program counter {self.PC.counter.count}")
-        print(f"memory address {Bus.to_int(self.MAR.address)}")
-        print(f"RA contents {Bus.to_int(self.RA.contents)}")
-        print(f"RB contents {Bus.to_int(self.RB.contents)}")
-        print(f"IR contents {Bus.to_int(self.IR.contents)}")
-        print(f"Output contents {Bus.to_int(self.OUT.contents)}")
+        #print("-"*20)
+        #opcode_num = Bus.to_int(self.IR.opcode)
+        #print(f"Instruction {ISA.InstructionSet.by_opcode(opcode_num).name}")
+        #print(f"program counter {self.PC.counter.count}")
+        #print(f"memory address {Bus.to_int(self.MAR.address)}")
+        #print(f"RA contents {Bus.to_int(self.RA.contents)}")
+        #print(f"RB contents {Bus.to_int(self.RB.contents)}")
+        #print(f"IR contents {Bus.to_int(self.IR.contents)}")
+        #print(f"Output contents {Bus.to_int(self.OUT.contents)}")
 
 

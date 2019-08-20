@@ -4,5 +4,5 @@
 LDA 0xF
 loop:
 OUT
-ADD 0xF
+SUB 0xF
 JMP loop

@@ -59,6 +59,7 @@ class InstructionRegister:
 
         databus.append(buffer.b)
         self.opcode = opcode_register.q
+        self.parameter = parameter_register.q
         self.contents = parameter_register.q + opcode_register.q
 
 
@@ -131,6 +132,7 @@ class ALU:
 
         self.zero = Signal(f"{name}:ZERO", zero_detect_and.z[2])
         self.carry = Signal(f"{name}:CARRY", adder_2.c4)
+        self.contents = adder_1.e + adder_2.e
 
 
 class RAM:
@@ -155,11 +157,12 @@ class RAM:
         )
         databus.append(buffer.b)
 
+        self.data = inverter_1.z[:4] + inverter_2.z[:4]
+
     def load_contents(self, contents):
         for addr, byte in enumerate(contents):
             # reverse the byte order
             byte = byte
-            print(f"data {byte & 0x0F}, ins {(byte & 0xF0) >> 4}")
             parameter = int(format(byte & 0x0F, '04b')[::-1], 2)
             instruction = int(format((byte & 0xF0) >> 4, '04b')[::-1], 2)
             self.ram_1.contents[addr] = parameter
@@ -184,6 +187,7 @@ class ProgramCounter:
         )
 
         databus.append(buffer.b)
+        self.value = self.counter.q
 
 
 class InstructionDecoder:
@@ -209,12 +213,16 @@ class InstructionDecoder:
             clr=clr,
         )
 
+
         microinstruction_decoder = SN74LS138(
             a=microinstruction_counter.q[:3],
             g1=Signal.VCC,
             g2a=Signal.GND,
             g2b=Signal.GND,
         )
+
+        self.microinstruction = Bus(("Microinstruction", [f'T{x}' for x in range(5)]), 5)
+        self.microinstruction.append(microinstruction_decoder.y[:5])
 
         reset_nor = SN74LS00("IC7")
         # the 6th step should reset the counter (5 actual microsteps)

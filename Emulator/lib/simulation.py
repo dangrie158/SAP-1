@@ -4,6 +4,7 @@ from functools import wraps
 from enum import Enum
 from pprint import pformat
 from typing import Callable, Union, Optional, Sequence
+from collections import deque
 
 
 class State(Enum):
@@ -186,6 +187,9 @@ class Clock(threading.Thread):
         self.freq = freq
         self._stop_event = threading.Event()
         self.handlers = {self.pos_edge: [], self.neg_edge: []}
+        self.missed_ticks = 0
+        self.past_runtimes = deque(maxlen=30)
+        self.max_freq = -1
 
     @property
     def tick_duration(self):
@@ -220,7 +224,16 @@ class Clock(threading.Thread):
             edge = Clock.pos_edge if edge == Clock.neg_edge else Clock.neg_edge
             update_duration = time.clock() - start_time
 
+            self.past_runtimes.append(update_duration)
+
+            # calculate the maximum frequency we could run at based on the past ticks
+            self.max_freq = 1/max(self.past_runtimes)
+
             # wait a half cycle before updating with the different edge
             #print(update_duration)
-            time.sleep((self.tick_duration / 2) - update_duration)
+            pause = (self.tick_duration / 2) - update_duration
+            if pause > 0:
+                time.sleep(pause)
+            else:
+                self.missed_ticks += 1
 
