@@ -95,7 +95,7 @@ class Instruction:
     name: str
     microcode: Sequence[CW]
     opcode: int
-    hasParameter: bool
+    has_parameter: bool
 
 class MetaInstructionSet(type):
     @property

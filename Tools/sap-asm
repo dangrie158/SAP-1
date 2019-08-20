@@ -187,7 +187,7 @@ def parseFile(file_path):
                 raise SyntaxError(f"Unknown instruction: {mnemo}.", (file_path, cur_line, 0, line))
 
             instruction = ISA.InstructionSet.set[mnemo]
-            if instruction.hasParameter:
+            if instruction.has_parameter:
                 try:
                     data = parse_number(instruction_parts[1])
                 except ValueError:
