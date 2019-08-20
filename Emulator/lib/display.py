@@ -423,14 +423,14 @@ class DataBus:
     def render(self):
         self.win.addstr(1, 0, self.name.center(self.width))
         self.win.hline(2, 0, curses.ACS_HLINE, self.width)
-        self.win.addstr(3, 3, " ".join(str(i) for i in range(len(self.signals), 0, -1)))
+        self.win.addstr(3, 2, " ".join(str(i) for i in range(len(self.signals), 0, -1)))
         for i, signal in enumerate(self.signals):
             color = {
                 State.HIGH: Color.GREEN,
                 State.LOW: Color.RED,
                 State.HIGH_Z: Color.BLUE,
             }[signal.state]
-            self.colored_vline(5, 3 + 2 * i, self.height - 2, color)
+            self.colored_vline(5, 2 + 2 * i, self.height - 2, color)
 
         self.win.border()
 

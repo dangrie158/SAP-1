@@ -10,8 +10,8 @@ from .modules import *
 
 # add the main directory to PYTHONPATH for importing the ISA
 sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
-from Spec import ISA
 import Tools.asm
+from Spec import ISA
 
 
 class SAP1:
@@ -27,7 +27,7 @@ class SAP1:
 
         self.clock_source = self.ClockSource.RUNNING
         self.past_runtimes = deque(maxlen=20)
-        self.last_run_start = time.clock()
+        self.last_run_start = time.time()
         self.avg_freq = -1.0
         self.clk = Signal("CLK", State.LOW)
         self.i_clk = Signal("!CLK", lambda: not self.clk)
@@ -75,45 +75,14 @@ class SAP1:
 
         self.RAM.load_contents(contents)
 
-    # print(bool(ALU.zero))
-    # BI.state = State.LOW
-    # AI.state = State.LOW
-    # val1 = State.HIGH
-    # val2 = State.LOW
-    # test = [Signal(initial= lambda: val1) for _ in range(4)] + [Signal(initial= lambda: val2) for _ in range(4)]
-
-    # self.databus.append(test)
-    # self.clk.toggle()
-    # self.clk.toggle()
-    # BI.state = State.HIGH
-    # AI.state = State.HIGH
-    # val1 = State.HIGH_Z
-    # val2 = State.HIGH_Z
-
-    # EO.state=State.LOW
-    # print(bool(ALU.zero))
-
-    # CO.state = State.LOW
-    # CE.state = State.HIGH
-
     def update(self):
-        self.past_runtimes.append(time.clock() - self.last_run_start)
-        self.last_run_start = time.clock()
-        self.avg_freq = sum([1/x for x in self.past_runtimes]) / len(self.past_runtimes)
+        # update stats on the falling edge
+        if not self.clk:
+            self.past_runtimes.append(time.time() - self.last_run_start)
+            self.last_run_start = time.time()
+            self.avg_freq = len(self.past_runtimes) / sum(self.past_runtimes)
         if self.clock_source is self.ClockSource.RUNNING:
             self.clk.toggle()
         
         self.clk.notify()
         self.i_clk.notify()
-
-        #print("-"*20)
-        #opcode_num = Bus.to_int(self.IR.opcode)
-        #print(f"Instruction {ISA.InstructionSet.by_opcode(opcode_num).name}")
-        #print(f"program counter {self.PC.counter.count}")
-        #print(f"memory address {Bus.to_int(self.MAR.address)}")
-        #print(f"RA contents {Bus.to_int(self.RA.contents)}")
-        #print(f"RB contents {Bus.to_int(self.RB.contents)}")
-        #print(f"IR contents {Bus.to_int(self.IR.contents)}")
-        #print(f"Output contents {Bus.to_int(self.OUT.contents)}")
-
-

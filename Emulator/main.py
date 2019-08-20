@@ -5,7 +5,7 @@ from lib.simulation import Clock, Bus
 import curses
 import sys
 
-simulation_clock = Clock(freq=5)
+simulation_clock = Clock(freq=1)
 
 processor = SAP1(simulation_clock)
 
@@ -17,7 +17,7 @@ def main(stdscr):
     display.init()
     stdscr.clear()
 
-    cols_x = [3, 25, 46, 69]
+    cols_x = [3, 25, 45, 68]
     rows_y = [3, 12, 21, 30, 39, 48]
     clk = display.Clock(
         rows_y[0],

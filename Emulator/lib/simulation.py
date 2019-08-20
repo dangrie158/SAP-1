@@ -219,10 +219,10 @@ class Clock(threading.Thread):
     def run(self):
         edge = Clock.pos_edge
         while not self._stop_event.is_set():
-            start_time = time.clock()
+            start_time = time.time()
             self.tick(edge)
             edge = Clock.pos_edge if edge == Clock.neg_edge else Clock.neg_edge
-            update_duration = time.clock() - start_time
+            update_duration = time.time() - start_time
 
             self.past_runtimes.append(update_duration)
 
