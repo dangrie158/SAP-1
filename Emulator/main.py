@@ -6,11 +6,11 @@ import curses
 import sys
 from pathlib import Path
 
-simulation_clock = Clock(freq=1)
+simulation_clock = Clock(freq=1000)
 
 processor = SAP1(simulation_clock)
 
-program_file = Path("Example-Programs/Counter.S")
+program_file = Path("Example-Programs/Counter.bin")
 processor.load_program(program_file)
 
 
@@ -19,7 +19,7 @@ def main(stdscr):
     display.init()
     stdscr.clear()
 
-    cols_x = [3, 25, 45, 67]
+    cols_x = [3, 25, 45, 67, 88]
     rows_y = [3, 12, 21, 30, 39, 48]
     clk = display.Clock(
         rows_y[0],
@@ -138,12 +138,35 @@ def main(stdscr):
         height=max(rows_y) - min(rows_y),
     )
 
+    info = display.EmulatorInfo(
+        rows_y[0],
+        cols_x[3],
+        title="Emulator Info", 
+        past_runtimes=lambda: simulation_clock.past_runtimes,
+        missed_ticks=lambda: simulation_clock.missed_ticks,
+        width=cols_x[3] - cols_x[2] - 1,
+    )
+
+    keys = display.ControlsInfo(
+        rows_y[1],
+        cols_x[3],
+        title="Controls", 
+        keybindings={
+            'c': 'Toggle Clock',
+            'o': 'Open Assembly',
+            'n': 'Single Step',
+            'r': 'Reset Processor',
+            'q': 'Quit'
+        },
+        width=cols_x[3] - cols_x[2] - 1,
+    )
+
     disassembler = display.Disassembly(
-        3,
+        rows_y[2],
         cols_x[3],
         title=program_file.name,
         current_instruction=lambda: processor.instruction,
-        width=20,
+        width=cols_x[3] - cols_x[2] - 1,
     )
 
     disassembler.assembly = (
@@ -158,14 +181,19 @@ def main(stdscr):
         ram.render()
         ir.render()
         flags.render()
+
         pc.render()
         ra.render()
         alu.render()
         rb.render()
         out.render()
+
         id.render()
+
         db.render()
 
+        info.render()
+        keys.render()
         disassembler.render()
 
         curses.doupdate()

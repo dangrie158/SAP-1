@@ -189,6 +189,7 @@ class Clock(threading.Thread):
         self.handlers = {self.pos_edge: [], self.neg_edge: []}
         self.missed_ticks = 0
         self.past_runtimes = deque(maxlen=30)
+        self.past_runtimes.append(time.clock())
         self.max_freq = -1
 
     @property
@@ -219,10 +220,10 @@ class Clock(threading.Thread):
     def run(self):
         edge = Clock.pos_edge
         while not self._stop_event.is_set():
-            start_time = time.time()
+            start_time = time.clock()
             self.tick(edge)
             edge = Clock.pos_edge if edge == Clock.neg_edge else Clock.neg_edge
-            update_duration = time.time() - start_time
+            update_duration = time.clock() - start_time
 
             self.past_runtimes.append(update_duration)
 

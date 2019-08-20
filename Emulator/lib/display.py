@@ -2,7 +2,7 @@ import functools
 import math
 import os
 import sys
-from typing import Sequence, Callable, Union
+from typing import Sequence, Callable, Union, Mapping
 from os import linesep
 from enum import IntEnum
 from .simulation import Signal, Bus, State
@@ -564,6 +564,81 @@ class Disassembly:
                 cur_line += 1
 
         self.win.border()
-
         self.win.noutrefresh()
 
+class EmulatorInfo:
+    def __init__(
+        self,
+        y: int,
+        x: int,
+        title: str,
+        past_runtimes: Callable[[], Sequence[float]],
+        missed_ticks: Callable[[], int],
+        width: int,
+    ):
+        self.y = y
+        self.x = x
+
+        self.title = title
+        self.past_runtimes = past_runtimes
+        self.missed_ticks = missed_ticks
+
+        self.width = width
+        self.height = 9
+
+        self.win = curses.newwin(self.height, self.width, self.y, self.x)
+    
+    def render(self):
+        current_runtimes = self.past_runtimes()
+        avg_runtime = sum(current_runtimes) / len(current_runtimes)
+        currently_missed_ticks = self.missed_ticks()
+
+        self.win.addstr(1, 0, self.title.center(self.width))
+        self.win.hline(2, 0, curses.ACS_HLINE, self.width)
+
+
+        self.win.addstr(3, 2, "Avg.Tick Duration")
+        self.win.addstr(4, 0, f"{avg_runtime:06.4f} s".center(self.width), curses.color_pair(Color.GREEN))
+        
+        self.win.addstr(6, 5, "Missed Ticks")
+        self.win.addstr(7, 0, f"# {currently_missed_ticks:04d}".center(self.width), curses.color_pair(Color.GREEN))
+
+        self.win.border()
+        self.win.noutrefresh()
+
+class ControlsInfo:
+    def __init__(
+        self,
+        y: int,
+        x: int,
+        keybindings: Mapping[str, str],
+        title: str,
+        width: int,
+    ):
+        self.y = y
+        self.x = x
+
+        self.title = title
+
+        self.width = width
+        self.height = 9
+
+        self.keybindings = keybindings
+
+        self.win = curses.newwin(self.height, self.width, self.y, self.x)
+    
+    def render(self):
+
+        self.win.addstr(1, 0, self.title.center(self.width))
+        self.win.hline(2, 0, curses.ACS_HLINE, self.width)
+
+        cur_line = 3
+
+        for key, function in self.keybindings.items():
+
+            self.win.addstr(cur_line, 2, f"{key}", curses.color_pair(Color.GREEN))
+            self.win.addstr(cur_line, 3, f": {function}")
+            cur_line += 1
+        
+        self.win.border()
+        self.win.noutrefresh()
