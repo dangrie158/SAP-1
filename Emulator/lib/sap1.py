@@ -2,6 +2,7 @@ import sys
 import os
 from enum import IntEnum
 from collections import deque
+from pathlib import Path
 import time
 
 from .simulation import Signal, State, Junction, Bus
@@ -56,24 +57,39 @@ class SAP1:
         simulation_clock.every(simulation_clock.neg_edge)(lambda: self.update())
         simulation_clock.every(simulation_clock.pos_edge)(lambda: self.update())
 
+        self.program = None
 
-    def load_program(self, program_file):
-        if program_file.lower().endswith('.s'):
+    @property 
+    def instruction(self):
+        pc_state = Bus.to_int(self.PC.value)
+        mi_bus_state = [bool(st) for st in self.ID.microinstruction]
+        mi_step = mi_bus_state.index(False) if False in mi_bus_state else 6
+        mi_steps_in_fc = len(ISA.InstructionSet.FETCH_CYCLE)
+        # offset after the pc has jumped to the next instruction
+        # as a last step of eversy fetch cycle
+        if (mi_step == mi_steps_in_fc - 1 and bool(self.clk)) or mi_step >= mi_steps_in_fc:
+            pc_state -= 1
+        
+        return pc_state
+
+    def load_program(self, program_file: Path):
+        if program_file.name.lower().endswith('.s'):
             # assemble the file on-the-fly
-            assembly = Tools.asm.parseFile(program_file).assemble()
+            self.program = Tools.asm.parseFile(program_file)
+            assembly = self.program.assemble()
             contents = b''
             for address in range(0xF + 1):
                 data = assembly[address] if address in assembly else b"\0"
                 contents += data
 
-        elif program_file.lower().endswith('.bin'):
+        elif program_file.name.lower().endswith('.bin'):
+            self.program = None
             with open(program_file, 'rb') as file:
                 contents = file.read()
-                print(contents)
         else:
             raise TypeError("Can only run assembly code [*.s|*.S] or assembled files [*.bin]")
 
-        self.RAM.load_contents(contents)
+        self.RAM.contents = contents
 
     def update(self):
         # update stats on the falling edge

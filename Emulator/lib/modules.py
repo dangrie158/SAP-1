@@ -159,15 +159,29 @@ class RAM:
 
         self.data = inverter_1.z[:4] + inverter_2.z[:4]
 
-    def load_contents(self, contents):
+
+    @property
+    def contents(self):
+        contents = []
+        for addr in range(16):
+            # re-inverse bit order again
+            low_nibble = int(format(self.ram_1.contents[addr], '04b')[::-1], 2)
+            high_nibble = int(format(self.ram_2.contents[addr], '04b')[::-1], 2)
+
+            byte = low_nibble | (high_nibble << 4)
+            
+            contents.append(byte)
+
+        return contents
+
+    @contents.setter
+    def contents(self, contents):
         for addr, byte in enumerate(contents):
-            # reverse the byte order
-            byte = byte
+            # inverse bit order
             parameter = int(format(byte & 0x0F, '04b')[::-1], 2)
             instruction = int(format((byte & 0xF0) >> 4, '04b')[::-1], 2)
             self.ram_1.contents[addr] = parameter
             self.ram_2.contents[addr] = instruction
-
 
 class ProgramCounter:
     def __init__(self, name, databus, enable, clk, load, clr, out):

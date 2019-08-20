@@ -4,12 +4,14 @@ from lib.simulation import Clock, Bus
 
 import curses
 import sys
+from pathlib import Path
 
 simulation_clock = Clock(freq=1)
 
 processor = SAP1(simulation_clock)
 
-processor.load_program("Example-Programs/Counter.s")
+program_file = Path("Example-Programs/Counter.S")
+processor.load_program(program_file)
 
 
 @curses.wrapper
@@ -17,7 +19,7 @@ def main(stdscr):
     display.init()
     stdscr.clear()
 
-    cols_x = [3, 25, 45, 68]
+    cols_x = [3, 25, 45, 67]
     rows_y = [3, 12, 21, 30, 39, 48]
     clk = display.Clock(
         rows_y[0],
@@ -26,7 +28,7 @@ def main(stdscr):
         processor.clk,
         lambda: processor.clock_source,
         lambda: processor.avg_freq,
-        width=cols_x[1]-cols_x[0] - 1
+        width=cols_x[1] - cols_x[0] - 1,
     )
     mar = display.Register(
         rows_y[1],
@@ -35,7 +37,7 @@ def main(stdscr):
         processor.MAR.address,
         [processor.control_word["MI"]],
         display.Color.BLUE,
-        width=cols_x[1]-cols_x[0] - 1
+        width=cols_x[1] - cols_x[0] - 1,
     )
     ram = display.Register(
         rows_y[2],
@@ -44,7 +46,7 @@ def main(stdscr):
         processor.RAM.data,
         [processor.control_word["RO"], processor.control_word["RI"]],
         display.Color.RED,
-        width=cols_x[1]-cols_x[0] - 1
+        width=cols_x[1] - cols_x[0] - 1,
     )
     ir = display.InstructionRegister(
         rows_y[3],
@@ -53,7 +55,7 @@ def main(stdscr):
         processor.IR.opcode,
         processor.IR.parameter,
         [processor.control_word["IO"], processor.control_word["II"]],
-        width=cols_x[1]-cols_x[0] - 1
+        width=cols_x[1] - cols_x[0] - 1,
     )
     flags = display.Register(
         rows_y[4],
@@ -62,7 +64,7 @@ def main(stdscr):
         [processor.FR.CF, processor.FR.ZF],
         [processor.control_word["FI"]],
         display.Color.BLUE,
-        width=cols_x[1]-cols_x[0] - 1
+        width=cols_x[1] - cols_x[0] - 1,
     )
     pc = display.Register(
         rows_y[0],
@@ -75,7 +77,7 @@ def main(stdscr):
             processor.control_word["CE"],
         ],
         display.Color.BLUE,
-        width=cols_x[1]-cols_x[0] - 1
+        width=cols_x[1] - cols_x[0] - 1,
     )
     ra = display.Register(
         rows_y[1],
@@ -84,7 +86,7 @@ def main(stdscr):
         processor.RA.contents,
         [processor.control_word["AO"], processor.control_word["AI"]],
         display.Color.RED,
-        width=cols_x[1]-cols_x[0] - 1
+        width=cols_x[1] - cols_x[0] - 1,
     )
     alu = display.Register(
         rows_y[2],
@@ -98,7 +100,7 @@ def main(stdscr):
             processor.control_word["SU"],
         ],
         display.Color.RED,
-        width=cols_x[1]-cols_x[0] - 1
+        width=cols_x[1] - cols_x[0] - 1,
     )
     rb = display.Register(
         rows_y[3],
@@ -107,7 +109,7 @@ def main(stdscr):
         processor.RB.contents,
         [processor.control_word["BI"]],
         display.Color.RED,
-        width=cols_x[1]-cols_x[0] - 1
+        width=cols_x[1] - cols_x[0] - 1,
     )
     out = display.OutputDisplay(
         rows_y[4],
@@ -116,7 +118,7 @@ def main(stdscr):
         processor.OUT.contents,
         [processor.control_word["OI"]],
         display.Color.RED,
-        width=cols_x[1]-cols_x[0] - 1
+        width=cols_x[1] - cols_x[0] - 1,
     )
     id = display.InstructionDecoder(
         rows_y[5],
@@ -125,7 +127,7 @@ def main(stdscr):
         processor.ID.control_word_positive_logic,
         processor.ID.microinstruction,
         display.Color.RED,
-        width=max(cols_x)-min(cols_x) - 2
+        width=max(cols_x) - min(cols_x) - 1,
     )
     db = display.DataBus(
         rows_y[0],
@@ -133,7 +135,19 @@ def main(stdscr):
         "Databus",
         processor.databus,
         width=cols_x[2] - cols_x[1] - 1,
-        height=max(rows_y) - min(rows_y)
+        height=max(rows_y) - min(rows_y),
+    )
+
+    disassembler = display.Disassembly(
+        3,
+        cols_x[3],
+        title=program_file.name,
+        current_instruction=lambda: processor.instruction,
+        width=20,
+    )
+
+    disassembler.assembly = (
+        processor.program if processor.program is not None else processor.RAM.contents
     )
 
     @simulation_clock.every(simulation_clock.neg_edge)
@@ -151,6 +165,9 @@ def main(stdscr):
         out.render()
         id.render()
         db.render()
+
+        disassembler.render()
+
         curses.doupdate()
 
     # start the emulation clock

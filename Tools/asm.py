@@ -44,6 +44,9 @@ class Program:
     labels: Mapping[str, int] = field(default_factory=dict)
     data: Mapping[int, int] = field(default_factory=dict)
 
+    def __len__(self):
+        return len(self.instructions) + len(self.data)
+
     def assemble(self):
         assembly = {}
 

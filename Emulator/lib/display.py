@@ -2,7 +2,7 @@ import functools
 import math
 import os
 import sys
-from typing import Sequence
+from typing import Sequence, Callable, Union
 from os import linesep
 from enum import IntEnum
 from .simulation import Signal, Bus, State
@@ -11,6 +11,7 @@ from textwrap import dedent
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
 from Spec import ISA
+from Tools import asm
 
 import curses
 
@@ -210,19 +211,14 @@ class InstructionRegister(Register):
             ("0x" + format(param_val, "02X")).center(self.width // 2),
         )
         # opcode name and param
-        isa_instruction =  ISA.InstructionSet.by_opcode(opcode_val)
-        self.win.addstr(
-            5,
-            6,
-            isa_instruction.name,
-            curses.color_pair(Color.BLUE)
-        )
+        isa_instruction = ISA.InstructionSet.by_opcode(opcode_val)
+        self.win.addstr(5, 6, isa_instruction.name, curses.color_pair(Color.BLUE))
         if isa_instruction.has_parameter:
             self.win.addstr(
                 5,
                 7 + len(isa_instruction.name),
                 f"(0x{param_val:02X})",
-                curses.color_pair(Color.RED)
+                curses.color_pair(Color.RED),
             )
 
         # control lines
@@ -231,6 +227,7 @@ class InstructionRegister(Register):
         self.win.border()
 
         self.win.noutrefresh()
+
 
 class OutputDisplay(Register):
     def __init__(
@@ -439,3 +436,134 @@ class DataBus:
     def colored_vline(self, y, x, height, color):
         for i in range(height - y):
             self.win.addch(y + i, x, curses.ACS_VLINE, curses.color_pair(color))
+
+
+class Disassembly:
+    def __init__(
+        self,
+        y: int,
+        x: int,
+        title: str,
+        current_instruction: Callable[[], int],
+        width: int,
+    ):
+        self.y = y
+        self.x = x
+
+        self.title = title
+        self._assembly = None
+        self.current_instruction = current_instruction
+
+        self.width = width
+        # reserve enough space for all instructions, data and labels
+        self.height = 7
+
+        # highest address ever executed, used to
+        # decode binary instructions on-the-fly
+        self.end_program = 0
+
+        self.win = curses.newwin(self.height, self.width, self.y, self.x)
+
+    @property
+    def assembly(self):
+        return self._assembly
+
+    @assembly.setter
+    def assembly(self, new_assembly):
+        self._assembly = new_assembly
+        self.end_program = 0
+
+    def render(self):
+        current_assembly = self.assembly
+        current_inum = self.current_instruction()
+
+        self.win.addstr(1, 0, self.title.center(self.width))
+        self.win.addstr(2, 0, "Disassembly".center(self.width))
+        self.win.hline(3, 0, curses.ACS_HLINE, self.width)
+        cur_line = 4
+
+        if isinstance(current_assembly, asm.Program):
+            # reserve enough space for all instructions, data and labels
+            self.height = 7 + len(current_assembly) + len(current_assembly.labels)
+            self.win.resize(self.height, self.width)
+
+            labels_by_addr = {v: k for k, v in current_assembly.labels.items()}
+            for inum, instruction in enumerate(current_assembly.instructions):
+                # check if the next instruction is referenced by a label
+                if inum in labels_by_addr:
+                    # print the label
+                    label_name = labels_by_addr[inum]
+                    self.win.addstr(
+                        cur_line, 2, f"{label_name}:", curses.color_pair(Color.GREEN)
+                    )
+                    cur_line += 1
+
+                # print the instruction and if neccessary the parameter
+                prefix = "> " if inum == current_inum else "  "
+                self.win.addstr(cur_line, 2, f"{prefix}")
+                self.win.addstr(
+                    cur_line, 4, f"{instruction.mnemo}", curses.color_pair(Color.BLUE)
+                )
+                iinfo = ISA.InstructionSet.by_opcode(instruction.opcode)
+                if iinfo.has_parameter:
+                    if iinfo.name in ["JMP", "JC", "JZ"]:
+                        param = f"{labels_by_addr[instruction.data]}"
+                    else:
+                        param = f"0x{instruction.data:01X}"
+                    self.win.addstr(cur_line, 8, param, curses.color_pair(Color.RED))
+                cur_line += 1
+
+            cur_line += 1
+            self.win.addstr(cur_line, 2, f".data:", curses.color_pair(Color.GREEN))
+            cur_line += 1
+            for addr, data in current_assembly.data.items():
+                self.win.addstr(
+                    cur_line, 2, f"0x{addr:01X}:", curses.color_pair(Color.BLUE)
+                )
+                self.win.addstr(cur_line, 6, f"{data}", curses.color_pair(Color.RED))
+                cur_line += 1
+
+        else:
+            self.height = 5 + 16
+            self.win.resize(self.height, self.width)
+
+            # if the address is executed, decode the instruction
+            if current_inum > self.end_program:
+                self.end_program = current_inum
+
+            for address, data in enumerate(current_assembly):
+                
+                prefix = "> " if address == current_inum else "  "
+                self.win.addstr(cur_line, 2, f"{prefix}")
+                if address <= self.end_program:
+                    opcode = (data >> 4) & 0xF
+                    instruction = ISA.InstructionSet.by_opcode(opcode)
+
+                    if instruction.has_parameter:
+                        param = f"0x{data & 0xF:01X}"
+                    else:
+                        # placeholder to overwrite old data
+                        param = "    "
+
+                    self.win.addstr(
+                        cur_line,
+                        4,
+                        f"{instruction.name:<4}",
+                        curses.color_pair(Color.BLUE),
+                    )
+                    self.win.addstr(
+                        cur_line, 8, param, curses.color_pair(Color.RED)
+                    )
+                else:
+                    self.win.addstr(
+                        cur_line, 4, f"0x{address:01X}:", curses.color_pair(Color.BLUE)
+                    )
+                    self.win.addstr(
+                        cur_line, 8, f"{data}", curses.color_pair(Color.RED)
+                    )
+                cur_line += 1
+
+        self.win.border()
+
+        self.win.noutrefresh()
+
