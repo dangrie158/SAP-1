@@ -266,7 +266,7 @@ if __name__ == "__main__":
         "-f",
         "--simulation-frequency",
         help="Iiitial target frequency of the simulation clock",
-        type=int,
+        type=float,
         default=10,
     )
 

@@ -26,7 +26,7 @@ class SAP1:
         self.databus = Bus("Databus", width=8)
         self.control_word = Bus(("Control Word", tuple(ISA.CW.__members__.keys())), width=16)
 
-        self.clock_source = self.ClockSource.RUNNING
+        self.clock_source = self.ClockSource.SINGLE_STEP
         self.past_runtimes = deque(maxlen=5)
         self.last_run_start = time.time()
         self.avg_freq = -1.0
@@ -112,3 +112,4 @@ class SAP1:
         self.clr.notify()
         self.i_clr.notify()
         self.clr.state = State.LOW
+        self.clock_source = self.ClockSource.RUNNING
