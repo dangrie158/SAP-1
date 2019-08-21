@@ -92,13 +92,18 @@ class SAP1:
         self.RAM.contents = contents
 
     def update(self):
-        # update stats on the falling edge
-        if not self.clk:
-            self.past_runtimes.append(time.time() - self.last_run_start)
-            self.last_run_start = time.time()
-            self.avg_freq = len(self.past_runtimes) / sum(self.past_runtimes)
-        if self.clock_source is self.ClockSource.RUNNING:
+        if self.clock_source is self.ClockSource.HALTED:
+            self.avg_freq = 0
+        else:
+            # update stats on the falling edge
+            if not self.clk:
+                self.past_runtimes.append(time.time() - self.last_run_start)
+                self.last_run_start = time.time()
+                self.avg_freq = len(self.past_runtimes) / sum(self.past_runtimes)
             self.clk.toggle()
         
         self.clk.notify()
         self.i_clk.notify()
+
+        if self.control_word['HLT']:
+            self.clock_source = self.ClockSource.HALTED
