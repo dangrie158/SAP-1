@@ -81,13 +81,16 @@ class Color(IntEnum):
     GREEN = 4
 
 
-def init():
+def init(stdscr):
     curses.use_default_colors()
+    curses.noecho()
     curses.init_pair(Color.WHITE, curses.COLOR_WHITE, -1)
     curses.init_pair(Color.RED, curses.COLOR_RED, -1)
     curses.init_pair(Color.BLUE, curses.COLOR_BLUE, -1)
     curses.init_pair(Color.GREEN, curses.COLOR_GREEN, -1)
     curses.curs_set(0)
+    stdscr.clear()
+    stdscr.nodelay(True)
 
 
 def led_array(num, width, spacer=" "):
@@ -96,18 +99,35 @@ def led_array(num, width, spacer=" "):
     )
 
 
+class Title:
+    def __init__(self, y: int, x: int, title: str, width: int):
+        self.title = title
+
+        self.width = width
+        self.height = 2
+
+        self.win = curses.newwin(self.height, self.width, y, x)
+
+    def render(self):
+        self.win.addstr(
+            0, 0, self.title.center(self.width), curses.A_BOLD | curses.A_DIM
+        )
+
+        self.win.noutrefresh()
+
+
 class Register:
     def __init__(
         self,
         y: int,
         x: int,
-        name: str,
+        title: str,
         signals: Sequence[Signal],
         control_lines: Sequence[Signal],
         color: Color,
         width: int,
     ):
-        self.name = name
+        self.title = title
         self.signals = signals
         self.control_lines = control_lines
 
@@ -120,7 +140,7 @@ class Register:
 
     def render(self):
         reg_value = Bus.to_int(self.signals)
-        self.win.addstr(1, 0, self.name.center(self.width))
+        self.win.addstr(1, 0, self.title.center(self.width))
         self.win.hline(2, 0, curses.ACS_HLINE, self.width)
         self.win.addstr(
             3,
@@ -168,13 +188,13 @@ class InstructionRegister(Register):
         self,
         y: int,
         x: int,
-        name: str,
+        title: str,
         opcode: Sequence[Signal],
         parameter: Sequence[Signal],
         control_lines: Sequence[Signal],
         width: int,
     ):
-        super().__init__(y, x, name, [], control_lines, Color.RED, width)
+        super().__init__(y, x, title, [], control_lines, Color.RED, width)
         self.opcode = opcode
         self.parameter = parameter
         self.height = 8 + math.ceil(len(control_lines) / 2)
@@ -182,7 +202,7 @@ class InstructionRegister(Register):
 
     def render(self):
         # title
-        self.win.addstr(1, 0, self.name.center(self.width))
+        self.win.addstr(1, 0, self.title.center(self.width))
         self.win.hline(2, 0, curses.ACS_HLINE, self.width)
 
         # opcode
@@ -234,19 +254,19 @@ class OutputDisplay(Register):
         self,
         y: int,
         x: int,
-        name: str,
+        title: str,
         signals: Sequence[Signal],
         control_lines: Sequence[Signal],
         color: Color,
         width: int,
     ):
-        super().__init__(y, x, name, signals, control_lines, color, width)
+        super().__init__(y, x, title, signals, control_lines, color, width)
         self.height = 8 + math.ceil(len(control_lines) / 2)
         self.win.resize(self.height, self.width)
 
     def render(self):
         reg_value = Bus.to_int(self.signals)
-        self.win.addstr(1, 0, self.name.center(self.width))
+        self.win.addstr(1, 0, self.title.center(self.width))
         self.win.hline(2, 0, curses.ACS_HLINE, self.width)
         self.win.addstr(
             3,
@@ -267,13 +287,13 @@ class InstructionDecoder:
         self,
         y: int,
         x: int,
-        name: str,
+        title: str,
         signals: Sequence[Signal],
         mi_counter: Sequence[Signal],
         color: Color,
         width: int,
     ):
-        self.name = name
+        self.title = title
         self.signals = signals
         self.mi_counter = mi_counter
 
@@ -286,7 +306,7 @@ class InstructionDecoder:
 
     def render(self):
         # title
-        self.win.addstr(1, 0, self.name.center(self.width))
+        self.win.addstr(1, 0, self.title.center(self.width))
         self.win.hline(2, 0, curses.ACS_HLINE, self.width)
 
         # micro instruction counter
@@ -353,13 +373,13 @@ class Clock:
         self,
         y: int,
         x: int,
-        name: str,
+        title: str,
         clock: Signal,
         source: SAP1.ClockSource,
         avg_freq: float,
         width: int,
     ):
-        self.name = name
+        self.title = title
         self.clock = clock
         self.source = source
         self.freq = avg_freq
@@ -371,7 +391,7 @@ class Clock:
 
     def render(self):
         clock_state = bool(self.clock)
-        self.win.addstr(1, 0, self.name.center(self.width))
+        self.win.addstr(1, 0, self.title.center(self.width))
         self.win.hline(2, 0, curses.ACS_HLINE, self.width)
 
         self.win.addstr(3, 3, "State:")
@@ -402,12 +422,12 @@ class DataBus:
         self,
         y: int,
         x: int,
-        name: str,
+        title: str,
         signals: Sequence[Signal],
         height: int,
         width: int,
     ):
-        self.name = name
+        self.title = title
         self.signals = signals
 
         self.y = y
@@ -418,7 +438,7 @@ class DataBus:
         self.win = curses.newwin(self.height, self.width, y, x)
 
     def render(self):
-        self.win.addstr(1, 0, self.name.center(self.width))
+        self.win.addstr(1, 0, self.title.center(self.width))
         self.win.hline(2, 0, curses.ACS_HLINE, self.width)
         self.win.addstr(3, 2, " ".join(str(i) for i in range(len(self.signals), 0, -1)))
         for i, signal in enumerate(self.signals):
@@ -524,6 +544,7 @@ class Disassembly:
                 cur_line += 1
 
         else:
+            # program is a binary
             self.height = 5 + 16
             self.win.resize(self.height, self.width)
 
@@ -532,7 +553,7 @@ class Disassembly:
                 self.end_program = current_inum
 
             for address, data in enumerate(current_assembly):
-                
+
                 prefix = "> " if address == current_inum else "  "
                 self.win.addstr(cur_line, 2, f"{prefix}")
                 if address <= self.end_program:
@@ -551,9 +572,7 @@ class Disassembly:
                         f"{instruction.name:<4}",
                         curses.color_pair(Color.BLUE),
                     )
-                    self.win.addstr(
-                        cur_line, 8, param, curses.color_pair(Color.RED)
-                    )
+                    self.win.addstr(cur_line, 8, param, curses.color_pair(Color.RED))
                 else:
                     self.win.addstr(
                         cur_line, 4, f"0x{address:01X}:", curses.color_pair(Color.BLUE)
@@ -566,6 +585,7 @@ class Disassembly:
         self.win.border()
         self.win.noutrefresh()
 
+
 class EmulatorInfo:
     def __init__(
         self,
@@ -574,6 +594,7 @@ class EmulatorInfo:
         title: str,
         past_runtimes: Callable[[], Sequence[float]],
         missed_ticks: Callable[[], int],
+        target_frequency: Callable[[], float],
         width: int,
     ):
         self.y = y
@@ -582,38 +603,50 @@ class EmulatorInfo:
         self.title = title
         self.past_runtimes = past_runtimes
         self.missed_ticks = missed_ticks
+        self.target_frequency = target_frequency
 
         self.width = width
         self.height = 9
 
         self.win = curses.newwin(self.height, self.width, self.y, self.x)
-    
+
     def render(self):
         current_runtimes = self.past_runtimes()
         avg_runtime = sum(current_runtimes) / len(current_runtimes)
         currently_missed_ticks = self.missed_ticks()
+        current_target_frequency = self.target_frequency()
 
         self.win.addstr(1, 0, self.title.center(self.width))
         self.win.hline(2, 0, curses.ACS_HLINE, self.width)
 
-
         self.win.addstr(3, 2, "Avg.Tick Duration")
-        self.win.addstr(4, 0, f"{avg_runtime:06.4f} s".center(self.width), curses.color_pair(Color.GREEN))
-        
-        self.win.addstr(6, 5, "Missed Ticks")
-        self.win.addstr(7, 0, f"# {currently_missed_ticks:04d}".center(self.width), curses.color_pair(Color.GREEN))
+        self.win.addstr(
+            4,
+            0,
+            f"{avg_runtime:06.4f} s".center(self.width),
+            curses.color_pair(Color.GREEN),
+        )
+
+        self.win.addstr(5, 2, "Missed       Ticks")
+        self.win.addstr(
+            5, 9, f"#{currently_missed_ticks:04d}", curses.color_pair(Color.GREEN)
+        )
+
+        self.win.addstr(6, 3, "Target Frequency")
+        self.win.addstr(
+            7,
+            0,
+            f"{current_target_frequency:03.1f} Hz".center(self.width),
+            curses.color_pair(Color.GREEN),
+        )
 
         self.win.border()
         self.win.noutrefresh()
 
+
 class ControlsInfo:
     def __init__(
-        self,
-        y: int,
-        x: int,
-        keybindings: Mapping[str, str],
-        title: str,
-        width: int,
+        self, y: int, x: int, keybindings: Mapping[str, str], title: str, width: int
     ):
         self.y = y
         self.x = x
@@ -626,7 +659,7 @@ class ControlsInfo:
         self.keybindings = keybindings
 
         self.win = curses.newwin(self.height, self.width, self.y, self.x)
-    
+
     def render(self):
 
         self.win.addstr(1, 0, self.title.center(self.width))
@@ -637,8 +670,9 @@ class ControlsInfo:
         for key, function in self.keybindings.items():
 
             self.win.addstr(cur_line, 2, f"{key}", curses.color_pair(Color.GREEN))
-            self.win.addstr(cur_line, 3, f": {function}")
+            self.win.addstr(cur_line, 5, f": {function}")
             cur_line += 1
-        
+
         self.win.border()
         self.win.noutrefresh()
+

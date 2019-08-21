@@ -5,22 +5,29 @@ from lib.simulation import Clock, Bus
 import curses
 import sys
 from pathlib import Path
+from threading import Thread
+from functools import partial
+import argparse
 
-simulation_clock = Clock(freq=1000)
-
-processor = SAP1(simulation_clock)
-
-program_file = Path("Example-Programs/Counter.bin")
-processor.load_program(program_file)
+ClockSource = SAP1.ClockSource
 
 
-@curses.wrapper
-def main(stdscr):
-    display.init()
-    stdscr.clear()
+def main(args, stdscr):
+    display.init(stdscr)
+
+    simulation_clock = Clock(freq=args.simulation_frequency)
+
+    processor = SAP1(simulation_clock)
+    processor.load_program(args.assembly)
 
     cols_x = [3, 25, 45, 67, 88]
-    rows_y = [3, 12, 21, 30, 39, 48]
+    rows_y = [3, 12, 21, 30, 39, 47]
+    title = display.Title(
+        0,
+        0,
+        f"SAP-1 Emulator running {args.assembly}",
+        width=max(cols_x) - min(cols_x),
+    )
     clk = display.Clock(
         rows_y[0],
         cols_x[0],
@@ -112,7 +119,7 @@ def main(stdscr):
         width=cols_x[1] - cols_x[0] - 1,
     )
     out = display.OutputDisplay(
-        rows_y[4],
+        rows_y[4] - 1,
         cols_x[2],
         "Output",
         processor.OUT.contents,
@@ -127,7 +134,7 @@ def main(stdscr):
         processor.ID.control_word_positive_logic,
         processor.ID.microinstruction,
         display.Color.RED,
-        width=max(cols_x) - min(cols_x) - 1,
+        width=cols_x[3] - cols_x[0] - 1,
     )
     db = display.DataBus(
         rows_y[0],
@@ -141,22 +148,23 @@ def main(stdscr):
     info = display.EmulatorInfo(
         rows_y[0],
         cols_x[3],
-        title="Emulator Info", 
+        title="Emulator Info",
         past_runtimes=lambda: simulation_clock.past_runtimes,
         missed_ticks=lambda: simulation_clock.missed_ticks,
+        target_frequency=lambda: simulation_clock.freq,
         width=cols_x[3] - cols_x[2] - 1,
     )
 
     keys = display.ControlsInfo(
         rows_y[1],
         cols_x[3],
-        title="Controls", 
+        title="Controls",
         keybindings={
-            'c': 'Toggle Clock',
-            'o': 'Open Assembly',
-            'n': 'Single Step',
-            'r': 'Reset Processor',
-            'q': 'Quit'
+            "c": "Clock Source",
+            "+/-": "Clock Speed",
+            "n": "Single Step",
+            "r": "Reset State",
+            "q": "Quit",
         },
         width=cols_x[3] - cols_x[2] - 1,
     )
@@ -164,7 +172,7 @@ def main(stdscr):
     disassembler = display.Disassembly(
         rows_y[2],
         cols_x[3],
-        title=program_file.name,
+        title=args.assembly.name,
         current_instruction=lambda: processor.instruction,
         width=cols_x[3] - cols_x[2] - 1,
     )
@@ -173,9 +181,16 @@ def main(stdscr):
         processor.program if processor.program is not None else processor.RAM.contents
     )
 
+    def quit():
+        simulation_clock.stop()
+        sys.exit(0)
+
     @simulation_clock.every(simulation_clock.neg_edge)
     @simulation_clock.every(simulation_clock.pos_edge)
     def render():
+        title.render()
+
+        # draw all modules
         clk.render()
         mar.render()
         ram.render()
@@ -196,13 +211,64 @@ def main(stdscr):
         keys.render()
         disassembler.render()
 
+        # refresh the entire screen at once
         curses.doupdate()
+
+    def handle_input():
+        while not simulation_clock._stop_event.is_set():
+            # handle user keys
+            c = stdscr.getch()
+            if c == ord("c"):
+                processor.clock_source = (
+                    ClockSource.RUNNING
+                    if processor.clock_source is not ClockSource.RUNNING
+                    else ClockSource.SINGLE_STEP
+                )
+                render()
+            elif c == ord("+"):
+                if simulation_clock.freq >= 1:
+                    simulation_clock.freq += 1
+                else:
+                    simulation_clock.freq += 0.1
+                render()
+            elif c == ord("-"):
+                if simulation_clock.freq > 2:
+                    simulation_clock.freq -= 1
+                elif simulation_clock.freq > 0.1:
+                    simulation_clock.freq -= 0.1
+                render()
+            elif c == ord("n"):
+                processor.step(force=True)
+            elif c == ord("r"):
+                processor.reset()
+                render()
+            elif c == ord("q"):
+                quit()
 
     # start the emulation clock
     try:
+        input_handler = Thread(target=handle_input)
+        input_handler.start()
         simulation_clock.start()
     except KeyboardInterrupt:
-        sys.exit(0)
+        quit()
 
 
-main()
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "assembly",
+        help="the program to run in the emulator in either assembled binary form or assembly code",
+        type=Path,
+    )
+    parser.add_argument(
+        "-f",
+        "--simulation-frequency",
+        help="Iiitial target frequency of the simulation clock",
+        type=int,
+        default=10,
+    )
+
+    args = parser.parse_args()
+    curses.wrapper(partial(main, args))

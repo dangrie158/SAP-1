@@ -27,7 +27,7 @@ class SAP1:
         self.control_word = Bus(("Control Word", tuple(ISA.CW.__members__.keys())), width=16)
 
         self.clock_source = self.ClockSource.RUNNING
-        self.past_runtimes = deque(maxlen=20)
+        self.past_runtimes = deque(maxlen=5)
         self.last_run_start = time.time()
         self.avg_freq = -1.0
         self.clk = Signal("CLK", State.LOW)
@@ -54,8 +54,8 @@ class SAP1:
         self.OUT = OutputDisplay("OUT", self.databus, self.clk, self.control_word['OI'], self.i_clr)
 
         # register for state updates on simulation clock cycles
-        simulation_clock.every(simulation_clock.neg_edge)(lambda: self.update())
-        simulation_clock.every(simulation_clock.pos_edge)(lambda: self.update())
+        simulation_clock.every(simulation_clock.neg_edge)(lambda: self.step())
+        simulation_clock.every(simulation_clock.pos_edge)(lambda: self.step())
 
         self.program = None
 
@@ -91,7 +91,7 @@ class SAP1:
 
         self.RAM.contents = contents
 
-    def update(self):
+    def step(self, force=False):
         if self.clock_source is self.ClockSource.HALTED:
             self.avg_freq = 0
         else:
@@ -100,6 +100,8 @@ class SAP1:
                 self.past_runtimes.append(time.time() - self.last_run_start)
                 self.last_run_start = time.time()
                 self.avg_freq = len(self.past_runtimes) / sum(self.past_runtimes)
+            
+        if self.clock_source is self.ClockSource.RUNNING or force:
             self.clk.toggle()
         
         self.clk.notify()
@@ -107,3 +109,9 @@ class SAP1:
 
         if self.control_word['HLT']:
             self.clock_source = self.ClockSource.HALTED
+
+    def reset(self):
+        self.clr.state = State.HIGH
+        self.clr.notify()
+        self.i_clr.notify()
+        self.clr.state = State.LOW
