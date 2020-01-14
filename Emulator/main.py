@@ -21,7 +21,7 @@ def main(args, stdscr):
     processor.load_program(args.assembly)
 
     cols_x = [3, 25, 45, 67, 88]
-    rows_y = [3, 12, 21, 30, 39, 47]
+    rows_y = [1, 10, 19, 28, 37, 45]
     title = display.Title(
         0,
         0,

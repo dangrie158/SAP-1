@@ -216,7 +216,7 @@ class SN74LS161(IC):
                 self.count %= 2 ** self.num_bits
 
     def _clear(self, new_val):
-        # clear on rising edge of clear
+        # clear on falling edge of clear
         if not self.clr:
             self.count = 0
 
@@ -250,10 +250,17 @@ class SN74LS173(IC):
         self.g1.on_change(self._update)
         self.g2.on_change(self._update)
         self.clr.on_change(self.clear)
+        self.last_clock_state = bool(self.clk.state)
 
     def _update(self, _) -> None:
-        if not self.clr:
-            if self.clk:
+        # check if the clock actually changed 
+        # and we're on an clock edge
+        new_state = bool(self.clk.state)
+        if new_state != self.last_clock_state:
+            self.last_clock_state = bool(self.clk.state)
+
+
+            if not self.clr and self.clk:
                 # rising edge of the clock
 
                 if not self.g1 and not self.g2:
@@ -384,7 +391,7 @@ class SN74LS283(IC):
     input_signals = ["c0"]
     input_busses = {"a": num_bits, "b": num_bits}
     output_signals = {"c4": lambda self: self._get_carry_bit(3)}
-    output_busses = {"e": (num_bits, lambda self, bit: partial(self._get_bit, bit))}
+    output_busses = {"e": (num_bits, lambda self, bit: self._get_bit(bit))}
 
     def _partial_sum(self, x):
         return sum(

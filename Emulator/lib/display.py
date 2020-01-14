@@ -333,14 +333,14 @@ class InstructionDecoder:
         self.signal_names(3, cw_start + 3, self.signals[:8])
         self.win.addstr(
             4,
-            cw_start + 4,
-            led_array(reg_value_lower, 8, spacer="   "),
+            cw_start + 1,
+            led_array(reg_value_lower, 8, spacer="   ")[::-1],
             curses.color_pair(self.color),
         )
         self.win.addstr(
             5,
-            cw_start + 4,
-            led_array(reg_value_upper, 8, spacer="   "),
+            cw_start + 1,
+            led_array(reg_value_upper, 8, spacer="   ")[::-1],
             curses.color_pair(self.color),
         )
         self.signal_names(6, cw_start + 3, self.signals[8:])
@@ -447,7 +447,7 @@ class DataBus:
                 State.LOW: Color.RED,
                 State.HIGH_Z: Color.BLUE,
             }[signal.state]
-            self.colored_vline(5, 2 + 2 * i, self.height - 2, color)
+            self.colored_vline(5, 2 + 2 * (len(self.signals) - i - 1), self.height - 2, color)
 
         self.win.border()
 

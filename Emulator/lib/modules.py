@@ -240,7 +240,8 @@ class InstructionDecoder:
 
         reset_nor = SN74LS00("IC7")
         # the 6th step should reset the counter (5 actual microsteps)
-        reset_nor.a[2] = microinstruction_decoder.y[5]
+        #reset_nor.a[2] = State.HIGH#microinstruction_decoder.y[5]
+        microinstruction_decoder.y[3].on_change(lambda ns: microinstruction_counter.clear() if not ns else None)
         # also, the inverted clear should reset
         reset_nor.b[2] = clr
 
