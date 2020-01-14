@@ -25,15 +25,15 @@ CS_LOW_BYTE = 0 << 7
 # CS bit is high for the higher byte
 CS_HIG_BYTE = 1 << 7
 
-# bit 8 of the address is the zero-flag
-# this bit is set when the current ALU result is zero
-# while the FI control bit is set
-FLAG_ZF = 1 << 8
-
-# bit 9 of the address is the carry-flag
+# bit 8 of the address is the carry-flag
 # this bit is set when the current ALU result overflows
 # while the FI control bit is set
-FLAG_CF = 1 << 9
+FLAG_CF = 1 << 8
+
+# bit 9 of the address is the zero-flag
+# this bit is set when the current ALU result is zero
+# while the FI control bit is set
+FLAG_ZF = 1 << 9
 
 if __name__ == "__main__":
     # create a buffer for the eeprom memory with empty control words (NOP microinstructions)
