@@ -80,6 +80,17 @@ perceivable flickering:</p>
 <a class="reference external" href="http://www.ti.com/lit/ds/symlink/sn54ls139a-sp.pdf">SN74LS139</a>
 <em>2-line to 4-line decoder with active low outputs</em> to drive the cathodes.</p>
 </div>
+<div class="section" id="led-output-drive">
+<h3>LED Output Drive<a class="headerlink" href="#led-output-drive" title="Permalink to this headline">¶</a></h3>
+<p>According to the <a class="reference external" href="http://cva.stanford.edu/classes/cs99s/datasheets/at28c16.pdf">datasheet</a>
+of the decoder EEPROM, the chip can drive <span class="math notranslate nohighlight">\(10-20mA\)</span> with a
+<span class="math notranslate nohighlight">\(0.5 - 1.5V\)</span> drop in its output voltage.
+This may be too big of a drop when combined with the <span class="math notranslate nohighlight">\(220Ω\)</span> series
+resistors when used for higher voltage drop LED displays (like blue or white).
+If you have trouble with the output display being too dim or not lighting
+up at all, replace the resistor networks <span class="math notranslate nohighlight">\(\mathrm{RN}_1\)</span>
+and <span class="math notranslate nohighlight">\(\mathrm{RN}_2\)</span> with jumpers or choose a lower resistance network.</p>
+</div>
 </div>
 <div class="section" id="schematic">
 <h2>Schematic<a class="headerlink" href="#schematic" title="Permalink to this headline">¶</a></h2>
@@ -166,7 +177,7 @@ perceivable flickering:</p>
       &copy;2019, Daniel Grießhaber.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

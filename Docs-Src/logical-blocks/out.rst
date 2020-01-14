@@ -59,6 +59,17 @@ The bianry coded digit select signal is then decoded using a
 `SN74LS139 <http://www.ti.com/lit/ds/symlink/sn54ls139a-sp.pdf>`_
 *2-line to 4-line decoder with active low outputs* to drive the cathodes.
 
+LED Output Drive
+++++++++++++++++
+According to the `datasheet <http://cva.stanford.edu/classes/cs99s/datasheets/at28c16.pdf>`_
+of the decoder EEPROM, the chip can drive :math:`10-20mA` with a
+:math:`0.5 - 1.5V` drop in its output voltage.
+This may be too big of a drop when combined with the :math:`220Ω` series
+resistors when used for higher voltage drop LED displays (like blue or white).
+If you have trouble with the output display being too dim or not lighting
+up at all, replace the resistor networks :math:`\mathrm{RN}_1`
+and :math:`\mathrm{RN}_2` with jumpers or choose a lower resistance network.
+
 Schematic
 =========
 .. figure:: images/out.png
