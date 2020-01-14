@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="9.4.1">
+<eagle version="9.5.1">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="12.5" altunitdist="mil" altunit="mil"/>
+<grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.5" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -3050,8 +3050,8 @@ Created according to the specification at https://jlcpcb.com/capabilities/Capabi
 <attribute name="NAME" x="44.2087" y="271.9832" size="0.8128" layer="25" font="vector" ratio="10" align="center-left"/>
 <attribute name="VALUE" x="40.64" y="265.2663125" size="0.8128" layer="25" font="vector" ratio="10" rot="R270" align="center-left"/>
 </element>
-<element name="CLK:IC7" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS06N" x="40.64" y="283.21" smashed="yes" rot="R90">
-<attribute name="MOUSER" value="595-SN74LS06N" x="40.56" y="282.26" size="1.778" layer="27" rot="R90" display="off"/>
+<element name="CLK:IC7" library="74xx-us" library_urn="urn:adsk.eagle:library:88" package="DIL14" package3d_urn="urn:adsk.eagle:package:16407/2" value="74LS04N" x="40.64" y="283.21" smashed="yes" rot="R90">
+<attribute name="MOUSER" value="595-SN74LS04N" x="40.56" y="282.26" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="40.64" y="292.3032" size="0.8128" layer="25" font="vector" ratio="10" align="bottom-center"/>
 <attribute name="VALUE" x="40.64" y="285.5863125" size="0.8128" layer="25" font="vector" ratio="10" rot="R270" align="center-left"/>
 </element>
