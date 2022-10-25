@@ -1,6 +1,5 @@
 import threading
 import time
-from functools import wraps
 from enum import Enum
 from pprint import pformat
 from typing import Callable, Union, Optional, Sequence
@@ -189,7 +188,7 @@ class Clock(threading.Thread):
         self.handlers = {self.pos_edge: [], self.neg_edge: []}
         self.missed_ticks = 0
         self.past_runtimes = deque(maxlen=30)
-        self.past_runtimes.append(time.clock())
+        self.past_runtimes.append(time.perf_counter())
         self.max_freq = -1
 
     @property
@@ -220,10 +219,10 @@ class Clock(threading.Thread):
     def run(self):
         edge = Clock.pos_edge
         while not self._stop_event.is_set():
-            start_time = time.clock()
+            start_time = time.perf_counter()
             self.tick(edge)
             edge = Clock.pos_edge if edge == Clock.neg_edge else Clock.neg_edge
-            update_duration = time.clock() - start_time
+            update_duration = time.perf_counter() - start_time
 
             self.past_runtimes.append(update_duration)
 
@@ -237,4 +236,3 @@ class Clock(threading.Thread):
                 time.sleep(pause)
             else:
                 self.missed_ticks += 1
-
